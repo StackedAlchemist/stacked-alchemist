@@ -1,684 +1,416 @@
-/* ============================================================
-   INDEX PAGE — Arcane Cyberpunk Portfolio
-============================================================ */
-
-/* ===========================
-   HERO
-=========================== */
-.hero-section {
-  position: relative;
-  min-height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 5rem 2rem 4rem;
-  overflow: visible;
-}
-
-/* Rotating rune rings */
-.hero-rune-ring {
-  position: absolute;
-  border-radius: 50%;
-  border-style: solid;
-  border-color: transparent;
-  pointer-events: none;
-}
-
-.ring-1 {
-  width: 500px;
-  height: 500px;
-  border-top-color: rgba(0, 255, 200, 0.12);
-  border-left-color: rgba(0, 255, 200, 0.06);
-  border-width: 1px;
-  top: 50%;
-  right: -80px;
-  transform: translateY(-50%);
-  animation: ring-spin 30s linear infinite;
-}
-
-.ring-2 {
-  width: 380px;
-  height: 380px;
-  border-top-color: rgba(255, 0, 170, 0.1);
-  border-right-color: rgba(255, 0, 170, 0.05);
-  border-width: 1px;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  animation: ring-spin 20s linear infinite reverse;
-}
-
-.ring-3 {
-  width: 260px;
-  height: 260px;
-  border-top-color: rgba(255, 215, 0, 0.12);
-  border-width: 1px;
-  top: 50%;
-  right: 100px;
-  transform: translateY(-50%);
-  animation: ring-spin 12s linear infinite;
-}
-
-@keyframes ring-spin {
-  from { transform: translateY(-50%) rotate(0deg); }
-  to   { transform: translateY(-50%) rotate(360deg); }
-}
-
-.hero-content {
-  flex: 1;
-  max-width: 600px;
-  z-index: 2;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--teal);
-  background: rgba(0, 255, 200, 0.06);
-  border: 1px solid rgba(0, 255, 200, 0.2);
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  margin-bottom: 1.5rem;
-}
-
-.badge-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 8px var(--teal);
-  animation: badge-pulse 2s ease-in-out infinite;
-}
-
-@keyframes badge-pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--teal); }
-  50% { opacity: 0.5; box-shadow: 0 0 4px var(--teal); }
-}
-
-.hero-title {
-  font-size: clamp(3.5rem, 8vw, 7rem);
-  color: #fff;
-  text-shadow: 0 0 40px rgba(0, 255, 200, 0.2);
-  margin-bottom: 0.2rem;
-  line-height: 1;
-}
-
-.hero-title-line2 {
-  display: block;
-  font-size: clamp(2rem, 5vw, 4rem);
-  background: linear-gradient(135deg, var(--teal) 0%, var(--magenta) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: 0.15em;
-}
-
-.hero-subtitle {
-  font-size: 1.1rem;
-  color: var(--text);
-  margin: 1.5rem 0 2.5rem;
-  max-width: 480px;
-  line-height: 1.8;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-}
-
-.hero-stats {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-}
-
-.stat-num {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.4rem;
-  color: var(--teal);
-  text-shadow: 0 0 10px var(--teal-dim);
-}
-
-.stat-label {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.stat-divider {
-  width: 1px;
-  height: 36px;
-  background: var(--border);
-}
-
-/* ===========================
-   TERMINAL
-=========================== */
-.hero-terminal {
-  flex: 0 0 380px;
-  background: #050a0d;
-  border: 1px solid rgba(0, 255, 200, 0.2);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 60px rgba(0, 255, 200, 0.08), 0 20px 40px rgba(0,0,0,0.4);
-  z-index: 2;
-}
-
-.terminal-header {
-  background: #0b1014;
-  padding: 0.6rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-bottom: 1px solid rgba(0, 255, 200, 0.1);
-}
-
-.t-dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-}
-
-.t-dot.red    { background: #ff5f57; }
-.t-dot.yellow { background: #febc2e; }
-.t-dot.green  { background: #28c840; }
-
-.t-title {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--muted);
-  margin-left: auto;
-}
-
-.terminal-body {
-  padding: 1.25rem 1.25rem 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  line-height: 2;
-}
-
-.t-line {
-  display: block;
-}
-
-.t-prompt {
-  color: var(--teal);
-  margin-right: 0.5rem;
-}
-
-.t-cmd {
-  color: #e5f7f3;
-}
-
-.t-out {
-  color: var(--muted);
-  padding-left: 1.2rem;
-  display: block;
-}
-
-.t-gold {
-  color: var(--gold) !important;
-  font-style: italic;
-}
-
-.t-cursor {
-  color: var(--teal);
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-/* ===========================
-   SKILLS
-=========================== */
-.skills-section {
-  border-top: 1px solid var(--border);
-}
-
-.skills-title {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  background: linear-gradient(135deg, #fff 0%, var(--teal) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 3rem;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.25rem;
-}
-
-.skill-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.skill-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--teal), transparent);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.skill-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 255, 200, 0.1);
-}
-
-.skill-card:hover::before {
-  opacity: 1;
-}
-
-.skill-icon {
-  font-size: 1.6rem;
-  color: var(--teal);
-  margin-bottom: 0.75rem;
-  text-shadow: 0 0 12px var(--teal-dim);
-  font-family: var(--font-display);
-}
-
-.skill-card h3 {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #e5f7f3;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
-}
-
-.skill-card p {
-  font-size: 0.87rem;
-  color: var(--muted);
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.skill-bar {
-  height: 3px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.skill-fill {
-  height: 100%;
-  width: var(--pct);
-  background: linear-gradient(90deg, var(--teal), rgba(0,255,200,0.5));
-  border-radius: 999px;
-  box-shadow: 0 0 8px var(--teal-dim);
-  animation: fill-bar 1.5s ease-out forwards;
-}
-
-.skill-fill-gold {
-  background: linear-gradient(90deg, var(--gold), rgba(255,215,0,0.5));
-  box-shadow: 0 0 8px var(--gold-dim);
-}
-
-.skill-fill-mag {
-  background: linear-gradient(90deg, var(--magenta), rgba(255,0,170,0.5));
-  box-shadow: 0 0 8px var(--mag-dim);
-}
-
-@keyframes fill-bar {
-  from { width: 0; }
-  to   { width: var(--pct); }
-}
-
-/* ===========================
-   PROJECTS
-=========================== */
-.projects-section {
-  border-top: 1px solid var(--border);
-}
-
-.projects-sub {
-  max-width: 520px;
-  color: var(--muted);
-  margin-bottom: 2.5rem;
-}
-
-/* Tier Tabs */
-.tier-tabs {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.tier-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.6rem 1.25rem;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.tier-tab:hover {
-  border-color: var(--teal);
-  color: var(--teal);
-  background: rgba(0, 255, 200, 0.04);
-}
-
-.tier-tab.active {
-  border-color: var(--teal);
-  background: rgba(0, 255, 200, 0.08);
-  color: var(--teal);
-  box-shadow: 0 0 12px rgba(0, 255, 200, 0.15);
-}
-
-.tier-tab-icon {
-  font-size: 0.9rem;
-}
-
-/* Tier Content */
-.tier-content {
-  display: none;
-}
-
-.tier-content.active {
-  display: block;
-}
-
-.tier-desc {
-  font-family: var(--font-body);
-  font-style: italic;
-  color: var(--muted);
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
-}
-
-/* Project Cards */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.project-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  position: relative;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
-}
-
-.project-card-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background: radial-gradient(circle at 50% 0%, rgba(0,255,200,0.06), transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.project-card-glow.mag {
-  background: radial-gradient(circle at 50% 0%, rgba(255,0,170,0.06), transparent 70%);
-}
-
-.project-card-glow.gold {
-  background: radial-gradient(circle at 50% 0%, rgba(255,215,0,0.06), transparent 70%);
-}
-
-.project-card:hover .project-card-glow {
-  opacity: 1;
-}
-
-.project-card-badge {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  z-index: 10;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  background: rgba(0, 255, 200, 0.12);
-  border: 1px solid rgba(0, 255, 200, 0.3);
-  color: var(--teal);
-}
-
-.project-card-badge.mag {
-  background: rgba(255, 0, 170, 0.12);
-  border-color: rgba(255, 0, 170, 0.3);
-  color: var(--magenta);
-}
-
-.project-card-badge.gold {
-  background: rgba(255, 215, 0, 0.12);
-  border-color: rgba(255, 215, 0, 0.3);
-  color: var(--gold);
-}
-
-.project-thumb-wrap {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-}
-
-.project-thumb {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-  display: block;
-}
-
-.project-card:hover .project-thumb {
-  transform: scale(1.05);
-}
-
-.project-thumb-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(5, 4, 10, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.project-card:hover .project-thumb-overlay {
-  opacity: 1;
-}
-
-.project-body {
-  padding: 1.25rem;
-  position: relative;
-  z-index: 1;
-}
-
-.project-body h3 {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 600;
-  color: #e5f7f3;
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.04em;
-}
-
-.project-body p {
-  font-size: 0.87rem;
-  color: var(--muted);
-  margin-bottom: 0.9rem;
-  line-height: 1.6;
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-}
-
-.project-tags span {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  padding: 0.15rem 0.55rem;
-  border-radius: 4px;
-}
-
-.project-actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.proj-link {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  color: var(--teal);
-  text-decoration: none;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(0, 255, 200, 0.2);
-  border-radius: 4px;
-  background: rgba(0, 255, 200, 0.04);
-  transition: all 0.2s ease;
-}
-
-.proj-link:hover {
-  background: rgba(0, 255, 200, 0.1);
-  border-color: var(--teal);
-  box-shadow: 0 0 10px var(--teal-dim);
-}
-
-/* Coming Soon cards */
-.project-card-coming .coming-thumb {
-  aspect-ratio: 16 / 9;
-  background: var(--deep);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.coming-runes {
-  display: flex;
-  gap: 1rem;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  color: var(--border);
-  animation: rune-fade 3s ease-in-out infinite;
-}
-
-.coming-runes span:nth-child(2) { animation-delay: 0.5s; }
-.coming-runes span:nth-child(3) { animation-delay: 1s; }
-.coming-runes span:nth-child(4) { animation-delay: 1.5s; }
-
-@keyframes rune-fade {
-  0%, 100% { color: rgba(0,255,200,0.1); }
-  50% { color: rgba(0,255,200,0.35); }
-}
-
-/* ===========================
-   CTA SECTION
-=========================== */
-.cta-section .cta-inner {
-  text-align: center;
-  padding: 4rem 2rem;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.cta-section h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  margin: 0.75rem 0 1rem;
-  color: #fff;
-}
-
-.cta-section p {
-  margin-bottom: 2rem;
-  font-size: 1.05rem;
-}
-
-/* ===========================
-   RESPONSIVE
-=========================== */
-@media (max-width: 900px) {
-  .hero-section {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 3rem;
-  }
-
-  .hero-terminal {
-    flex: none;
-    width: 100%;
-    max-width: 480px;
-  }
-
-  .ring-1, .ring-2, .ring-3 {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .hero-stats {
-    gap: 1rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billy Williams — Stacked Alchemist</title>
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- BACKGROUND -->
+  <div class="bg-nebula"></div>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">Stacked Alchemist</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="blog/blog.html">The Grimoire</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- ========================
+         HERO
+    ======================== -->
+    <section class="hero-section">
+      <div class="hero-rune-ring ring-1"></div>
+      <div class="hero-rune-ring ring-2"></div>
+      <div class="hero-rune-ring ring-3"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="badge-dot"></span>
+          <span>Available for projects</span>
+        </div>
+
+        <h1 class="hero-title display-title reveal reveal-delay-1">
+          <span class="glitch" data-text="STACKED">STACKED</span>
+          <span class="hero-title-line2">ALCHEMIST</span>
+        </h1>
+
+        <p class="hero-subtitle reveal reveal-delay-2">
+          Full‑Stack Developer &amp; Digital Artificer — forging immersive web experiences 
+          where ancient craft meets modern engineering.
+        </p>
+
+        <div class="hero-cta reveal reveal-delay-3">
+          <a href="index.html#projects" class="btn btn-primary">View My Work</a>
+          <a href="about.html" class="btn btn-secondary">About Me</a>
+        </div>
+
+        <div class="hero-stats reveal reveal-delay-4">
+          <div class="stat">
+            <span class="stat-num">5+</span>
+            <span class="stat-label">Projects Live</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">HTML</span>
+            <span class="stat-label">CSS · JS · Python</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">∞</span>
+            <span class="stat-label">Curiosity</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-terminal reveal reveal-delay-2">
+        <div class="terminal-header">
+          <span class="t-dot red"></span>
+          <span class="t-dot yellow"></span>
+          <span class="t-dot green"></span>
+          <span class="t-title">alchemist.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></div>
+          <div class="t-line t-out">Billy Williams — developer, builder, alchemist</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">ls skills/</span></div>
+          <div class="t-line t-out">HTML5  CSS3  JavaScript  Python  Java  C++</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cat mission.txt</span></div>
+          <div class="t-line t-out t-gold">Turning logic into art,<br>&nbsp;&nbsp;one commit at a time.</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">█</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         SKILLS
+    ======================== -->
+    <section class="section skills-section" id="skills">
+      <div class="section-label reveal">Arcane Abilities</div>
+      <h2 class="display-title skills-title reveal reveal-delay-1">
+        The Craft
+      </h2>
+
+      <div class="skills-grid">
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-icon">⟨/⟩</div>
+          <h3>Front‑End Enchantment</h3>
+          <p>HTML5, CSS3, Modern JavaScript, Responsive Layouts, Animated UI Components</p>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:80%"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-icon">⚙</div>
+          <h3>Back‑End Binding</h3>
+          <p>Python Scripting, Java &amp; C++ Foundations, API Integration, Data Handling</p>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:60%"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-icon">◈</div>
+          <h3>UI/UX Divination</h3>
+          <p>Wireframing, Visual Hierarchy, Thematic Branding, User‑Focused Design</p>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:75%"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-icon">⌬</div>
+          <h3>Engineering &amp; Toolcraft</h3>
+          <p>Git &amp; GitHub, Clean Code Structure, Agile‑Style Workflow, Project Organization</p>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:70%"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-icon">⬡</div>
+          <h3>Security &amp; Reliability</h3>
+          <p>Years of professional security experience, calm decision‑making under pressure</p>
+          <div class="skill-bar"><div class="skill-fill skill-fill-gold" style="--pct:95%"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-icon">✦</div>
+          <h3>Communication Charms</h3>
+          <p>Clear documentation, translating technical concepts, client‑first mindset</p>
+          <div class="skill-bar"><div class="skill-fill skill-fill-mag" style="--pct:85%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         PROJECTS
+    ======================== -->
+    <section class="section projects-section" id="projects">
+      <div class="section-label reveal">Spellbound Projects</div>
+      <h2 class="display-title reveal reveal-delay-1">The Grimoire</h2>
+      <p class="projects-sub reveal reveal-delay-2">
+        Each project is an experiment — a spell cast in HTML, CSS, and JavaScript.
+      </p>
+
+      <!-- Tier Tabs -->
+      <div class="tier-tabs reveal reveal-delay-2">
+        <button class="tier-tab active" data-tier="foundational">
+          <span class="tier-tab-icon">✦</span> Foundational Magic
+        </button>
+        <button class="tier-tab" data-tier="arcane">
+          <span class="tier-tab-icon">⚙</span> Arcane Engineering
+        </button>
+        <button class="tier-tab" data-tier="high">
+          <span class="tier-tab-icon">◈</span> High Arcana
+        </button>
+      </div>
+
+      <!-- Tier: Foundational -->
+      <div class="tier-content active" id="tier-foundational">
+        <p class="tier-desc reveal">
+          The spark that begins every journey — small spells with focused intent.
+        </p>
+        <div class="projects-grid">
+
+          <article class="project-card reveal reveal-delay-1">
+            <div class="project-card-glow"></div>
+            <div class="project-card-badge">Live</div>
+            <div class="project-thumb-wrap">
+              <img src="images/clock.png" alt="Digital Clock" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="digital-clock/index.html" class="btn btn-primary">View Live</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>Arcane Timepiece</h3>
+              <p>A glowing digital clock forged with clean JavaScript and arcane UI energy.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JS</span>
+              </div>
+              <div class="project-actions">
+                <a href="digital-clock/index.html" class="proj-link">🔮 View Live</a>
+                <a href="https://github.com/StackedAlchemist/Portfolio/tree/main/digital-clock" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-delay-2">
+            <div class="project-card-glow mag"></div>
+            <div class="project-card-badge mag">Live</div>
+            <div class="project-thumb-wrap">
+              <img src="images/spell-casting.png" alt="Spell Generator" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="spell-generator/index.html" class="btn btn-primary">View Live</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>✨ Spell Generator</h3>
+              <p>Animated spells, particle bursts, and arcane sound design.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JS</span><span>Audio</span>
+              </div>
+              <div class="project-actions">
+                <a href="spell-generator/index.html" class="proj-link">🔮 View Live</a>
+                <a href="https://github.com/StackedAlchemist/spell-generator" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-delay-3">
+            <div class="project-card-glow gold"></div>
+            <div class="project-card-badge gold">Live</div>
+            <div class="project-thumb-wrap">
+              <img src="images/expense-tracker.png" alt="Expense Tracker" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="expense-tracker/index.html" class="btn btn-primary">View Live</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>Ledger of the Alchemist</h3>
+              <p>A financial grimoire tracking income, expenses, and borrowed mana.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JS</span><span>LocalStorage</span>
+              </div>
+              <div class="project-actions">
+                <a href="expense-tracker/index.html" class="proj-link">🔮 View Live</a>
+                <a href="https://github.com/StackedAlchemist/Portfolio/tree/main/expense-tracker" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Tier: Arcane Engineering -->
+      <div class="tier-content" id="tier-arcane">
+        <p class="tier-desc reveal">
+          Structure, logic, and enchanted machinery woven into more ambitious constructs.
+        </p>
+        <div class="projects-grid">
+
+          <article class="project-card reveal reveal-delay-1">
+            <div class="project-card-glow mag"></div>
+            <div class="project-card-badge mag">Game</div>
+            <div class="project-thumb-wrap">
+              <img src="images/cosmic-rift.jpg" alt="Cosmic Rift Defender" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="space-invaders/index.html" class="btn btn-primary">Play Now</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>👾 Cosmic Rift Defender</h3>
+              <p>Neon‑charged Space Invaders with particle explosions and enemy AI.</p>
+              <div class="project-tags">
+                <span>Canvas</span><span>ES6 Modules</span><span>Game Loop</span>
+              </div>
+              <div class="project-actions">
+                <a href="space-invaders/index.html" class="proj-link">🎮 Play Game</a>
+                <a href="https://github.com/StackedAlchemist/Portfolio/tree/main/space-invaders" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-delay-2">
+            <div class="project-card-glow mag"></div>
+            <div class="project-card-badge mag">Live</div>
+            <div class="project-thumb-wrap">
+              <img src="images/calculator.png" alt="Arithmetica Calculator" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="calculator/index.html" class="btn btn-primary">Open</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>🧮 Arithmetica</h3>
+              <p>A full scientific calculator with PEMDAS parsing, trig, logarithms, factorials, constants, and expression history.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JS</span><span>Parser</span>
+              </div>
+              <div class="project-actions">
+                <a href="calculator/index.html" class="proj-link">🔮 Open Calculator</a>
+                <a href="https://github.com/StackedAlchemist/Portfolio/tree/main/calculator" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-delay-3">
+            <div class="project-card-glow gold"></div>
+            <div class="project-card-badge gold">Game</div>
+            <div class="project-thumb-wrap">
+              <img src="images/arcane-tetris.jpg" alt="Arcane Tetris" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="tetris/index.html" class="btn btn-primary">Play Now</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>🧩 Arcane Tetris</h3>
+              <p>A Tetris‑like puzzle with glowing arcane pieces and score multipliers.</p>
+              <div class="project-tags">
+                <span>Canvas</span><span>JS</span><span>Physics</span>
+              </div>
+              <div class="project-actions">
+                <a href="tetris/index.html" class="proj-link">🎮 Play Tetris</a>
+                <a href="tetris/" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Tier: High Arcana -->
+      <div class="tier-content" id="tier-high">
+        <p class="tier-desc reveal">
+          Cinematic sorcery and mythic interfaces — projects forged at full power.
+        </p>
+        <div class="projects-grid">
+
+          <article class="project-card reveal reveal-delay-1">
+            <div class="project-card-glow"></div>
+            <div class="project-card-badge">Live</div>
+            <div class="project-thumb-wrap">
+              <img src="images/the-codex.png" alt="The Codex" class="project-thumb" />
+              <a href="the-codex/index.html" class="btn btn-primary">Open</a>
+            </div>
+            <div class="project-body">
+              <h3>📚 The Codex</h3>
+              <p>A split-screen book &amp; game tracker. Live search via Open Library and IGDB (PS5, Xbox, Nintendo, PC). Track status, ratings, notes, and upcoming releases.</p>
+              <div class="project-tags">
+                <span>HTML/CSS/JS</span>
+                <span>IGDB API</span>
+                <span>Cloudflare Worker</span>
+                <span>Open Library</span>
+              </div>
+              <div class="project-links">
+                <a href="the-codex/index.html" class="proj-link">📖 Open The Codex</a>
+                <a href="https://github.com/StackedAlchemist/stacked-alchemist/tree/main/the-codex" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card project-card-coming reveal reveal-delay-2">
+            <div class="project-card-glow gold"></div>
+            <div class="project-card-badge gold">Soon</div>
+            <div class="project-thumb-wrap coming-thumb">
+              <div class="coming-runes">
+                <span>⚙</span><span>✦</span><span>◈</span><span>⬡</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>🔥 Etheric Convergence Engine</h3>
+              <p>A mythic‑industrial construct harmonizing raw mana into arcane output.</p>
+              <div class="project-tags">
+                <span>Coming Soon</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================
+         CONTACT CTA
+    ======================== -->
+    <section class="section cta-section reveal">
+      <div class="cta-inner panel">
+        <div class="section-label">Summon the Alchemist</div>
+        <h2 class="display-title">Have a project in mind?</h2>
+        <p>Whether it's a website, an app, or something strange and arcane — let's build it.</p>
+        <a href="contact.html" class="btn btn-primary">Send a Raven</a>
+      </div>
+    </section>
+
+  </div><!-- /page-wrapper -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo">Stacked Alchemist</span>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="blog/blog.html">The Grimoire</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://github.com/StackedAlchemist" target="_blank" title="GitHub">GH</a>
+        <a href="https://www.linkedin.com/in/blwilliams83/" target="_blank" title="LinkedIn">LI</a>
+        <a href="https://twitter.com/BLWilliams83" target="_blank" title="Twitter">TW</a>
+        
+      </div>
+    </div>
+    <p class="footer-copy">© <span id="year"></span> Billy Williams — Stacked Alchemist. All rights reserved.</p>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
