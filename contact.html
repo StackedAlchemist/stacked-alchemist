@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Billy Williams</title>
-  <link rel="stylesheet" href="contact.css" />
   <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="contact.css" />
 </head>
 <body class="contact-body">
 
@@ -29,7 +29,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="index.html#projects">Projects</a></li>
-      <li><a href="/blog/blog.html">The Grimoire</a></li>
+      <li><a href="blog/blog.html">The Grimoire</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
   </nav>
@@ -38,9 +38,9 @@
     <div class="section contact-page-section">
 
       <div class="contact-header reveal">
-        <div class="section-label contact-label">Open Channel</div>
+        <div class="section-label contact-label">Summon the Alchemist</div>
         <h1 class="display-title contact-title">
-          Transmit<br><span class="contact-title-accent">a Signal</span>
+          Send a<br><span class="contact-title-accent">Raven</span>
         </h1>
         <p class="contact-intro">
           Whether you have a project, a collaboration, a question, or just want to say hello &mdash;
@@ -55,7 +55,7 @@
 
           <div class="transmission-header">
             <span class="tx-dot"></span>
-            <span class="tx-label">TRANSMISSION CHANNEL OPEN</span>
+            <span class="tx-label">RAVEN CHANNEL OPEN</span>
           </div>
 
           <div class="contact-detail-list">
@@ -63,7 +63,7 @@
               <span class="cd-icon">&#128231;</span>
               <div>
                 <span class="cd-label">Email</span>
-                <a href="mailto:StackedAlchemist@gmail.com" class="cd-value">StackedAlchemist@gmail.com</a>
+                <a href="/cdn-cgi/l/email-protection#4310372220282627022f202b262e2a303703242e222a2f6d202c2e" class="cd-value"><span class="__cf_email__" data-cfemail="0350776260686667426f606b666e6a707743646e626a6f2d606c6e">[email&#160;protected]</span></a>
               </div>
             </div>
             <div class="contact-detail">
@@ -107,7 +107,7 @@
                 <span class="social-handle">@BLWilliams83</span>
               </div>
             </a>
-            <a href="/blog/blog.html" class="social-link">
+            <a href="blog/blog.html" class="social-link">
               <span class="social-icon">&#128214;</span>
               <div>
                 <span class="social-platform">Writing</span>
@@ -142,15 +142,22 @@
           <!-- SUCCESS MESSAGE (hidden until form submits) -->
           <div class="form-success" id="formSuccess" style="display:none">
             <span class="success-icon">&#10003;</span>
-            <h3>Transmission Received</h3>
-            <p>Your message has been sent. I'll respond as soon as the ley-lines allow.</p>
+            <h3>Raven Dispatched</h3>
+            <p>Your message has taken flight. I'll respond as soon as the ley-lines allow.</p>
             <button class="btn btn-primary" id="resetFormBtn">Send Another</button>
           </div>
 
+          <!--
+            FORMSPREE SETUP:
+            1. Go to https://formspree.io and sign up (free)
+            2. Create a new form — it gives you an endpoint like https://formspree.io/f/YOUR_ID
+            3. Replace YOUR_FORMSPREE_ID below with your actual form ID
+            That's it — emails will land in your inbox, no backend needed.
+          -->
           <form
             class="contact-form"
             id="contactForm"
-            action="https://formspree.io/f/xpqjvpjo"
+            action="https://formspree.io/f/YOUR_FORMSPREE_ID"
             method="POST"
           >
 
@@ -191,10 +198,10 @@
             <input type="text" name="_gotcha" style="display:none" />
 
             <div class="form-footer">
-              <span class="form-hint">// Messages go directly to my inbox</span>
+              <span class="form-hint">// Ravens fly directly to my inbox</span>
               <button type="submit" class="btn btn-primary form-submit" id="submitBtn">
                 <span class="submit-icon">&#10230;</span>
-                <span id="submitText">Send Transmission</span>
+                <span id="submitText">Send the Raven</span>
               </button>
             </div>
 
@@ -213,7 +220,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="index.html#projects">Projects</a></li>
-        <li><a href="/blog/blog.html">The Grimoire</a></li>
+        <li><a href="blog/blog.html">The Grimoire</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="footer-social">
@@ -225,7 +232,7 @@
     <p class="footer-copy">&copy; <span id="year"></span> Billy Williams &mdash; Stacked Alchemist.</p>
   </footer>
 
-  <script src="shared.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="shared.js"></script>
   <script>
     // Formspree AJAX submission — shows success message without page reload
     const form        = document.getElementById('contactForm');
@@ -237,7 +244,7 @@
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        submitText.textContent = 'Transmitting…';
+        submitText.textContent = 'Sending…';
         submitBtn.disabled = true;
 
         try {
@@ -251,27 +258,17 @@
             form.style.display = 'none';
             success.style.display = 'flex';
           } else {
-            submitText.textContent = 'Send Transmission';
+            submitText.textContent = 'Send the Raven';
             submitBtn.disabled = false;
             alert('There was an issue sending your message. Please try emailing directly: StackedAlchemist@gmail.com');
           }
         } catch {
-          submitText.textContent = 'Send Transmission';
+          submitText.textContent = 'Send the Raven';
           submitBtn.disabled = false;
           alert('Network error. Please email directly: StackedAlchemist@gmail.com');
         }
       });
     }
 
-    if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
-        form.reset();
-        form.style.display = '';
-        success.style.display = 'none';
-        submitText.textContent = 'Send Transmission';
-        submitBtn.disabled = false;
-      });
-    }
-  </script>
-</body>
-</html>
+    if (resetBtn) 
+      resetBtn.addEve

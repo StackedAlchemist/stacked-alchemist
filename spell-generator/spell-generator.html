@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcane Spell Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="spell-generator.css" />
+</head>
+<body>
+
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <main class="container">
+
+    <header class="page-header">
+      <div class="rune-row" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+      <h1>Arcane Compendium</h1>
+      <p class="lead">Select a spell to witness its power</p>
+    </header>
+
+    <div class="grimoire-layout">
+
+      <!-- LEFT: Spell List -->
+      <nav class="spell-list" aria-label="Spell list">
+        <div class="spell-list-header">Spells Known</div>
+        <button class="spell-btn" data-spell="ignis-lux">
+          <span class="spell-icon" style="color:#ff7b3a">🔥</span>
+          <span class="spell-info">
+            <span class="spell-name">Ignis Lux</span>
+            <span class="spell-sub">Flame of Light</span>
+          </span>
+        </button>
+        <button class="spell-btn" data-spell="glacies-orbis">
+          <span class="spell-icon" style="color:#74b9ff">❄</span>
+          <span class="spell-info">
+            <span class="spell-name">Glacies Orbis</span>
+            <span class="spell-sub">Orb of Ice</span>
+          </span>
+        </button>
+        <button class="spell-btn" data-spell="fulmen-arcanum">
+          <span class="spell-icon" style="color:#ffd700">⚡</span>
+          <span class="spell-info">
+            <span class="spell-name">Fulmen Arcanum</span>
+            <span class="spell-sub">Arcane Thunder</span>
+          </span>
+        </button>
+        <button class="spell-btn" data-spell="umbra-velo">
+          <span class="spell-icon" style="color:#a29bfe">🌑</span>
+          <span class="spell-info">
+            <span class="spell-name">Umbra Velo</span>
+            <span class="spell-sub">Cloak of Shadows</span>
+          </span>
+        </button>
+        <button class="spell-btn" data-spell="vitae-nexus">
+          <span class="spell-icon" style="color:#00b894">✦</span>
+          <span class="spell-info">
+            <span class="spell-name">Vitae Nexus</span>
+            <span class="spell-sub">Bind Life</span>
+          </span>
+        </button>
+        <button class="spell-btn" data-spell="aetheris-vox">
+          <span class="spell-icon" style="color:#c39bd3">◈</span>
+          <span class="spell-info">
+            <span class="spell-name">Aetheris Vox</span>
+            <span class="spell-sub">Voice of the Void</span>
+          </span>
+        </button>
+        <button class="spell-btn" data-spell="tempus-fractum">
+          <span class="spell-icon" style="color:#00d2ff">⧗</span>
+          <span class="spell-info">
+            <span class="spell-name">Tempus Fractum</span>
+            <span class="spell-sub">Shatter Time</span>
+          </span>
+        </button>
+      </nav>
+
+      <!-- CAST BUTTON -->
+      <button class="cast-btn" id="cast-random-btn" aria-label="Cast a random spell">
+        <span class="cast-btn-rune" aria-hidden="true">✦</span>
+        <span class="cast-btn-label">Cast Random Spell</span>
+        <span class="cast-btn-sub">Draw from the Compendium</span>
+      </button>
+
+      <!-- RIGHT: Spell Display -->
+      <div class="spell-display" id="spell-display">
+        <div class="canvas-wrap">
+          <canvas id="spell-canvas"></canvas>
+          <div class="canvas-idle" id="canvas-idle">
+            <div class="idle-rune">✦</div>
+            <p>Choose a spell to cast</p>
+          </div>
+        </div>
+        <div class="spell-detail" id="spell-detail" style="display:none">
+          <h2 id="detail-name"></h2>
+          <p class="detail-sub" id="detail-sub"></p>
+          <p class="detail-desc" id="detail-desc"></p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="spell-generator.js"></script>
+</body>
+</html>

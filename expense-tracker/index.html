@@ -1,54 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Expense Tracker</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcane Ledger — Expense Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-  <body>
-    <header>
-      <h1>Expense Tracker</h1>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <div class="bg-wrap">
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header class="app-header">
+      <a href="../index.html" class="back-link">← Portfolio</a>
+      <div class="header-center">
+        <h1 class="app-title">Arcane Ledger</h1>
+        <p class="app-subtitle">Track your mana flow</p>
+      </div>
+      <button class="clear-all-btn" id="clearAllBtn" title="Clear all transactions">⚗ Clear All</button>
     </header>
 
-    <section class="tracker-container">
-      <!-- Input Form -->
-      <div class="expense-form">
-        <select id="type-input">
-          <option value="income">Income</option>
-          <option value="borrowed">Borrowed</option>
-          <option value="expense">Expense</option>
-        </select>
-
-        <input
-          type="text"
-          id="description-input"
-          placeholder="Description"
-          autocomplete="off"
-        />
-
-        <input
-          type="number"
-          id="amount-input"
-          placeholder="Amount"
-          step="0.01"
-        />
-
-        <button id="add-expense-btn">Add Expense</button>
+    <!-- Summary Cards -->
+    <section class="summary-row">
+      <div class="summary-card income-card">
+        <div class="sc-icon">↑</div>
+        <div class="sc-body">
+          <div class="sc-label">Total Income</div>
+          <div class="sc-amount" id="totalIncome">$0.00</div>
+        </div>
       </div>
-
-      <!-- Totals -->
-      <div class="totals">
-        <p>Total Income: <span id="total-income">$0</span></p>
-        <p>Total Expenses: <span id="total-expenses">$0</span></p>
-        <p>Balance: <span id="balance">$0</span></p>
+      <div class="summary-card balance-card">
+        <div class="sc-icon">⚖</div>
+        <div class="sc-body">
+          <div class="sc-label">Balance</div>
+          <div class="sc-amount" id="balance">$0.00</div>
+        </div>
       </div>
-
-      <!-- Expense List -->
-      <ul id="expense-list"></ul>
+      <div class="summary-card expense-card">
+        <div class="sc-icon">↓</div>
+        <div class="sc-body">
+          <div class="sc-label">Total Expenses</div>
+          <div class="sc-amount" id="totalExpenses">$0.00</div>
+        </div>
+      </div>
     </section>
 
-    <script src="main.js"></script>
-  </body>
+    <!-- Progress bar -->
+    <div class="spend-bar-wrap">
+      <div class="spend-bar-label">
+        <span id="spendPct">0%</span>
+        <span>of income spent</span>
+      </div>
+      <div class="spend-bar-track">
+        <div class="spend-bar-fill" id="spendBar"></div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-grid">
+
+      <!-- Left: Add transaction form -->
+      <section class="form-section">
+        <div class="section-label">✦ Add Transaction</div>
+        <div class="form-card">
+
+          <div class="type-tabs" id="typeTabs">
+            <button class="type-tab active" data-type="income">
+              <span class="tab-dot income-dot"></span> Income
+            </button>
+            <button class="type-tab" data-type="borrowed">
+              <span class="tab-dot borrowed-dot"></span> Borrowed
+            </button>
+            <button class="type-tab" data-type="expense">
+              <span class="tab-dot expense-dot"></span> Expense
+            </button>
+          </div>
+
+          <div class="form-fields">
+            <div class="field-wrap">
+              <label class="field-label">Description</label>
+              <input type="text" id="descriptionInput" class="form-input"
+                placeholder="e.g. Freelance payment, Groceries…" autocomplete="off" />
+            </div>
+
+            <div class="field-wrap">
+              <label class="field-label">Amount</label>
+              <div class="amount-wrap">
+                <span class="currency-sign">$</span>
+                <input type="number" id="amountInput" class="form-input amount-input"
+                  placeholder="0.00" step="0.01" min="0" />
+              </div>
+            </div>
+
+            <div class="field-wrap">
+              <label class="field-label">Category</label>
+              <select id="categoryInput" class="form-input">
+                <option value="general">General</option>
+                <option value="food">Food & Drink</option>
+                <option value="housing">Housing & Utilities</option>
+                <option value="transport">Transport</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="health">Health</option>
+                <option value="shopping">Shopping</option>
+                <option value="work">Work / Income</option>
+                <option value="savings">Savings</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="field-wrap">
+              <label class="field-label">Date</label>
+              <input type="date" id="dateInput" class="form-input" />
+            </div>
+          </div>
+
+          <button class="add-btn" id="addBtn">
+            <span id="addBtnLabel">+ Add Income</span>
+          </button>
+
+        </div>
+      </section>
+
+      <!-- Right: Transaction list -->
+      <section class="list-section">
+        <div class="list-header">
+          <div class="section-label" style="margin-bottom:0">📜 Transactions</div>
+          <div class="list-controls">
+            <select id="filterType" class="mini-select">
+              <option value="all">All Types</option>
+              <option value="income">Income</option>
+              <option value="borrowed">Borrowed</option>
+              <option value="expense">Expense</option>
+            </select>
+            <select id="filterCat" class="mini-select">
+              <option value="all">All Categories</option>
+              <option value="general">General</option>
+              <option value="food">Food & Drink</option>
+              <option value="housing">Housing</option>
+              <option value="transport">Transport</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="health">Health</option>
+              <option value="shopping">Shopping</option>
+              <option value="work">Work</option>
+              <option value="savings">Savings</option>
+              <option value="other">Other</option>
+            </select>
+            <select id="sortBy" class="mini-select">
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="highest">Highest $</option>
+              <option value="lowest">Lowest $</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="transaction-count" id="txCount">0 transactions</div>
+
+        <ul class="transaction-list" id="transactionList">
+          <li class="empty-state" id="emptyState">
+            <span class="empty-icon">⚗</span>
+            <p>No transactions yet.<br>Add your first entry above.</p>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-title">Edit Transaction</div>
+      <div class="form-fields" style="margin-top:1rem">
+        <div class="field-wrap">
+          <label class="field-label">Description</label>
+          <input type="text" id="editDesc" class="form-input" />
+        </div>
+        <div class="field-wrap">
+          <label class="field-label">Amount</label>
+          <div class="amount-wrap">
+            <span class="currency-sign">$</span>
+            <input type="number" id="editAmount" class="form-input amount-input" step="0.01" min="0" />
+          </div>
+        </div>
+        <div class="field-wrap">
+          <label class="field-label">Category</label>
+          <select id="editCategory" class="form-input">
+            <option value="general">General</option>
+            <option value="food">Food & Drink</option>
+            <option value="housing">Housing & Utilities</option>
+            <option value="transport">Transport</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="health">Health</option>
+            <option value="shopping">Shopping</option>
+            <option value="work">Work / Income</option>
+            <option value="savings">Savings</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="add-btn" id="saveEdit">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
 </html>

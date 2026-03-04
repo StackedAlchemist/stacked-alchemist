@@ -1,118 +1,428 @@
-/* ===== Reset ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ============================================================
+   ARCANE CLOCK — Upgraded CSS
+   Themes: teal · gold · violet · ember
+   Fully responsive · Custom cursor · World clocks · Alarm · Timer
+============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+
+/* ── Theme Variables ── */
+:root {
+  --accent:     #00ffc8;
+  --accent-dim: rgba(0,255,200,0.15);
+  --accent-glow: rgba(0,255,200,0.35);
+  --accent-deep: #008855;
+  --orb1: #00ffc8;
+  --orb2: #0077ff;
+  --orb3: #00ccaa;
+  --void: #00070a;
+  --panel-bg: rgba(0,20,25,0.45);
+  --border: rgba(0,255,200,0.35);
+  --text: #c8f0e8;
+  --muted: #4a7a70;
+  --font-clock: 'Orbitron', monospace;
+  --font-ui:    'Share Tech Mono', monospace;
+  --font-title: 'Cinzel', serif;
 }
 
-/* ===== Background ===== */
+[data-theme="gold"] {
+  --accent:      #c8852a;
+  --accent-dim:  rgba(200,133,42,0.15);
+  --accent-glow: rgba(200,133,42,0.35);
+  --accent-deep: #7a4a00;
+  --orb1: #c8852a; --orb2: #ff6600; --orb3: #e8a020;
+  --void: #0a0700;
+  --panel-bg: rgba(20,12,0,0.45);
+  --border: rgba(200,133,42,0.35);
+  --text: #f0d8a8; --muted: #7a5a30;
+}
+
+[data-theme="violet"] {
+  --accent:      #9d7fff;
+  --accent-dim:  rgba(157,127,255,0.15);
+  --accent-glow: rgba(157,127,255,0.35);
+  --accent-deep: #4a2a99;
+  --orb1: #9d7fff; --orb2: #cc44ff; --orb3: #7b55dd;
+  --void: #060408;
+  --panel-bg: rgba(15,8,25,0.45);
+  --border: rgba(157,127,255,0.35);
+  --text: #ddd0ff; --muted: #6a507a;
+}
+
+[data-theme="ember"] {
+  --accent:      #ff5533;
+  --accent-dim:  rgba(255,85,51,0.15);
+  --accent-glow: rgba(255,85,51,0.35);
+  --accent-deep: #882200;
+  --orb1: #ff5533; --orb2: #ff8800; --orb3: #dd3300;
+  --void: #0a0400;
+  --panel-bg: rgba(20,5,0,0.45);
+  --border: rgba(255,85,51,0.35);
+  --text: #ffd0c0; --muted: #7a3020;
+}
+
 body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* Arcane void gradient */
-  background: radial-gradient(circle at center,
-    #001114 0%,
-    #00070a 40%,
-    #000000 100%
-  );
-
-  font-family: 'Montserrat', sans-serif;
-  overflow: hidden;
+  min-height: 100vh;
+  background: var(--void);
+  color: var(--text);
+  font-family: var(--font-ui);
+  overflow-x: hidden;
+  transition: background .5s ease;
 }
 
-/* ===== Floating Arcane Glyphs ===== */
-body::before,
-body::after {
-  content: "";
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.25;
-  animation: drift 12s infinite alternate ease-in-out;
+/* ── Background ── */
+.bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(120px); opacity: 0.22;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+.orb-1 { width: 600px; height: 600px; background: var(--orb1); top: -150px; left: -150px; }
+.orb-2 { width: 500px; height: 500px; background: var(--orb2); bottom: -120px; right: -120px; animation-duration: 18s; }
+.orb-3 { width: 300px; height: 300px; background: var(--orb3); top: 40%; left: 40%; opacity: 0.1; animation-duration: 10s; }
+@keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(40px,-40px) scale(1.15); } }
+
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,255,200,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,200,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transition: background-image .5s;
+}
+[data-theme="gold"]   .bg-grid { background-image: linear-gradient(rgba(200,133,42,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(200,133,42,0.025) 1px,transparent 1px); }
+[data-theme="violet"] .bg-grid { background-image: linear-gradient(rgba(157,127,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(157,127,255,0.025) 1px,transparent 1px); }
+[data-theme="ember"]  .bg-grid { background-image: linear-gradient(rgba(255,85,51,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,85,51,0.025) 1px,transparent 1px); }
+
+/* ── Cursor ── */
+.cursor-dot {
+  position: fixed; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 10px var(--accent);
+  pointer-events: none; z-index: 99999;
+  transform: translate(-50%,-50%); mix-blend-mode: screen;
+  transition: transform .15s, background .3s;
+}
+.cursor-ring {
+  position: fixed; width: 28px; height: 28px; border-radius: 50%;
+  border: 1px solid var(--accent-glow);
+  pointer-events: none; z-index: 99998;
+  transform: translate(-50%,-50%);
+  transition: border-color .3s;
 }
 
-body::before {
-  background: #00ffc8;
-  top: -150px;
-  left: -150px;
+/* ── App Layout ── */
+.app {
+  position: relative; z-index: 1;
+  max-width: 860px; margin: 0 auto;
+  padding: 1.5rem 1.5rem 4rem;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 2.5rem;
 }
 
-body::after {
-  background: #0077ff;
-  bottom: -150px;
-  right: -150px;
+.back-link {
+  align-self: flex-start;
+  font-family: var(--font-ui); font-size: 0.7rem;
+  letter-spacing: 0.12em; color: var(--muted);
+  text-decoration: none; transition: color .2s;
 }
+.back-link:hover { color: var(--accent); }
 
-@keyframes drift {
-  from { transform: translate(0, 0) scale(1); }
-  to { transform: translate(40px, -40px) scale(1.2); }
+/* ── Theme Strip ── */
+.theme-strip {
+  display: flex; gap: 0.6rem; align-items: center;
 }
+.theme-btn {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid transparent; cursor: pointer;
+  transition: transform .2s, border-color .2s;
+}
+.theme-btn[data-theme="teal"]   { background: #00ffc8; }
+.theme-btn[data-theme="gold"]   { background: #c8852a; }
+.theme-btn[data-theme="violet"] { background: #9d7fff; }
+.theme-btn[data-theme="ember"]  { background: #ff5533; }
+.theme-btn:hover  { transform: scale(1.2); }
+.theme-btn.active { border-color: white; transform: scale(1.25); }
 
-/* ===== Clock Container ===== */
-.clock-container {
+/* ── Clock Section ── */
+.clock-section {
   position: relative;
-  padding: 60px 100px;
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+}
+
+/* Runic rings */
+.runic-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px dashed var(--border);
+  pointer-events: none;
+  transition: border-color .3s;
+}
+.outer-ring {
+  width: min(520px, 90vw); height: min(520px, 90vw);
+  opacity: 0.3;
+  animation: spin 30s linear infinite;
+}
+.inner-ring {
+  width: min(420px, 72vw); height: min(420px, 72vw);
+  opacity: 0.2;
+  animation: spin 20s linear infinite reverse;
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Clock Panel */
+.clock-panel {
+  position: relative;
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(2rem, 6vw, 5rem);
   border-radius: 20px;
-
-  /* Arcane glass panel */
-  background: rgba(0, 20, 25, 0.35);
-  backdrop-filter: blur(12px);
-
-  /* Arcane border glow */
-  border: 2px solid rgba(0, 255, 200, 0.4);
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  border: 2px solid var(--border);
   box-shadow:
-    0 0 20px rgba(0, 255, 200, 0.4),
-    inset 0 0 20px rgba(0, 255, 200, 0.2);
-
-  animation: float 4s ease-in-out infinite;
+    0 0 40px var(--accent-glow),
+    inset 0 0 30px var(--accent-dim);
+  animation: float 5s ease-in-out infinite;
+  text-align: center;
+  transition: background .3s, border-color .3s, box-shadow .3s;
+  min-width: min(420px, 90vw);
 }
-
-/* Floating animation */
+.clock-panel-glow {
+  position: absolute; inset: -2px; border-radius: 22px;
+  background: linear-gradient(135deg, var(--accent-dim), transparent, var(--accent-dim));
+  pointer-events: none; opacity: 0.5;
+}
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0px); }
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
 }
 
-/* ===== Clock Text ===== */
-#clock {
-  font-size: 4.5rem;
-  letter-spacing: 6px;
-  color: #00ffc8;
+.clock-eyebrow {
+  font-family: var(--font-ui); font-size: 0.62rem;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 1rem;
+  transition: color .3s;
+}
 
-  /* Arcane glow */
+/* Time display */
+.time-display {
+  display: flex; align-items: baseline;
+  justify-content: center; gap: 0.1em;
+  margin-bottom: 0.75rem;
+}
+.time-seg {
+  font-family: var(--font-clock);
+  font-size: clamp(2.8rem, 10vw, 5.5rem);
+  font-weight: 900;
+  color: var(--accent);
   text-shadow:
-    0 0 10px #00ffc8,
-    0 0 20px #00ffc8,
-    0 0 40px #00ffc8,
-    0 0 80px #00ffc8;
+    0 0 10px var(--accent),
+    0 0 30px var(--accent),
+    0 0 60px var(--accent-glow);
+  letter-spacing: 0.05em;
+  transition: color .3s, text-shadow .3s;
+  min-width: 1.8ch; text-align: center;
+}
+.time-colon {
+  font-family: var(--font-clock);
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 900; color: var(--accent);
+  opacity: 1; transition: opacity .1s, color .3s;
+  animation: blink 1s step-end infinite;
+  line-height: 1;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
 
-  animation: pulse 2.5s infinite ease-in-out;
+.ampm {
+  font-family: var(--font-ui); font-size: clamp(0.9rem, 3vw, 1.4rem);
+  color: var(--accent); opacity: 0.7;
+  margin-left: 0.4em; align-self: flex-end;
+  margin-bottom: 0.5em; transition: color .3s;
+}
+.ampm.hidden { display: none; }
+
+.date-display {
+  font-family: var(--font-title); font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+  letter-spacing: 0.12em; color: var(--muted);
+  margin-bottom: 1.5rem; transition: color .3s;
 }
 
-/* Arcane pulse */
-@keyframes pulse {
-  0% { opacity: 0.85; text-shadow: 0 0 20px #00ffc8; }
-  50% { opacity: 1; text-shadow: 0 0 40px #00ffc8; }
-  100% { opacity: 0.85; text-shadow: 0 0 20px #00ffc8; }
+/* Controls row */
+.controls-row {
+  display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;
+}
+.ctrl-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+  background: var(--accent-dim); border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.6rem 1rem;
+  color: var(--accent); cursor: pointer;
+  transition: all .2s; min-width: 70px;
+}
+.ctrl-btn:hover { background: rgba(0,255,200,0.2); box-shadow: 0 0 14px var(--accent-glow); }
+.ctrl-btn.active { background: rgba(0,255,200,0.2); box-shadow: 0 0 14px var(--accent-glow); border-color: var(--accent); }
+.ctrl-icon { font-size: 1.1rem; }
+.ctrl-label { font-family: var(--font-ui); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* ── World Clocks ── */
+.section-label {
+  font-family: var(--font-ui); font-size: 0.68rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); opacity: 0.7;
+  margin-bottom: 1rem; width: 100%;
+  transition: color .3s;
 }
 
-/* ===== Optional: Runic Circle Behind Clock ===== */
-.clock-container::before {
-  content: "";
-  position: absolute;
-  inset: -40px;
-  border-radius: 50%;
-  border: 2px dashed rgba(0, 255, 200, 0.25);
-  animation: rotate 18s linear infinite;
+.world-section { width: 100%; }
+.world-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.85rem;
 }
 
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.world-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 1rem;
+  text-align: center; backdrop-filter: blur(10px);
+  transition: border-color .2s, transform .2s, background .3s;
+}
+.world-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+.wc-city {
+  font-family: var(--font-title); font-size: 0.75rem;
+  letter-spacing: 0.1em; color: var(--muted);
+  margin-bottom: 0.4rem; transition: color .3s;
+}
+.wc-time {
+  font-family: var(--font-clock); font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 700; color: var(--accent);
+  text-shadow: 0 0 10px var(--accent-glow);
+  transition: color .3s, text-shadow .3s;
+}
+.wc-date {
+  font-family: var(--font-ui); font-size: 0.6rem;
+  color: var(--muted); margin-top: 0.25rem;
+  letter-spacing: 0.08em; transition: color .3s;
+}
+.wc-offset {
+  font-family: var(--font-ui); font-size: 0.55rem;
+  color: var(--muted); opacity: 0.6; margin-top: 0.15rem;
+}
+
+/* ── Panels ── */
+.panel-section { width: 100%; }
+.panel-section.hidden { display: none; }
+
+.panel-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem;
+  backdrop-filter: blur(12px);
+  display: flex; flex-direction: column; gap: 1rem;
+  transition: background .3s, border-color .3s;
+}
+
+.panel-row {
+  display: flex; align-items: center;
+  gap: 0.75rem; flex-wrap: wrap;
+}
+
+.time-input {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 0.6rem 0.9rem; color: var(--accent);
+  font-family: var(--font-clock); font-size: 1.1rem;
+  outline: none; transition: border-color .2s, color .3s;
+  color-scheme: dark;
+}
+.time-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+.time-input.small { width: 70px; text-align: center; font-size: 1rem; padding: 0.5rem 0.4rem; }
+
+.timer-inputs { display: flex; align-items: center; gap: 0.4rem; }
+.timer-input-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
+.timer-unit { font-size: 0.55rem; letter-spacing: 0.15em; color: var(--muted); }
+.timer-sep { font-family: var(--font-clock); font-size: 1.2rem; color: var(--accent); margin-bottom: 1rem; }
+
+.panel-btn {
+  font-family: var(--font-ui); font-size: 0.7rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.6rem 1.2rem; border-radius: 6px;
+  cursor: pointer; transition: all .2s; white-space: nowrap;
+}
+.set-btn {
+  background: var(--accent-dim); border: 1px solid var(--border);
+  color: var(--accent);
+}
+.set-btn:hover { background: rgba(0,255,200,0.22); box-shadow: 0 0 14px var(--accent-glow); }
+.clear-btn {
+  background: rgba(200,60,60,0.1); border: 1px solid rgba(200,60,60,0.3);
+  color: #e06060;
+}
+.clear-btn:hover { background: rgba(200,60,60,0.2); }
+
+.alarm-status {
+  font-family: var(--font-ui); font-size: 0.72rem;
+  letter-spacing: 0.1em; color: var(--accent);
+  min-height: 1.2em; transition: color .3s;
+}
+
+/* Timer display */
+.timer-display {
+  font-family: var(--font-clock); font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 700; color: var(--accent);
+  text-align: center;
+  text-shadow: 0 0 20px var(--accent-glow);
+  transition: color .3s, text-shadow .3s;
+}
+.timer-display.urgent { color: #ff5533; text-shadow: 0 0 20px rgba(255,85,51,0.5); animation: urgent-pulse .5s ease-in-out infinite alternate; }
+@keyframes urgent-pulse { from { opacity: .7; } to { opacity: 1; } }
+
+.timer-bar-wrap {
+  width: 100%; height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px; overflow: hidden;
+}
+.timer-bar {
+  height: 100%; width: 100%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  border-radius: 2px;
+  transition: width .9s linear, background .3s;
+}
+
+/* ── Alarm ring overlay ── */
+.alarm-ring-overlay {
+  position: fixed; inset: 0; z-index: 10000;
+  background: rgba(0,0,0,0.85);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1.5rem;
+  animation: ring-flash .4s ease-in-out infinite alternate;
+}
+@keyframes ring-flash { from { background: rgba(0,0,0,0.85); } to { background: rgba(0,40,30,0.9); } }
+.alarm-ring-overlay .ring-text {
+  font-family: var(--font-clock); font-size: clamp(2rem, 8vw, 4rem);
+  color: var(--accent); text-shadow: 0 0 40px var(--accent);
+}
+.alarm-ring-overlay .ring-dismiss {
+  font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.15em;
+  text-transform: uppercase; background: var(--accent-dim);
+  border: 1px solid var(--accent); color: var(--accent);
+  padding: 0.75rem 2rem; border-radius: 6px; cursor: pointer;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .app { padding: 1rem 1rem 3rem; gap: 2rem; }
+  .clock-panel { padding: 1.5rem 1.2rem; min-width: 0; width: 100%; }
+  .outer-ring { width: 90vw; height: 90vw; }
+  .inner-ring { width: 74vw; height: 74vw; }
+  .world-grid { grid-template-columns: repeat(2, 1fr); }
+  .controls-row { gap: 0.5rem; }
+  .ctrl-btn { min-width: 60px; padding: 0.5rem 0.7rem; }
+  .panel-row { flex-direction: column; align-items: flex-start; }
+  .timer-inputs { flex-wrap: wrap; }
+}
+
+@media (max-width: 400px) {
+  .world-grid { grid-template-columns: 1fr 1fr; }
+  .time-seg { font-size: 2.4rem; }
 }

@@ -1,19 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Rift Defender</title>
-    <link rel="stylesheet" href="style.css">
-    <audio id="shootSound" src="shoot.wav"></audio>
-<audio id="explosionSound" src="explosion.wav"></audio>
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <title>Cosmic Rift Defender</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-    <canvas id="gameCanvas" width="600" height="600"></canvas>
+  <a href="../index.html" class="back-link">← Portfolio</a>
 
-    <script type="module" src="game.js"></script>
+  <div class="game-wrap" id="gameWrap">
+
+    <!-- HUD -->
+    <div class="hud">
+      <div class="hud-item">
+        <span class="hud-label">SCORE</span>
+        <span class="hud-val" id="hudScore">0</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">BEST</span>
+        <span class="hud-val" id="hudBest">0</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">WAVE</span>
+        <span class="hud-val" id="hudWave">1</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">LEVEL</span>
+        <span class="hud-val" id="hudLevel">PILOT</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">LIVES</span>
+        <div class="lives-pips" id="livesPips"></div>
+      </div>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Touch controls -->
+    <div class="touch-controls" id="touchControls">
+      <button class="touch-btn" id="btnLeft">◀ LEFT</button>
+      <button class="touch-btn touch-fire" id="btnFire">⚡ FIRE</button>
+      <button class="touch-btn" id="btnRight">RIGHT ▶</button>
+    </div>
+
+  </div>
+
+  <!-- Scripts loaded in dependency order, no modules needed -->
+  <script src="player.js"></script>
+  <script src="bullet.js"></script>
+  <script src="enemy.js"></script>
+  <script src="game.js"></script>
 
 </body>
 </html>
