@@ -62,7 +62,7 @@ The portfolio uses an **Arcane Cyberpunk** aesthetic:
 ## 🚀 Running Locally
 
 ```bash
-git clone https://github.com/StackedAlchemist/stacked-alchemist
+git clone https://github.com/StackedAlchemist/stacked-alchemist.git
 cd Portfolio
 # Open index.html in your browser
 ```
@@ -89,3 +89,4 @@ Full-Stack Developer · Security Professional · PC Builder since 2005 · Author
 ---
 
 *© 2026 Billy Williams — Stacked Alchemist. All rights reserved.*
+
