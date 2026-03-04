@@ -30,6 +30,15 @@
       <button class="clear-all-btn" id="clearAllBtn" title="Clear all transactions">⚗ Clear All</button>
     </header>
 
+    <!-- ⚠ LOCAL STORAGE DISCLAIMER -->
+    <div class="local-disclaimer" role="note" aria-label="Data storage notice">
+      <span class="disclaimer-icon">⚠</span>
+      <span class="disclaimer-text">
+        The archives are bound to this vessel. Data persists in local memory only —
+        switching devices or clearing your cache will release the binding.
+      </span>
+    </div>
+
     <!-- Summary Cards -->
     <section class="summary-row">
       <div class="summary-card income-card">
@@ -92,7 +101,6 @@
               <input type="text" id="descriptionInput" class="form-input"
                 placeholder="e.g. Freelance payment, Groceries…" autocomplete="off" />
             </div>
-
             <div class="field-wrap">
               <label class="field-label">Amount</label>
               <div class="amount-wrap">
@@ -101,13 +109,12 @@
                   placeholder="0.00" step="0.01" min="0" />
               </div>
             </div>
-
             <div class="field-wrap">
               <label class="field-label">Category</label>
               <select id="categoryInput" class="form-input">
                 <option value="general">General</option>
-                <option value="food">Food & Drink</option>
-                <option value="housing">Housing & Utilities</option>
+                <option value="food">Food &amp; Drink</option>
+                <option value="housing">Housing &amp; Utilities</option>
                 <option value="transport">Transport</option>
                 <option value="entertainment">Entertainment</option>
                 <option value="health">Health</option>
@@ -117,7 +124,6 @@
                 <option value="other">Other</option>
               </select>
             </div>
-
             <div class="field-wrap">
               <label class="field-label">Date</label>
               <input type="date" id="dateInput" class="form-input" />
@@ -145,7 +151,7 @@
             <select id="filterCat" class="mini-select">
               <option value="all">All Categories</option>
               <option value="general">General</option>
-              <option value="food">Food & Drink</option>
+              <option value="food">Food &amp; Drink</option>
               <option value="housing">Housing</option>
               <option value="transport">Transport</option>
               <option value="entertainment">Entertainment</option>
@@ -199,8 +205,8 @@
           <label class="field-label">Category</label>
           <select id="editCategory" class="form-input">
             <option value="general">General</option>
-            <option value="food">Food & Drink</option>
-            <option value="housing">Housing & Utilities</option>
+            <option value="food">Food &amp; Drink</option>
+            <option value="housing">Housing &amp; Utilities</option>
             <option value="transport">Transport</option>
             <option value="entertainment">Entertainment</option>
             <option value="health">Health</option>

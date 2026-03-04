@@ -682,3 +682,19 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ===========================
+   CARD DISCLAIMER
+=========================== */
+.card-disclaimer {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 215, 0, 0.5);
+  background: rgba(255, 215, 0, 0.04);
+  border: 1px solid rgba(255, 215, 0, 0.12);
+  border-radius: 4px;
+  padding: 0.25rem 0.6rem;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
