@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading… — The Grimoire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blog.css" />
+  <link rel="stylesheet" href="post.css" />
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <div class="bg-wrap">
+    <div class="bg-gradient"></div>
+    <div class="bg-fog fog-1"></div>
+    <div class="bg-fog fog-2"></div>
+  </div>
+
+  <!-- Reading progress -->
+  <div class="read-progress" id="readProgress"></div>
+
+  <!-- NAV -->
+  <nav class="blog-nav" id="blogNav">
+    <div class="nav-inner">
+      <a href="blog.html" class="nav-back" id="navBack">← The Grimoire</a>
+      <a href="blog.html" class="nav-brand">
+        <span class="nav-brand-icon">📖</span>
+        The Grimoire
+      </a>
+      <button class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="blog.html">All Posts</a></li>
+        <li><a href="../index.html">Portfolio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- POST HEADER (injected by JS) -->
+  <header class="post-header" id="postHeader">
+    <div class="post-header-inner">
+      <!-- Loading state -->
+      <div class="post-loading">
+        <span class="loading-rune">◈</span>
+        <span>Loading…</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- POST BODY -->
+  <main class="post-main">
+    <div class="post-wrap">
+      <!-- Content injected here from individual post files -->
+      <div id="postContent"></div>
+
+      <!-- Nav between posts -->
+      <div class="post-nav" id="postNav"></div>
+
+      <!-- Back button -->
+      <div class="post-back-wrap">
+        <a href="blog.html" class="post-back-btn">← Back to The Grimoire</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="blog-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span>📖</span><span>The Grimoire</span></div>
+      <p class="footer-copy">© <span id="year"></span> Billy Williams · All writing is original and all rights reserved.</p>
+      <a href="../index.html" class="footer-back">← Portfolio</a>
+    </div>
+  </footer>
+
+  <script src="blog.js" defer></script>
+  <script src="post.js"></script>
+</body>
+</html>

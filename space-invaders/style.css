@@ -1,0 +1,100 @@
+/* ============================================================
+   COSMIC RIFT DEFENDER — style.css
+============================================================ */
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  height:100%;
+  background:#000;
+  overflow:hidden;
+  font-family:'Share Tech Mono', monospace;
+}
+
+body {
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  background:radial-gradient(ellipse at center, #000a14 0%, #000000 100%);
+}
+
+.back-link {
+  position:fixed; top:1rem; left:1rem; z-index:100;
+  font-family:'Share Tech Mono', monospace; font-size:0.7rem;
+  letter-spacing:0.12em; color:rgba(0,255,200,0.5);
+  text-decoration:none; transition:color .2s;
+}
+.back-link:hover { color:#00ffc8; }
+
+/* ── Game wrapper ── */
+.game-wrap {
+  position:relative;
+  display:flex; flex-direction:column; align-items:center;
+}
+
+canvas {
+  display:block;
+  border:1px solid rgba(0,255,200,0.3);
+  box-shadow:0 0 40px rgba(0,255,200,0.15), inset 0 0 40px rgba(0,0,0,0.8);
+  image-rendering:crisp-edges;
+}
+
+/* ── HUD ── */
+.hud {
+  width:100%;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0.4rem 0.6rem;
+  background:rgba(0,10,15,0.9);
+  border:1px solid rgba(0,255,200,0.2);
+  border-bottom:none;
+}
+.hud-item {
+  font-family:'Orbitron', monospace;
+  font-size:clamp(0.55rem, 1.5vw, 0.75rem);
+  letter-spacing:0.1em; color:#00ffc8;
+  display:flex; flex-direction:column; align-items:center; gap:0.1rem;
+}
+.hud-label { font-size:0.5em; color:rgba(0,255,200,0.45); letter-spacing:0.2em; }
+.hud-val   { font-weight:700; }
+
+.lives-pips { display:flex; gap:3px; margin-top:2px; }
+.life-pip {
+  width:10px; height:10px;
+  background:rgba(0,255,200,0.15);
+  border:1px solid rgba(0,255,200,0.4);
+  border-radius:2px; transition:all .2s;
+}
+.life-pip.active { background:#00ffc8; box-shadow:0 0 6px #00ffc8; }
+
+/* ── Touch controls ── */
+.touch-controls {
+  display:none;
+  width:100%;
+  justify-content:space-between; align-items:center;
+  padding:0.5rem;
+  background:rgba(0,10,15,0.9);
+  border:1px solid rgba(0,255,200,0.2);
+  border-top:none;
+  gap:0.5rem;
+}
+@media (pointer:coarse)  { .touch-controls { display:flex; } }
+@media (max-width:600px) { .touch-controls { display:flex; } }
+
+.touch-btn {
+  font-family:'Orbitron', monospace; font-size:0.7rem; letter-spacing:0.1em;
+  background:rgba(0,255,200,0.08); border:1px solid rgba(0,255,200,0.35);
+  color:#00ffc8; border-radius:6px; padding:0.7rem 1.2rem;
+  cursor:pointer; transition:all .15s;
+  user-select:none; -webkit-tap-highlight-color:transparent;
+  flex:1; text-align:center;
+}
+.touch-btn:active, .touch-btn.pressed {
+  background:rgba(0,255,200,0.25);
+  box-shadow:0 0 12px rgba(0,255,200,0.4);
+}
+.touch-fire {
+  background:rgba(255,50,50,0.1); border-color:rgba(255,80,80,0.45);
+  color:#ff5050; flex:1.5;
+}
+.touch-fire:active, .touch-fire.pressed {
+  background:rgba(255,50,50,0.3);
+  box-shadow:0 0 12px rgba(255,80,80,0.5);
+}

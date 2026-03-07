@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <title>ScoutDrive — Property Intelligence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="scout.css"/>
+</head>
+<body>
+
+<!-- Role selector (login screen) -->
+<div class="role-screen" id="roleScreen">
+  <div class="role-bg"></div>
+  <div class="role-content">
+    <div class="role-logo">
+      <span class="logo-icon">◈</span>
+      <span class="logo-text">ScoutDrive</span>
+    </div>
+    <p class="role-tagline">Turn every drive into a deal.</p>
+    <div class="role-cards">
+      <button class="role-card" id="roleScout" aria-label="Sign in as Scout">
+        <div class="role-card-icon">🚗</div>
+        <div class="role-card-title">I'm a Scout</div>
+        <div class="role-card-sub">Find properties, earn commissions</div>
+      </button>
+      <button class="role-card" id="roleInvestor" aria-label="Sign in as Investor">
+        <div class="role-card-icon">🏛️</div>
+        <div class="role-card-title">I'm an Investor</div>
+        <div class="role-card-sub">Review leads, manage deals</div>
+      </button>
+    </div>
+    <p class="role-demo-note">Demo mode — no login required</p>
+  </div>
+</div>
+
+<!-- Main App -->
+<div class="app hidden" id="app">
+
+  <!-- Header -->
+  <header class="app-header" id="appHeader">
+    <div class="header-left">
+      <button class="back-btn hidden" id="backBtn" aria-label="Go back">←</button>
+      <div class="header-logo">◈ <span id="headerTitle">ScoutDrive</span></div>
+    </div>
+    <div class="header-right">
+      <div class="role-badge" id="roleBadge">Scout</div>
+      <button class="header-switch" id="switchRole" title="Switch role">⇄</button>
+    </div>
+  </header>
+
+  <!-- ── SCOUT APP ── -->
+  <div class="scout-app hidden" id="scoutApp">
+
+    <!-- Scout Home -->
+    <div class="screen active" id="screen-scout-home">
+      <div class="scout-greeting">
+        <div>
+          <div class="greeting-text">Good <span id="timeOfDay">morning</span>, Scout 👋</div>
+          <div class="greeting-sub">You've earned <strong id="scoutEarnings">$0</strong> so far</div>
+        </div>
+        <div class="streak-badge" id="streakBadge">
+          <span class="streak-fire">🔥</span><span id="streakCount">0</span> day streak
+        </div>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-val" id="scoutSubmitted">0</div>
+          <div class="stat-label">Submitted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="scoutAccepted">0</div>
+          <div class="stat-label">Accepted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="scoutClosed">0</div>
+          <div class="stat-label">Closed</div>
+        </div>
+        <div class="stat-card earnings">
+          <div class="stat-val gold" id="scoutTotal">$0</div>
+          <div class="stat-label">Earned</div>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="action-grid">
+        <button class="action-btn primary" id="btnSubmitLead">
+          <span class="action-icon">📍</span>
+          <span class="action-label">Submit a Lead</span>
+          <span class="action-sub">Flag a property you spotted</span>
+        </button>
+        <button class="action-btn" id="btnLookupProperty">
+          <span class="action-icon">🔍</span>
+          <span class="action-label">Look Up Property</span>
+          <span class="action-sub">Search any address</span>
+        </button>
+        <button class="action-btn" id="btnNearby">
+          <span class="action-icon">🗺️</span>
+          <span class="action-label">Nearby Deals</span>
+          <span class="action-sub">Properties in your area</span>
+        </button>
+        <button class="action-btn" id="btnMyLeads">
+          <span class="action-icon">📋</span>
+          <span class="action-label">My Leads</span>
+          <span class="action-sub">Track your submissions</span>
+        </button>
+      </div>
+
+      <!-- Commission tiers info -->
+      <div class="tier-card">
+        <div class="tier-title">💰 Commission Structure</div>
+        <div class="tier-rows">
+          <div class="tier-row"><span class="tier-stage submitted">Accepted Lead</span><span class="tier-amount">$25 – $50</span></div>
+          <div class="tier-row"><span class="tier-stage offer">Offer Made</span><span class="tier-amount">$150 – $250</span></div>
+          <div class="tier-row"><span class="tier-stage closed">Deal Closed</span><span class="tier-amount">$500 – $1,500</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Lead Screen -->
+    <div class="screen" id="screen-submit">
+      <h2 class="screen-title">Submit a Lead</h2>
+      <div class="form-card">
+        <div class="form-group">
+          <label>Street Address *</label>
+          <input type="text" id="leadAddress" class="form-input" placeholder="123 Main St"/>
+          <span class="form-error" id="leadAddressErr"></span>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>City *</label>
+            <input type="text" id="leadCity" class="form-input" placeholder="Mesa"/>
+            <span class="form-error" id="leadCityErr"></span>
+          </div>
+          <div class="form-group">
+            <label>State</label>
+            <input type="text" id="leadState" class="form-input" placeholder="AZ" maxlength="2"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Property Type</label>
+          <div class="pill-group" id="propTypePills">
+            <button class="pill active" data-val="single-family">Single Family</button>
+            <button class="pill" data-val="multi-family">Multi-Family</button>
+            <button class="pill" data-val="apartment">Apartment</button>
+            <button class="pill" data-val="commercial">Commercial</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Condition</label>
+          <div class="pill-group" id="conditionPills">
+            <button class="pill" data-val="excellent">Excellent</button>
+            <button class="pill active" data-val="good">Good</button>
+            <button class="pill" data-val="fair">Fair</button>
+            <button class="pill" data-val="needs-work">Needs Work</button>
+            <button class="pill" data-val="distressed">Distressed</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Urgency</label>
+          <div class="pill-group" id="urgencyPills">
+            <button class="pill active" data-val="normal">Normal</button>
+            <button class="pill" data-val="hot">🔥 Hot Deal</button>
+            <button class="pill" data-val="watch">👁 Watch List</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Notes (optional)</label>
+          <textarea id="leadNotes" class="form-input" rows="3" placeholder="Describe what you saw — vacant, for-sale sign, visible damage, etc."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Photo</label>
+          <div class="photo-drop" id="photoDrop">
+            <span class="photo-drop-icon">📷</span>
+            <span>Tap to add photo</span>
+            <input type="file" id="photoInput" accept="image/*" capture="environment" style="position:absolute;inset:0;opacity:0;cursor:pointer"/>
+          </div>
+          <div class="photo-preview hidden" id="photoPreview">
+            <img id="photoImg" alt="Property photo"/>
+            <button class="photo-remove" id="photoRemove">✕</button>
+          </div>
+        </div>
+        <button class="btn-full primary" id="submitLeadBtn">Submit Lead</button>
+      </div>
+    </div>
+
+    <!-- Property Lookup Screen -->
+    <div class="screen" id="screen-lookup">
+      <h2 class="screen-title">Property Lookup</h2>
+      <div class="search-box">
+        <input type="text" id="lookupInput" class="search-input-lg" placeholder="Enter an address…"/>
+        <button class="search-go" id="lookupGo">Search</button>
+      </div>
+      <div class="quick-searches">
+        <div class="qs-label">Try:</div>
+        <button class="qs-pill" data-addr="742 Evergreen Terrace, Springfield">742 Evergreen Terrace</button>
+        <button class="qs-pill" data-addr="1313 Mockingbird Lane, Mesa AZ">1313 Mockingbird Ln</button>
+        <button class="qs-pill" data-addr="221 Baker Street, Phoenix AZ">221 Baker St</button>
+      </div>
+      <div class="property-card hidden" id="propertyCard"></div>
+    </div>
+
+    <!-- Nearby Screen -->
+    <div class="screen" id="screen-nearby">
+      <h2 class="screen-title">Nearby Deals</h2>
+      <div class="map-placeholder" id="mapPlaceholder">
+        <div class="map-bg"></div>
+        <div class="map-pins" id="mapPins"></div>
+        <div class="map-label">Simulated map view — tap a pin</div>
+      </div>
+      <div class="nearby-list" id="nearbyList"></div>
+    </div>
+
+    <!-- My Leads Screen -->
+    <div class="screen" id="screen-my-leads">
+      <h2 class="screen-title">My Leads</h2>
+      <div class="leads-filter">
+        <button class="lf-btn active" data-filter="all">All</button>
+        <button class="lf-btn" data-filter="pending">Pending</button>
+        <button class="lf-btn" data-filter="accepted">Accepted</button>
+        <button class="lf-btn" data-filter="closed">Closed</button>
+      </div>
+      <div class="leads-list" id="myLeadsList"></div>
+    </div>
+
+  </div><!-- end scoutApp -->
+
+  <!-- ── INVESTOR APP ── -->
+  <div class="investor-app hidden" id="investorApp">
+
+    <!-- Investor Home -->
+    <div class="screen active" id="screen-investor-home">
+      <div class="investor-greeting">
+        <div class="greeting-text">Deal Pipeline 🏛️</div>
+        <div class="greeting-sub">Review incoming leads from your scouts</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card"><div class="stat-val" id="invNew">0</div><div class="stat-label">New Leads</div></div>
+        <div class="stat-card"><div class="stat-val" id="invActive">0</div><div class="stat-label">Active</div></div>
+        <div class="stat-card"><div class="stat-val" id="invOffers">0</div><div class="stat-label">In Contract</div></div>
+        <div class="stat-card earnings"><div class="stat-val gold" id="invClosed">0</div><div class="stat-label">Closed</div></div>
+      </div>
+
+      <div class="action-grid">
+        <button class="action-btn primary" id="btnReviewLeads">
+          <span class="action-icon">📥</span>
+          <span class="action-label">Review Leads</span>
+          <span class="action-sub">New submissions waiting</span>
+        </button>
+        <button class="action-btn" id="btnPipeline">
+          <span class="action-icon">📊</span>
+          <span class="action-label">Deal Pipeline</span>
+          <span class="action-sub">Track all active deals</span>
+        </button>
+        <button class="action-btn" id="btnSearchInv">
+          <span class="action-icon">🔍</span>
+          <span class="action-label">Search Properties</span>
+          <span class="action-sub">Research any address</span>
+        </button>
+        <button class="action-btn" id="btnScouts">
+          <span class="action-icon">👥</span>
+          <span class="action-label">Scout Roster</span>
+          <span class="action-sub">Manage your team</span>
+        </button>
+      </div>
+
+      <!-- Hot leads preview -->
+      <div class="section-header">
+        <span class="section-title">🔥 Hot Leads</span>
+        <button class="section-link" id="seeAllLeads">See all</button>
+      </div>
+      <div class="hot-leads-list" id="hotLeadsList"></div>
+    </div>
+
+    <!-- Review Leads Screen -->
+    <div class="screen" id="screen-review-leads">
+      <h2 class="screen-title">Incoming Leads</h2>
+      <div class="leads-filter">
+        <button class="lf-btn active" data-filter="all">All</button>
+        <button class="lf-btn" data-filter="pending">Pending</button>
+        <button class="lf-btn" data-filter="hot">🔥 Hot</button>
+      </div>
+      <div class="leads-list" id="reviewLeadsList"></div>
+    </div>
+
+    <!-- Pipeline Screen -->
+    <div class="screen" id="screen-pipeline">
+      <h2 class="screen-title">Deal Pipeline</h2>
+      <div class="pipeline-cols" id="pipelineCols"></div>
+    </div>
+
+    <!-- Investor Property Lookup -->
+    <div class="screen" id="screen-inv-lookup">
+      <h2 class="screen-title">Property Search</h2>
+      <div class="search-box">
+        <input type="text" id="invLookupInput" class="search-input-lg" placeholder="Enter an address…"/>
+        <button class="search-go" id="invLookupGo">Search</button>
+      </div>
+      <div class="quick-searches">
+        <div class="qs-label">Try:</div>
+        <button class="qs-pill" data-addr="742 Evergreen Terrace, Springfield" data-target="inv">742 Evergreen Terrace</button>
+        <button class="qs-pill" data-addr="1600 Pennsylvania Ave, Washington DC" data-target="inv">1600 Pennsylvania Ave</button>
+        <button class="qs-pill" data-addr="4059 Mt Lee Dr, Los Angeles CA" data-target="inv">4059 Mt Lee Dr</button>
+      </div>
+      <div class="property-card hidden" id="invPropertyCard"></div>
+    </div>
+
+    <!-- Scout Roster -->
+    <div class="screen" id="screen-scouts">
+      <h2 class="screen-title">Scout Roster</h2>
+      <div class="scouts-list" id="scoutsList"></div>
+    </div>
+
+  </div><!-- end investorApp -->
+
+</div><!-- end app -->
+
+<!-- Lead Detail Modal -->
+<div class="modal-overlay hidden" id="leadModal">
+  <div class="modal-sheet" id="leadModalContent"></div>
+</div>
+
+<script src="scout.js"></script>
+</body>
+</html>

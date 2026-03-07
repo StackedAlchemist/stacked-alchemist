@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arithmetica — Arcane Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Share+Tech+Mono&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="calculator.css" />
+</head>
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
+
+  <main class="wrapper">
+
+    <header class="calc-header">
+      <div class="header-runes" aria-hidden="true">✦ ✧ ✦</div>
+      <h1>Arithmetica</h1>
+      <p class="header-sub">Arcane Equation Engine</p>
+    </header>
+
+    <div class="calc-shell">
+
+      <!-- Display -->
+      <div class="display-panel">
+        <div class="display-mode" id="display-mode">STANDARD</div>
+        <div class="display-history" id="display-history">&nbsp;</div>
+        <div class="display-expr" id="display-expr">&nbsp;</div>
+        <div class="display-main" id="display-main">0</div>
+        <div class="display-hint" id="display-hint">PEMDAS order enforced &nbsp;·&nbsp; type or click</div>
+      </div>
+
+      <!-- Tab strip -->
+      <div class="tab-strip" role="tablist">
+        <button class="tab active" data-tab="standard" role="tab" aria-selected="true">Standard</button>
+        <button class="tab" data-tab="scientific" role="tab" aria-selected="false">Scientific</button>
+        <button class="tab" data-tab="constants" role="tab" aria-selected="false">Constants</button>
+      </div>
+
+      <!-- STANDARD PANEL -->
+      <div class="keypad" id="tab-standard">
+        <div class="key-grid standard-grid">
+          <button class="key func" data-action="clear">AC</button>
+          <button class="key func" data-action="backspace">⌫</button>
+          <button class="key func" data-action="percent">%</button>
+          <button class="key op"   data-action="op" data-val="÷">÷</button>
+
+          <button class="key num"  data-action="num" data-val="7">7</button>
+          <button class="key num"  data-action="num" data-val="8">8</button>
+          <button class="key num"  data-action="num" data-val="9">9</button>
+          <button class="key op"   data-action="op" data-val="×">×</button>
+
+          <button class="key num"  data-action="num" data-val="4">4</button>
+          <button class="key num"  data-action="num" data-val="5">5</button>
+          <button class="key num"  data-action="num" data-val="6">6</button>
+          <button class="key op"   data-action="op" data-val="-">−</button>
+
+          <button class="key num"  data-action="num" data-val="1">1</button>
+          <button class="key num"  data-action="num" data-val="2">2</button>
+          <button class="key num"  data-action="num" data-val="3">3</button>
+          <button class="key op"   data-action="op" data-val="+">+</button>
+
+          <button class="key num"  data-action="num" data-val="0" style="grid-column: span 2;">0</button>
+          <button class="key num"  data-action="num" data-val=".">.</button>
+          <button class="key eq"   data-action="equals">=</button>
+        </div>
+      </div>
+
+      <!-- SCIENTIFIC PANEL -->
+      <div class="keypad hidden" id="tab-scientific">
+        <div class="key-grid sci-grid">
+          <!-- Row 1: brackets + powers -->
+          <button class="key sci" data-action="insert" data-val="(">(</button>
+          <button class="key sci" data-action="insert" data-val=")">)</button>
+          <button class="key sci" data-action="insert" data-val="^2">x²</button>
+          <button class="key sci" data-action="insert" data-val="^3">x³</button>
+          <button class="key sci" data-action="insert" data-val="^">xⁿ</button>
+          <button class="key sci" data-action="insert" data-val="sqrt(">√</button>
+
+          <!-- Row 2: trig -->
+          <button class="key sci" data-action="insert" data-val="sin(">sin</button>
+          <button class="key sci" data-action="insert" data-val="cos(">cos</button>
+          <button class="key sci" data-action="insert" data-val="tan(">tan</button>
+          <button class="key sci" data-action="insert" data-val="asin(">sin⁻¹</button>
+          <button class="key sci" data-action="insert" data-val="acos(">cos⁻¹</button>
+          <button class="key sci" data-action="insert" data-val="atan(">tan⁻¹</button>
+
+          <!-- Row 3: log / exp -->
+          <button class="key sci" data-action="insert" data-val="log(">log</button>
+          <button class="key sci" data-action="insert" data-val="log2(">log₂</button>
+          <button class="key sci" data-action="insert" data-val="ln(">ln</button>
+          <button class="key sci" data-action="insert" data-val="exp(">eˣ</button>
+          <button class="key sci" data-action="insert" data-val="abs(">|x|</button>
+          <button class="key sci" data-action="insert" data-val="fact(">n!</button>
+
+          <!-- Row 4: hyperbolic -->
+          <button class="key sci" data-action="insert" data-val="sinh(">sinh</button>
+          <button class="key sci" data-action="insert" data-val="cosh(">cosh</button>
+          <button class="key sci" data-action="insert" data-val="tanh(">tanh</button>
+          <button class="key sci" data-action="insert" data-val="cbrt(">∛</button>
+          <button class="key sci" data-action="insert" data-val="nthroot(">ⁿ√</button>
+          <button class="key sci" data-action="toggle-deg">DEG</button>
+
+          <!-- Row 5: numbers + ops (same as standard but compact) -->
+          <button class="key func" data-action="clear">AC</button>
+          <button class="key func" data-action="backspace">⌫</button>
+          <button class="key num"  data-action="num" data-val="(">(</button>
+          <button class="key num"  data-action="num" data-val=")">)</button>
+          <button class="key op"   data-action="op" data-val="÷">÷</button>
+          <button class="key op"   data-action="op" data-val="×">×</button>
+
+          <button class="key num"  data-action="num" data-val="7">7</button>
+          <button class="key num"  data-action="num" data-val="8">8</button>
+          <button class="key num"  data-action="num" data-val="9">9</button>
+          <button class="key num"  data-action="num" data-val="4">4</button>
+          <button class="key num"  data-action="num" data-val="5">5</button>
+          <button class="key num"  data-action="num" data-val="6">6</button>
+
+          <button class="key num"  data-action="num" data-val="1">1</button>
+          <button class="key num"  data-action="num" data-val="2">2</button>
+          <button class="key num"  data-action="num" data-val="3">3</button>
+          <button class="key op"   data-action="op"  data-val="-">−</button>
+          <button class="key op"   data-action="op"  data-val="+">+</button>
+          <button class="key eq"   data-action="equals">=</button>
+
+          <button class="key num"  data-action="num" data-val="0" style="grid-column:span 2">0</button>
+          <button class="key num"  data-action="num" data-val=".">.</button>
+          <button class="key sci"  data-action="insert" data-val="e">e</button>
+          <button class="key sci"  data-action="insert" data-val="π">π</button>
+          <button class="key func" data-action="percent">%</button>
+        </div>
+      </div>
+
+      <!-- CONSTANTS PANEL -->
+      <div class="keypad hidden" id="tab-constants">
+        <div class="constants-list">
+          <div class="const-group">
+            <div class="const-group-label">Mathematical</div>
+            <button class="const-btn" data-val="3.14159265358979" data-label="π — Pi">π <span>3.14159265…</span></button>
+            <button class="const-btn" data-val="2.71828182845905" data-label="e — Euler's Number">e <span>2.71828182…</span></button>
+            <button class="const-btn" data-val="1.61803398874989" data-label="φ — Golden Ratio">φ <span>1.61803398…</span></button>
+            <button class="const-btn" data-val="1.41421356237310" data-label="√2 — Pythagoras">√2 <span>1.41421356…</span></button>
+            <button class="const-btn" data-val="0.57721566490153" data-label="γ — Euler-Mascheroni">γ <span>0.57721566…</span></button>
+          </div>
+          <div class="const-group">
+            <div class="const-group-label">Physical</div>
+            <button class="const-btn" data-val="299792458" data-label="c — Speed of Light (m/s)">c <span>299,792,458</span></button>
+            <button class="const-btn" data-val="6.674e-11" data-label="G — Gravitational Constant">G <span>6.674×10⁻¹¹</span></button>
+            <button class="const-btn" data-val="6.626e-34" data-label="h — Planck Constant">h <span>6.626×10⁻³⁴</span></button>
+            <button class="const-btn" data-val="1.380649e-23" data-label="k — Boltzmann Constant">k <span>1.380649×10⁻²³</span></button>
+            <button class="const-btn" data-val="6.02214076e23" data-label="Nₐ — Avogadro's Number">Nₐ <span>6.022×10²³</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- History drawer -->
+      <div class="history-section">
+        <button class="history-toggle" id="history-toggle">
+          <span>Calculation History</span>
+          <span class="history-arrow" id="history-arrow">▾</span>
+        </button>
+        <div class="history-list hidden" id="history-list">
+          <p class="history-empty" id="history-empty">No calculations yet.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="back-link"><a href="../index.html">← Back to Portfolio</a></p>
+
+  </main>
+
+  <script src="calculator.js"></script>
+</body>
+</html>

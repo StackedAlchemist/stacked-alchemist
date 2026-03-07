@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcane Clock</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="bg-grid"></div>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <main class="app">
+
+    <!-- Back link -->
+    <a href="../index.html" class="back-link">← Portfolio</a>
+
+    <!-- Theme switcher -->
+    <div class="theme-strip">
+      <button class="theme-btn active" data-theme="teal"   title="Arcane Teal"></button>
+      <button class="theme-btn"        data-theme="gold"   title="Alchemist Gold"></button>
+      <button class="theme-btn"        data-theme="violet" title="Void Violet"></button>
+      <button class="theme-btn"        data-theme="ember"  title="Ember Red"></button>
+    </div>
+
+    <!-- MAIN CLOCK -->
+    <section class="clock-section">
+      <div class="runic-ring outer-ring"></div>
+      <div class="runic-ring inner-ring"></div>
+
+      <div class="clock-panel">
+        <div class="clock-panel-glow"></div>
+
+        <div class="clock-eyebrow" id="clockEyebrow">LOCAL TIME</div>
+
+        <div class="time-display">
+          <span class="time-seg" id="hours">00</span>
+          <span class="time-colon" id="colon1">:</span>
+          <span class="time-seg" id="minutes">00</span>
+          <span class="time-colon" id="colon2">:</span>
+          <span class="time-seg" id="seconds">00</span>
+          <span class="ampm" id="ampm">AM</span>
+        </div>
+
+        <div class="date-display" id="dateDisplay"></div>
+
+        <!-- Controls row -->
+        <div class="controls-row">
+          <button class="ctrl-btn" id="militaryToggle" title="Toggle 12/24hr">
+            <span class="ctrl-icon">🕐</span>
+            <span class="ctrl-label" id="modeLabel">12H</span>
+          </button>
+          <button class="ctrl-btn" id="alarmBtn" title="Set Alarm">
+            <span class="ctrl-icon">🔔</span>
+            <span class="ctrl-label">Alarm</span>
+          </button>
+          <button class="ctrl-btn" id="timerBtn" title="Countdown Timer">
+            <span class="ctrl-icon">⏱</span>
+            <span class="ctrl-label">Timer</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORLD CLOCKS -->
+    <section class="world-section">
+      <div class="section-label">🌐 World Clocks</div>
+      <div class="world-grid" id="worldGrid"></div>
+    </section>
+
+    <!-- ALARM PANEL -->
+    <section class="panel-section hidden" id="alarmPanel">
+      <div class="section-label">🔔 Alarm</div>
+      <div class="panel-card">
+        <div class="panel-row">
+          <input type="time" id="alarmTime" class="time-input" />
+          <button class="panel-btn set-btn" id="setAlarm">Set Alarm</button>
+          <button class="panel-btn clear-btn" id="clearAlarm">Clear</button>
+        </div>
+        <div class="alarm-status" id="alarmStatus"></div>
+      </div>
+    </section>
+
+    <!-- TIMER PANEL -->
+    <section class="panel-section hidden" id="timerPanel">
+      <div class="section-label">⏱ Countdown Timer</div>
+      <div class="panel-card">
+        <div class="panel-row">
+          <div class="timer-inputs">
+            <div class="timer-input-wrap">
+              <input type="number" id="timerHours"   class="time-input small" value="0"  min="0" max="99" />
+              <span class="timer-unit">H</span>
+            </div>
+            <span class="timer-sep">:</span>
+            <div class="timer-input-wrap">
+              <input type="number" id="timerMinutes" class="time-input small" value="5"  min="0" max="59" />
+              <span class="timer-unit">M</span>
+            </div>
+            <span class="timer-sep">:</span>
+            <div class="timer-input-wrap">
+              <input type="number" id="timerSeconds" class="time-input small" value="0"  min="0" max="59" />
+              <span class="timer-unit">S</span>
+            </div>
+          </div>
+          <button class="panel-btn set-btn"   id="startTimer">Start</button>
+          <button class="panel-btn clear-btn" id="resetTimer">Reset</button>
+        </div>
+        <div class="timer-display" id="timerDisplay">00:05:00</div>
+        <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar"></div></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

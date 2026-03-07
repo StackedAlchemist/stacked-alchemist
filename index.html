@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billy Williams — Stacked Alchemist</title>
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- BACKGROUND -->
+  <div class="bg-nebula"></div>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">Stacked Alchemist</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="blog/blog.html">The Grimoire</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- ========================
+         HERO
+    ======================== -->
+    <section class="hero-section">
+      <div class="hero-rune-ring ring-1"></div>
+      <div class="hero-rune-ring ring-2"></div>
+      <div class="hero-rune-ring ring-3"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="badge-dot"></span>
+          <span>Available for projects</span>
+        </div>
+
+        <h1 class="hero-title display-title reveal reveal-delay-1">
+          <span class="glitch" data-text="STACKED">STACKED</span>
+          <span class="hero-title-line2">ALCHEMIST</span>
+        </h1>
+
+        <p class="hero-subtitle reveal reveal-delay-2">
+          Full‑Stack Developer &amp; Digital Artificer — forging immersive web experiences 
+          where ancient craft meets modern engineering.
+        </p>
+
+        <div class="hero-cta reveal reveal-delay-3">
+          <a href="index.html#projects" class="btn btn-primary">View My Work</a>
+          <a href="about.html" class="btn btn-secondary">About Me</a>
+        </div>
+
+        <div class="hero-stats reveal reveal-delay-4">
+          <div class="stat">
+            <span class="stat-num">8+</span>
+            <span class="stat-label">Projects Live</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">HTML</span>
+            <span class="stat-label">CSS · JS · Python</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">∞</span>
+            <span class="stat-label">Curiosity</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-terminal reveal reveal-delay-2">
+        <div class="terminal-header">
+          <span class="t-dot red"></span>
+          <span class="t-dot yellow"></span>
+          <span class="t-dot green"></span>
+          <span class="t-title">alchemist.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></div>
+          <div class="t-line t-out">Billy Williams — developer, builder, alchemist</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">ls skills/</span></div>
+          <div class="t-line t-out">HTML5  CSS3  JavaScript  Python  Java  C++</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cat mission.txt</span></div>
+          <div class="t-line t-out t-gold">Turning logic into art,<br>&nbsp;&nbsp;one commit at a time.</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">█</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         SKILLS
+    ======================== -->
+    <section class="section skills-section" id="skills">
+      <div class="section-label reveal">Arcane Abilities</div>
+      <h2 class="display-title skills-title reveal reveal-delay-1">
+        The Craft
+      </h2>
+
+      <div class="skills-grid">
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-icon">⟨/⟩</div>
+          <h3>Front‑End Enchantment</h3>
+          <p>HTML5, CSS3, Modern JavaScript, Responsive Layouts, Animated UI Components</p>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:80%"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-icon">⚙</div>
+          <h3>Back‑End Binding</h3>
+          <p>Python Scripting, Java &amp; C++ Foundations, API Integration, Data Handling</p>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:60%"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-icon">◈</div>
+          <h3>UI/UX Divination</h3>
+          <p>Wireframing, Visual Hierarchy, Thematic Branding, User‑Focused Design</p>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:75%"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-icon">⌬</div>
+          <h3>Engineering &amp; Toolcraft</h3>
+          <p>Git &amp; GitHub, Clean Code Structure, Agile‑Style Workflow, Project Organization</p>
+          <div class="skill-bar"><div class="skill-fill" style="--pct:70%"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-icon">⬡</div>
+          <h3>Security &amp; Reliability</h3>
+          <p>Years of professional security experience, calm decision‑making under pressure</p>
+          <div class="skill-bar"><div class="skill-fill skill-fill-gold" style="--pct:95%"></div></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-icon">✦</div>
+          <h3>Communication Charms</h3>
+          <p>Clear documentation, translating technical concepts, client‑first mindset</p>
+          <div class="skill-bar"><div class="skill-fill skill-fill-mag" style="--pct:85%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         PROJECTS
+    ======================== -->
+    <section class="section projects-section" id="projects">
+      <div class="section-label reveal">Spellbound Projects</div>
+      <h2 class="display-title reveal reveal-delay-1">The Grimoire</h2>
+      <p class="projects-sub reveal reveal-delay-2">
+        Each project is an experiment — a spell cast in HTML, CSS, and JavaScript.
+      </p>
+
+      <!-- Tier Tabs -->
+      <div class="tier-tabs reveal reveal-delay-2">
+        <button class="tier-tab active" data-tier="foundational">
+          <span class="tier-tab-icon">✦</span> Foundational Magic
+        </button>
+        <button class="tier-tab" data-tier="arcane">
+          <span class="tier-tab-icon">⚙</span> Arcane Engineering
+        </button>
+        <button class="tier-tab" data-tier="high">
+          <span class="tier-tab-icon">◈</span> High Arcana
+        </button>
+      </div>
+
+      <!-- Tier: Foundational -->
+      <div class="tier-content active" id="tier-foundational">
+        <p class="tier-desc reveal">
+          The spark that begins every journey — small spells with focused intent.
+        </p>
+        <div class="projects-grid">
+
+          <article class="project-card reveal reveal-delay-1">
+            <div class="project-card-glow gold"></div>
+            <div class="project-card-badge gold">Live</div>
+            <div class="project-thumb-wrap">
+              <img src="images/spell-casting.png" alt="Spell Generator" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="spell-generator/index.html" class="btn btn-primary">Cast Spell</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>✨ Arcane Spell Generator</h3>
+              <p>A mystical spell-casting engine that conjures unique spells with randomized elements, effects, and incantations.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JS</span><span>Randomization</span>
+              </div>
+              <div class="project-actions">
+                <a href="spell-generator/index.html" class="proj-link">🔮 Cast a Spell</a>
+                <a href="https://github.com/StackedAlchemist/spell-generator/tree/main" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-delay-2">
+            <div class="project-card-glow"></div>
+            <div class="project-card-badge">Live</div>
+            <div class="project-thumb-wrap">
+              <img src="images/clock.png" alt="Digital Clock" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="digital-clock/index.html" class="btn btn-primary">View Live</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>Arcane Timepiece</h3>
+              <p>A glowing digital clock forged with clean JavaScript and arcane UI energy.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JS</span>
+              </div>
+              <div class="project-actions">
+                <a href="digital-clock/index.html" class="proj-link">🔮 View Live</a>
+                <a href="https://github.com/StackedAlchemist/digital-clock" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-delay-3">
+            <div class="project-card-glow gold"></div>
+            <div class="project-card-badge gold">Live</div>
+            <div class="project-thumb-wrap">
+              <img src="images/expense-tracker.png" alt="Expense Tracker" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="expense-tracker/index.html" class="btn btn-primary">View Live</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>Ledger of the Alchemist</h3>
+              <p>A financial grimoire tracking income, expenses, and borrowed mana.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JS</span><span>LocalStorage</span>
+              </div>
+              <p class="card-disclaimer">⚠ Data stored locally — browser only</p>
+              <div class="project-actions">
+                <a href="expense-tracker/index.html" class="proj-link">🔮 View Live</a>
+                <a href="https://github.com/StackedAlchemist/expense-tracker/tree/main" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Tier: Arcane Engineering -->
+      <div class="tier-content" id="tier-arcane">
+        <p class="tier-desc reveal">
+          Structure, logic, and enchanted machinery woven into more ambitious constructs.
+        </p>
+        <div class="projects-grid">
+
+          <article class="project-card reveal reveal-delay-1">
+            <div class="project-card-glow mag"></div>
+            <div class="project-card-badge mag">Game</div>
+            <div class="project-thumb-wrap">
+              <img src="images/cosmic-rift.jpg" alt="Cosmic Rift Defender" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="space-invaders/index.html" class="btn btn-primary">Play Now</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>👾 Cosmic Rift Defender</h3>
+              <p>Neon‑charged Space Invaders with particle explosions and enemy AI.</p>
+              <div class="project-tags">
+                <span>Canvas</span><span>ES6 Modules</span><span>Game Loop</span>
+              </div>
+              <div class="project-actions">
+                <a href="space-invaders/index.html" class="proj-link">🎮 Play Game</a>
+                <a href="https://github.com/StackedAlchemist/space-invaders/tree/main" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-delay-2">
+            <div class="project-card-glow mag"></div>
+            <div class="project-card-badge mag">Live</div>
+            <div class="project-thumb-wrap">
+              <img src="images/calculator.png" alt="Arithmetica Calculator" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="calculator/index.html" class="btn btn-primary">Open</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>🧮 Arithmetica</h3>
+              <p>A full scientific calculator with PEMDAS parsing, trig, logarithms, factorials, constants, and expression history.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JS</span><span>Parser</span>
+              </div>
+              <div class="project-actions">
+                <a href="calculator/index.html" class="proj-link">🔮 Open Calculator</a>
+                <a href="https://github.com/StackedAlchemist/calculator/tree/main" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-delay-3">
+            <div class="project-card-glow gold"></div>
+            <div class="project-card-badge gold">Game</div>
+            <div class="project-thumb-wrap">
+              <img src="images/arcane-tetris.jpg" alt="Arcane Tetris" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="tetris/index.html" class="btn btn-primary">Play Now</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>🧩 Arcane Tetris</h3>
+              <p>A Tetris‑like puzzle with glowing arcane pieces and score multipliers.</p>
+              <div class="project-tags">
+                <span>Canvas</span><span>JS</span><span>Physics</span>
+              </div>
+              <div class="project-actions">
+                <a href="tetris/index.html" class="proj-link">🎮 Play Tetris</a>
+                <a href="https://github.com/StackedAlchemist/tetris/tree/main" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Tier: High Arcana -->
+      <div class="tier-content" id="tier-high">
+        <p class="tier-desc reveal">
+          Cinematic sorcery and mythic interfaces — projects forged at full power.
+        </p>
+        <div class="projects-grid">
+
+          <article class="project-card reveal reveal-delay-1">
+            <div class="project-card-glow"></div>
+            <div class="project-card-badge">Live</div>
+            <div class="project-thumb-wrap">
+              <img src="images/the-codex.png" alt="The Codex" class="project-thumb" />
+              <a href="the-codex/index.html" class="btn btn-primary">Open</a>
+            </div>
+            <div class="project-body">
+              <h3>📚 The Codex</h3>
+              <p>A split-screen book &amp; game tracker. Live search via Open Library and IGDB (PS5, Xbox, Nintendo, PC). Track status, ratings, notes, and upcoming releases.</p>
+              <div class="project-tags">
+                <span>HTML/CSS/JS</span>
+                <span>IGDB API</span>
+                <span>Cloudflare Worker</span>
+                <span>Open Library</span>
+              </div>
+              <p class="card-disclaimer">⚠ Data stored locally — browser only</p>
+              <div class="project-links">
+                <a href="the-codex/index.html" class="proj-link">📖 Open The Codex</a>
+                <a href="https://github.com/StackedAlchemist/the-codex" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-delay-2">
+            <div class="project-card-glow gold"></div>
+            <div class="project-card-badge gold">Featured</div>
+            <div class="project-thumb-wrap">
+              <img src="images/the-vault.png" alt="The Vault" class="project-thumb" />
+              <div class="project-thumb-overlay">
+                <a href="the-vault/index.html" class="btn btn-primary">Open Vault</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>🏦 The Vault</h3>
+              <p>A full personal finance dashboard — multi-account tracking, CSV/PDF import, budgets, savings goals, recurring bills, and rich analytics charts.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JS</span><span>LocalStorage</span><span>Charts</span><span>Accessibility</span>
+              </div>
+              <p class="card-disclaimer">⚠ Data stored locally — browser only</p>
+              <div class="project-actions">
+                <a href="the-vault/index.html" class="proj-link">💰 Open The Vault</a>
+                <a href="https://github.com/StackedAlchemist/the-vault/tree/main" class="proj-link" target="_blank">📁 Code</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================
+         CONTACT CTA
+    ======================== -->
+    <section class="section cta-section reveal">
+      <div class="cta-inner panel">
+        <div class="section-label">Summon the Alchemist</div>
+        <h2 class="display-title">Have a project in mind?</h2>
+        <p>Whether it's a website, an app, or something strange and arcane — let's build it.</p>
+        <a href="contact.html" class="btn btn-primary">Send a Raven</a>
+      </div>
+    </section>
+
+  </div><!-- /page-wrapper -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo">Stacked Alchemist</span>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="blog/blog.html">The Grimoire</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://github.com/StackedAlchemist" target="_blank" title="GitHub">GH</a>
+        <a href="https://www.linkedin.com/in/blwilliams83/" target="_blank" title="LinkedIn">LI</a>
+        <a href="https://twitter.com/BLWilliams83" target="_blank" title="Twitter">TW</a>
+        
+      </div>
+    </div>
+    <p class="footer-copy">© <span id="year"></span> Billy Williams — Stacked Alchemist. All rights reserved.</p>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
