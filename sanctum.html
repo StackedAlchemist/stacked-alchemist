@@ -10,6 +10,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
     // ══════════════════════════════════════
     // 🔥 PASTE YOUR FIREBASE CONFIG BELOW
@@ -23,13 +24,9 @@
       appId: "1:194857891975:web:439aa4cbc87bab9f892022"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db  = getFirestore(app);
-
-    // ══════════════════════════════════════
-    // PASSWORD — change this to whatever you want
-    // ══════════════════════════════════════
-    const ADMIN_PASSWORD = "alchemist2026";
+    const app  = initializeApp(firebaseConfig);
+    const db   = getFirestore(app);
+    const auth = getAuth(app);
 
     // ══════════════════════════════════════
     // STATE
@@ -39,21 +36,44 @@
     let activeFilters  = { type: 'all', budget: 'all', status: 'all', read: 'all', date: 'desc' };
 
     // ══════════════════════════════════════
-    // LOGIN
+    // AUTH STATE
     // ══════════════════════════════════════
-    window.attemptLogin = function() {
-      const pw = document.getElementById('pwInput').value;
-      const err = document.getElementById('loginError');
-      if (pw === ADMIN_PASSWORD) {
+    onAuthStateChanged(auth, user => {
+      if (user) {
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('dashboard').style.display   = 'block';
         loadSubmissions();
       } else {
-        err.textContent = '✗ Invalid password. The sanctum remains sealed.';
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('dashboard').style.display   = 'none';
+      }
+    });
+
+    // ══════════════════════════════════════
+    // LOGIN
+    // ══════════════════════════════════════
+    window.attemptLogin = async function() {
+      const email = document.getElementById('emailInput').value.trim();
+      const pw    = document.getElementById('pwInput').value;
+      const err   = document.getElementById('loginError');
+      const btn   = document.querySelector('.login-btn');
+      err.textContent = '';
+      btn.textContent = '⌛ Entering...';
+      btn.disabled = true;
+      try {
+        await signInWithEmailAndPassword(auth, email, pw);
+      } catch(e) {
+        err.textContent = '✗ Invalid credentials. The sanctum remains sealed.';
         document.getElementById('pwInput').value = '';
         document.getElementById('pwInput').classList.add('shake');
         setTimeout(() => document.getElementById('pwInput').classList.remove('shake'), 500);
+        btn.textContent = '◈ Enter the Sanctum';
+        btn.disabled = false;
       }
+    };
+
+    window.signOutAdmin = async function() {
+      await signOut(auth);
     };
 
     window.handleEnter = function(e) {
@@ -719,12 +739,21 @@
       <div class="login-title">The Alchemist's Sanctum</div>
       <div class="login-sub">// Admin Access Only</div>
       <input
+        type="email"
+        id="emailInput"
+        class="pw-input"
+        placeholder="Email address..."
+        onkeydown="handleEnter(event)"
+        autocomplete="email"
+        style="margin-bottom:10px;"
+      />
+      <input
         type="password"
         id="pwInput"
         class="pw-input"
-        placeholder="Enter the passphrase..."
+        placeholder="Password..."
         onkeydown="handleEnter(event)"
-        autocomplete="off"
+        autocomplete="current-password"
       />
       <button class="login-btn" onclick="attemptLogin()">◈ Enter the Sanctum</button>
       <div class="login-error" id="loginError"></div>
@@ -742,6 +771,7 @@
       <div class="topbar-right">
         <span class="result-count" id="resultCount">0 submissions</span>
         <button class="refresh-btn" onclick="refreshDashboard()">↺ Refresh</button>
+        <button class="refresh-btn" onclick="signOutAdmin()" style="margin-left:8px;opacity:.7;">⊘ Sign Out</button>
       </div>
     </div>
 
