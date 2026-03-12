@@ -454,6 +454,26 @@
 
     .choice.selected .choice-label { color: var(--teal); }
 
+    /* VALIDATION ERRORS */
+    input.field-error,
+    textarea.field-error {
+      border-color: #ff66cc !important;
+      box-shadow: 0 0 14px rgba(255,102,204,.2) !important;
+    }
+    .choice-grid.field-error {
+      outline: 1px solid #ff66cc;
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+    .error-text {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      color: #ff66cc;
+      margin-top: 6px;
+      letter-spacing: .06em;
+    }
+
     /* NAV BUTTONS */
     .nav-row {
       display: flex;
@@ -691,9 +711,9 @@
         <circle cx="87" cy="71" r="3" fill="#ff00aa"/>
         <circle cx="13" cy="71" r="3" fill="#00ffc8"/>
       </svg>
-      <div class="eyebrow">◈ Project Discovery · Stacked Alchemist ◈</div>
+      <div class="eyebrow">◈ Project Intake · Stacked Alchemist LLC ◈</div>
       <h1>Fill the Parchment</h1>
-      <p class="header-sub">Every great build begins with the right questions. Take a few moments to tell the Alchemist about your vision — and we'll craft something extraordinary together.</p>
+      <p class="header-sub">Every great system begins with the right questions.<br>Describe your project so we can craft the right solution together.</p>
     </header>
 
     <!-- PROGRESS -->
@@ -777,7 +797,7 @@
       <div class="sec-header">
         <div class="sec-icon">🔮</div>
         <div>
-          <div class="sec-title">Project Vision</div>
+          <div class="sec-title">Project Overview</div>
           <div class="sec-desc">What are we building and why?</div>
         </div>
         <div class="sec-num">02 / 05</div>
@@ -986,7 +1006,7 @@
       <div class="sec-header">
         <div class="sec-icon">✦</div>
         <div>
-          <div class="sec-title">Timeline & Investment</div>
+          <div class="sec-title">Timeline & Budget</div>
           <div class="sec-desc">Deadlines, budget, and final notes.</div>
         </div>
         <div class="sec-num">05 / 05</div>
@@ -1094,7 +1114,7 @@
   let currentStep = 1;
   const totalSteps = 5;
   const selections = {};
-  const stepNames = ['Client Profile','Project Vision','Design & Branding','Technical Requirements','Timeline & Investment'];
+  const stepNames = ['Client Profile','Project Overview','Design & Branding','Technical Requirements','Timeline & Budget'];
 
   // ═══════════════════════════════
   // PROGRESS
@@ -1122,9 +1142,125 @@
   }
 
   // ═══════════════════════════════
+  // VALIDATION HELPERS
+  // ═══════════════════════════════
+  function showFieldError(el, message) {
+    el.classList.add('field-error');
+    if (!el.nextElementSibling || !el.nextElementSibling.classList.contains('error-text')) {
+      const err = document.createElement('span');
+      err.className = 'error-text';
+      err.textContent = message;
+      el.parentNode.insertBefore(err, el.nextSibling);
+    }
+    el.addEventListener('input', () => clearFieldError(el), { once: true });
+  }
+
+  function clearFieldError(el) {
+    el.classList.remove('field-error');
+    const next = el.nextElementSibling;
+    if (next && next.classList.contains('error-text')) next.remove();
+  }
+
+  function showChoiceError(group, message) {
+    const grid = document.querySelector(`[onclick*="'${group}'"]`)?.closest('.choice-grid');
+    if (!grid) return;
+    grid.classList.add('field-error');
+    if (!grid.nextElementSibling || !grid.nextElementSibling.classList.contains('error-text')) {
+      const err = document.createElement('span');
+      err.className = 'error-text';
+      err.textContent = message;
+      grid.parentNode.insertBefore(err, grid.nextSibling);
+    }
+  }
+
+  function clearChoiceError(group) {
+    const grid = document.querySelector(`[onclick*="'${group}'"]`)?.closest('.choice-grid');
+    if (!grid) return;
+    grid.classList.remove('field-error');
+    const next = grid.nextElementSibling;
+    if (next && next.classList.contains('error-text')) next.remove();
+  }
+
+  function clearAllStepErrors(step) {
+    document.getElementById(`sec-${step}`).querySelectorAll('.field-error').forEach(el => {
+      el.classList.remove('field-error');
+    });
+    document.getElementById(`sec-${step}`).querySelectorAll('.error-text').forEach(el => el.remove());
+  }
+
+  function scrollToFirstError() {
+    const first = document.querySelector('.field-error');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function validateStep(step) {
+    clearAllStepErrors(step);
+    let valid = true;
+
+    if (step === 1) {
+      const name    = document.getElementById('f_name');
+      const email   = document.getElementById('f_email');
+      const bizDesc = document.getElementById('f_bizDesc');
+
+      if (!name.value.trim()) {
+        showFieldError(name, 'Full name is required.');
+        valid = false;
+      }
+
+      const emailVal = email.value.trim();
+      const emailOk  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+      if (!emailVal) {
+        showFieldError(email, 'Email is required.');
+        valid = false;
+      } else if (!emailOk) {
+        showFieldError(email, 'Enter a valid email address.');
+        valid = false;
+      }
+
+      if (!bizDesc.value.trim()) {
+        showFieldError(bizDesc, 'Please describe the business.');
+        valid = false;
+      }
+    }
+
+    if (step === 2) {
+      if (!selections.projType) {
+        showChoiceError('projType', 'Choose a project type.');
+        valid = false;
+      }
+      if (!selections.goal) {
+        showChoiceError('goal', 'Choose the primary goal.');
+        valid = false;
+      }
+
+      const audience = document.getElementById('f_audience');
+      if (!audience.value.trim()) {
+        showFieldError(audience, 'Describe the target audience.');
+        valid = false;
+      }
+    }
+
+    if (step === 5) {
+      if (!selections.timeline) {
+        showChoiceError('timeline', 'Choose a timeline.');
+        valid = false;
+      }
+      if (!selections.budget) {
+        showChoiceError('budget', 'Choose a budget range.');
+        valid = false;
+      }
+    }
+
+    if (!valid) scrollToFirstError();
+    return valid;
+  }
+
+  // ═══════════════════════════════
   // NAVIGATION
   // ═══════════════════════════════
   function nextStep() {
+    if (!validateStep(currentStep)) return;
+
     if (currentStep < totalSteps) {
       goTo(currentStep + 1);
     } else {
@@ -1151,6 +1287,7 @@
     document.querySelectorAll(`[onclick*="pick(this,'${group}'"]`).forEach(e => e.classList.remove('selected'));
     el.classList.add('selected');
     selections[group] = val;
+    clearChoiceError(group);
   }
 
   function mpick(el, group, val) {

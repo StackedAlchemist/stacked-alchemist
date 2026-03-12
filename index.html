@@ -19,7 +19,7 @@
       --gold-glow:   rgba(212,175,55,0.28);
       --text:        #dde4ee;
       --text-mid:    #8a96aa;
-      --text-dim:    #3a4458;
+      --text-dim:    #7a8899;
       --white:       #ffffff;
       --green:       #4caf7d;
       --teal:        #00ffd1;
@@ -93,7 +93,7 @@
       font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700;
       color: var(--gold-lt); letter-spacing: 0.22em; text-transform: uppercase;
     }
-    .nav-wordmark span { display: block; font-size: 8px; color: var(--text-dim); letter-spacing: 0.18em; margin-top: 2px; font-weight: 400; }
+    .nav-wordmark span { display: block; font-size: 8px; color: var(--text-mid); letter-spacing: 0.18em; margin-top: 2px; font-weight: 400; }
 
     .nav-links { display: flex; align-items: center; gap: 28px; }
     .nav-links a {
@@ -940,6 +940,217 @@
       .forge-grid { grid-template-columns: 1fr; }
       #arsenal { padding: 60px 20px; }
     }
+
+    /* ── AT A GLANCE ──────────────────────────────────────── */
+    .glance-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 16px; margin-top: 40px;
+    }
+    .glance-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 2px; padding: 22px 16px; text-align: center;
+      position: relative; overflow: hidden; transition: all 0.25s;
+    }
+    .glance-item::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--teal));
+      opacity: 0.35; transition: opacity 0.25s;
+    }
+    .glance-item:hover { border-color: rgba(0,255,209,0.22); transform: translateY(-2px); }
+    .glance-item:hover::before { opacity: 1; }
+    .glance-icon { font-size: 22px; margin-bottom: 10px; }
+    .glance-value {
+      font-family: 'Cinzel', serif; font-size: 26px; font-weight: 700;
+      color: var(--gold-lt); letter-spacing: -0.01em; line-height: 1; margin-bottom: 8px;
+    }
+    .glance-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-mid); line-height: 1.5;
+    }
+    @media (max-width: 900px) { .glance-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 520px) { .glance-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* ── FEATURED PROJECTS ────────────────────────────────── */
+    .featured-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 26px; margin-top: 48px;
+    }
+    .featured-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 2px; padding: 32px 28px;
+      transition: all 0.3s; position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .featured-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--violet));
+      opacity: 0.5; transition: opacity 0.3s;
+    }
+    .featured-card:hover {
+      border-color: rgba(0,255,209,0.25); transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 28px rgba(0,255,209,0.06);
+    }
+    .featured-card:hover::before { opacity: 1; }
+    .feat-badge {
+      display: inline-block; padding: 3px 9px; border-radius: 2px;
+      font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      background: var(--teal-dim); border: 1px solid rgba(0,255,209,0.22);
+      color: var(--teal); margin-bottom: 14px; width: fit-content;
+    }
+    .feat-title {
+      font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700;
+      color: var(--white); letter-spacing: 0.06em; margin-bottom: 6px;
+    }
+    .feat-subtitle {
+      font-family: 'Cormorant Garamond', serif; font-size: 14px;
+      font-weight: 300; font-style: italic; color: var(--gold-lt); margin-bottom: 14px;
+    }
+    .feat-desc { font-size: 13px; color: var(--text-mid); line-height: 1.7; margin-bottom: 18px; }
+    .feat-features {
+      list-style: none; display: flex; flex-direction: column;
+      gap: 6px; margin-bottom: 24px; flex: 1;
+    }
+    .feat-features li {
+      font-size: 12px; color: var(--text-mid);
+      display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+    }
+    .feat-features li::before { content: '▹'; color: var(--teal); flex-shrink: 0; font-size: 10px; margin-top: 2px; }
+    .feat-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-teal {
+      background: var(--teal-dim); border: 1px solid rgba(0,255,209,0.25); color: var(--teal);
+      border-radius: 3px; padding: 9px 16px; font-family: 'Cinzel', serif;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
+      gap: 6px; transition: all 0.2s;
+    }
+    .btn-teal:hover { background: rgba(0,255,209,0.16); box-shadow: 0 0 14px rgba(0,255,209,0.15); }
+    .btn-code {
+      background: rgba(255,255,255,0.02); border: 1px solid var(--border2); color: var(--text-mid);
+      border-radius: 3px; padding: 9px 14px; font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; font-weight: 400; letter-spacing: 0.06em; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s;
+    }
+    .btn-code:hover { border-color: var(--teal); color: var(--teal); }
+    @media (max-width: 900px) { .featured-grid { grid-template-columns: 1fr; } }
+
+    /* ── DEVELOPER PLAYGROUND ─────────────────────────────── */
+    .playground-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px; margin-top: 48px;
+    }
+    .playground-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 2px; padding: 22px 20px;
+      transition: all 0.25s; position: relative; overflow: hidden;
+    }
+    .playground-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .playground-card:hover { border-color: rgba(212,175,55,0.2); transform: translateY(-2px); }
+    .playground-card:hover::after { opacity: 0.7; }
+    .play-icon { font-size: 20px; margin-bottom: 10px; }
+    .play-name { font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; color: var(--white); letter-spacing: 0.08em; margin-bottom: 7px; }
+    .play-desc { font-size: 11.5px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px; }
+    .play-actions { display: flex; gap: 7px; }
+    .play-live { font-size: 8px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 11px; border-radius: 2px; text-decoration: none; background: var(--gold-dim); border: 1px solid rgba(212,175,55,0.2); color: var(--gold-lt); transition: all 0.2s; }
+    .play-live:hover { background: rgba(212,175,55,0.16); }
+    .play-code { font-size: 8px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 11px; border-radius: 2px; text-decoration: none; background: rgba(255,255,255,0.02); border: 1px solid var(--border); color: var(--text-dim); transition: all 0.2s; }
+    .play-code:hover { border-color: var(--border2); color: var(--text-mid); }
+    @media (max-width: 768px) { .playground-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .playground-grid { grid-template-columns: 1fr; } }
+
+    /* ── STACKED ALCHEMIST SYSTEMS ────────────────────────── */
+    .systems-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 22px; margin-top: 48px;
+    }
+    .system-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 2px; padding: 28px 24px;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .system-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0.35; transition: opacity 0.3s;
+    }
+    .system-card:hover {
+      border-color: rgba(212,175,55,0.25);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.3), 0 0 20px rgba(212,175,55,0.05);
+    }
+    .system-card:hover::before { opacity: 1; }
+    .system-label {
+      font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px; display: inline-block;
+      background: var(--gold-dim); border: 1px solid rgba(212,175,55,0.15);
+      padding: 3px 8px; border-radius: 2px;
+    }
+    .system-name { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; color: var(--white); letter-spacing: 0.1em; margin-bottom: 6px; }
+    .system-tagline { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 300; font-style: italic; color: var(--text-mid); margin-bottom: 12px; line-height: 1.5; }
+    .system-desc { font-size: 11.5px; color: var(--text-dim); line-height: 1.7; margin-bottom: 18px; }
+    .btn-learn { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s; }
+    .btn-learn:hover { gap: 9px; }
+    @media (max-width: 768px) { .systems-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .systems-grid { grid-template-columns: 1fr; } }
+
+    /* ── RESUME ───────────────────────────────────────────── */
+    .resume-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 2px; padding: 48px 40px; text-align: center;
+      position: relative; overflow: hidden; max-width: 680px; margin: 48px auto 0;
+    }
+    .resume-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--teal), transparent);
+    }
+    .resume-text {
+      font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300;
+      color: var(--text-mid); line-height: 1.7; margin-bottom: 32px;
+    }
+    .resume-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .resume-box { display: flex; align-items: center; gap: 24px; text-align: left; padding: 32px 36px; flex-wrap: wrap; }
+    .resume-icon { font-size: 36px; flex-shrink: 0; }
+    .resume-info { flex: 1; min-width: 180px; }
+    .resume-title { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; color: var(--white); letter-spacing: 0.08em; margin-bottom: 5px; }
+    .resume-sub { font-size: 11px; color: var(--text-dim); line-height: 1.5; }
+
+    /* ── SYSTEM TAGS ─────────────────────────────────────── */
+    .system-tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0; }
+    .system-tag { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text-dim); }
+    .system-links { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+    .system-link { font-size: 8px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
+    .system-link.link-live { background: var(--gold-dim); border: 1px solid rgba(212,175,55,0.2); color: var(--gold-lt); }
+    .system-link.link-live:hover { background: rgba(212,175,55,0.16); }
+    .system-link.link-private { background: rgba(255,255,255,0.02); border: 1px solid var(--border); color: var(--text-dim); cursor: default; }
+    .system-badge { font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: inline-block; background: var(--gold-dim); border: 1px solid rgba(212,175,55,0.15); padding: 3px 8px; border-radius: 2px; }
+
+    /* ── FEATURED CARD ───────────────────────────────────── */
+    .featured-badge { font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; background: var(--teal-dim); border: 1px solid rgba(0,255,209,0.22); color: var(--teal); margin-bottom: 14px; display: inline-block; width: fit-content; }
+    .featured-name { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; color: var(--white); letter-spacing: 0.06em; margin-bottom: 6px; }
+    .featured-desc { font-size: 13px; color: var(--text-mid); line-height: 1.7; margin-bottom: 18px; }
+    .featured-features { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; flex: 1; }
+    .featured-features li { font-size: 12px; color: var(--text-mid); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+    .featured-features li::before { content: '▹'; color: var(--teal); flex-shrink: 0; font-size: 10px; margin-top: 2px; }
+    .featured-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .featured-link { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 3px; padding: 9px 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+    .featured-link.link-live { background: var(--teal-dim); border: 1px solid rgba(0,255,209,0.25); color: var(--teal); }
+    .featured-link.link-live:hover { background: rgba(0,255,209,0.16); box-shadow: 0 0 14px rgba(0,255,209,0.15); }
+    .featured-link.link-code { background: rgba(255,255,255,0.02); border: 1px solid var(--border2); color: var(--text-mid); font-family: 'JetBrains Mono', monospace; font-weight: 400; }
+    .featured-link.link-code:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* ── PLAYGROUND CARD ─────────────────────────────────── */
+    .playground-label { font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet); margin-bottom: 10px; display: inline-block; }
+    .playground-name { font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; color: var(--white); letter-spacing: 0.08em; margin-bottom: 7px; }
+    .playground-desc { font-size: 11.5px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px; }
+    .playground-links { display: flex; gap: 7px; }
+    .pg-link { font-size: 8px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 11px; border-radius: 2px; text-decoration: none; background: var(--gold-dim); border: 1px solid rgba(212,175,55,0.2); color: var(--gold-lt); transition: all 0.2s; }
+    .pg-link:hover { background: rgba(212,175,55,0.16); }
+    .pg-link.pg-code { background: rgba(255,255,255,0.02); border: 1px solid var(--border); color: var(--text-dim); }
+    .pg-link.pg-code:hover { border-color: var(--border2); color: var(--text-mid); }
+    .arsenal-categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    @media (max-width: 768px) { .arsenal-categories { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -994,15 +1205,14 @@
 
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">Billy Williams · Stacked Alchemist LLC</div>
-      <h1 class="hero-name scan-title">Forging Elegant<br/>Software Systems</h1>
-      <div class="hero-title">The Stacked Alchemist</div>
+      <div class="hero-eyebrow">Billy Leroy Williams · Stacked Alchemist LLC</div>
+      <h1 class="hero-name scan-title">Billy Leroy<br/>Williams</h1>
+      <div class="hero-title">Software Developer</div>
       <p style="font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);margin-bottom:22px;opacity:0;animation:fadeUp 0.8s 0.50s ease forwards;">
-        Independent Developer · Systems Builder · Mesa, Arizona
+        Builder of structured web systems and interactive applications · Mesa, Arizona
       </p>
       <p class="hero-desc">
-        I build <em>custom software systems</em>, automation tools, and high-performance web applications.<br/><br/>
-        From solo SaaS platforms to client-facing tools — I take raw ideas and transmute them into elegant, reliable systems built to last.
+        I design and build <em>browser-based applications</em>, dashboards, and tools using vanilla JavaScript and modern browser APIs.
       </p>
       <div class="hero-actions">
         <a href="#laboratory" class="btn-gold">⚗ Enter the Laboratory</a>
@@ -1024,7 +1234,7 @@
           <span class="term-cmd">$ whoami</span>
         </div>
         <div class="term-line">
-          <span class="term-output">Billy Williams — The Stacked Alchemist</span>
+          <span class="term-output">Billy Leroy Williams — Software Developer</span>
         </div>
         <div class="term-spacer"></div>
         <div class="term-line">
@@ -1065,6 +1275,38 @@
   <div class="hero-scroll">
     <span>Scroll</span>
     <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── AT A GLANCE ─────────────────────────────────────────── -->
+<section id="glance" style="padding:60px 0 40px;">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:32px;">
+      <div class="section-eyebrow" style="justify-content:center;">⚗ At a Glance</div>
+      <h2 class="section-title">By the Numbers</h2>
+    </div>
+    <div class="glance-grid reveal">
+      <div class="glance-item">
+        <div class="glance-number">10+</div>
+        <div class="glance-label">Deployed Applications</div>
+      </div>
+      <div class="glance-item">
+        <div class="glance-number">6+</div>
+        <div class="glance-label">Interactive Games Built</div>
+      </div>
+      <div class="glance-item">
+        <div class="glance-number">5+</div>
+        <div class="glance-label">Dashboard Designs</div>
+      </div>
+      <div class="glance-item">
+        <div class="glance-number">100%</div>
+        <div class="glance-label">Vanilla JavaScript</div>
+      </div>
+      <div class="glance-item">
+        <div class="glance-number">∞</div>
+        <div class="glance-label">GitHub Deployments</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1140,223 +1382,205 @@
   </div>
 </section>
 
-<!-- ── BUSINESSES ────────────────────────────────────────── -->
+<!-- ── STACKED ALCHEMIST SYSTEMS ───────────────────────── -->
 <section id="businesses" style="padding-top:0;border-top:none;">
   <div class="section-inner">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-eyebrow">⚗ My Companies</div>
-        <h2 class="section-title">What I've Built & Own</h2>
-        <p class="section-sub">Real SaaS businesses — all under Stacked Alchemist LLC.</p>
-      </div>
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 40px;">
+      <div class="section-eyebrow" style="justify-content:center;">⚗ Stacked Alchemist Systems</div>
+      <h2 class="section-title">Proprietary Software</h2>
+      <p class="section-sub" style="text-align:center;margin:0 auto;">Applications designed, built, and owned under Stacked Alchemist LLC.</p>
     </div>
+    <div class="systems-grid">
 
-    <div class="carousel-outer">
-      <div class="carousel-track" id="biz-track">
-
-        <div class="biz-card c-gold">
-          <div class="biz-preview"><img src="images/ironhold.png" alt="Ironhold" /><div class="biz-glow"></div><span class="biz-badge badge-building">Building</span></div>
-          <div class="biz-body">
-            <div class="biz-name">IRONHOLD</div>
-            <div class="biz-tagline">Property management for landlords who own 1–10 properties</div>
-            <div class="biz-desc">Two-sided SaaS platform. Landlords manage their full portfolio. Tenants get their own portal — pay rent, submit maintenance, track every request. Claude AI drafts landlord responses. $19.99/mo flat.</div>
-            <div class="biz-links">
-              <a href="https://stackedalchemist.github.io/ironhold/" target="_blank" class="biz-link link-demo">▶ Live Demo</a>
-              <a href="https://github.com/StackedAlchemist/ironhold" target="_blank" class="biz-link link-code">{ } GitHub</a>
-            </div>
-          </div>
+      <div class="system-card reveal">
+        <div class="system-badge">SaaS</div>
+        <div class="system-name">Arcane Ledger</div>
+        <p class="system-desc">Multi-member household budget tracker. Real-time Plaid bank sync, transaction categorization, budget goals, and spending analytics. Firebase + Stripe subscription.</p>
+        <div class="system-tags"><span class="system-tag">Firebase</span><span class="system-tag">Stripe</span><span class="system-tag">Plaid</span></div>
+        <div class="system-links">
+          <a href="https://stackedalchemist.github.io/arcane-ledger/" target="_blank" class="system-link link-live">▶ Live</a>
+          <span class="system-link link-private">⊘ Private</span>
         </div>
-
-        <div class="biz-card c-iron">
-          <div class="biz-preview"><img src="images/powerball-oracle.png" alt="Powerball Oracle" /><div class="biz-glow"></div><span class="biz-badge badge-live">Live</span></div>
-          <div class="biz-body">
-            <div class="biz-name">POWERBALL ORACLE</div>
-            <div class="biz-tagline">Lottery prediction powered by pattern analysis & cloud sync</div>
-            <div class="biz-desc">Premium lottery prediction tool with tiered subscription model. Firebase backend, Stripe payments, guest-to-Prime upgrade flow. Pattern analysis, draw history, full ticket management.</div>
-            <div class="biz-links">
-              <a href="https://stackedalchemist.github.io/powerball-oracle/oracle.html" target="_blank" class="biz-link link-demo">▶ Live Demo</a>
-              <a href="https://github.com/StackedAlchemist/powerball-oracle" target="_blank" class="biz-link link-code">{ } GitHub</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="biz-card c-green">
-          <div class="biz-preview"><img src="images/arcane-ledger.png" alt="Arcane Ledger" /><div class="biz-glow"></div><span class="biz-badge badge-building">Building</span></div>
-          <div class="biz-body">
-            <div class="biz-name">ARCANE LEDGER</div>
-            <div class="biz-tagline">Household finance management with a touch of magic</div>
-            <div class="biz-desc">Multi-member household budget tracker. Real-time Plaid bank sync, transaction categorization, budget goals, and spending analytics. Firebase + Stripe subscription. Premium design, zero complexity.</div>
-            <div class="biz-links">
-              <a href="https://stackedalchemist.github.io/arcane-ledger/" target="_blank" class="biz-link link-demo">▶ Live Demo</a>
-              <a href="https://github.com/StackedAlchemist/arcane-ledger" target="_blank" class="biz-link link-code">{ } GitHub</a>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
-    <div class="carousel-controls reveal" id="biz-controls">
-      <button class="cbtn" data-track="biz-track" data-dir="-1">←</button>
-      <button class="cbtn" data-track="biz-track" data-dir="1">→</button>
-      <div class="cdots" id="biz-dots"></div>
+
+      <div class="system-card reveal">
+        <div class="system-badge">SaaS</div>
+        <div class="system-name">Ironhold</div>
+        <p class="system-desc">Two-sided property management platform. Landlords manage portfolios, tenants get a full portal. Claude AI drafts landlord responses. $19.99/mo flat.</p>
+        <div class="system-tags"><span class="system-tag">Firebase</span><span class="system-tag">Claude AI</span><span class="system-tag">Stripe</span></div>
+        <div class="system-links">
+          <a href="https://stackedalchemist.github.io/ironhold/" target="_blank" class="system-link link-live">▶ Live</a>
+          <span class="system-link link-private">⊘ Private</span>
+        </div>
+      </div>
+
+      <div class="system-card reveal">
+        <div class="system-badge">Platform</div>
+        <div class="system-name">Groundwork</div>
+        <p class="system-desc">Crowdsourced real estate scout marketplace. Drivers pin off-market properties, Zillow &amp; Redfin data auto-pulls, earn commission when deals close.</p>
+        <div class="system-tags"><span class="system-tag">Maps API</span><span class="system-tag">Firebase</span><span class="system-tag">Real Estate</span></div>
+        <div class="system-links">
+          <a href="https://stackedalchemist.github.io/groundwork/" target="_blank" class="system-link link-live">▶ Live</a>
+          <span class="system-link link-private">⊘ Private</span>
+        </div>
+      </div>
+
+      <div class="system-card reveal">
+        <div class="system-badge">Tool</div>
+        <div class="system-name">Powerball Oracle</div>
+        <p class="system-desc">Premium lottery prediction tool with tiered subscriptions. Pattern analysis, draw history, full ticket management, guest-to-Prime upgrade flow.</p>
+        <div class="system-tags"><span class="system-tag">Firebase</span><span class="system-tag">Stripe</span><span class="system-tag">Analytics</span></div>
+        <div class="system-links">
+          <a href="https://stackedalchemist.github.io/powerball-oracle/oracle.html" target="_blank" class="system-link link-live">▶ Live</a>
+          <span class="system-link link-private">⊘ Private</span>
+        </div>
+      </div>
+
+      <div class="system-card reveal">
+        <div class="system-badge">Free Tool</div>
+        <div class="system-name">Subscription Codex</div>
+        <p class="system-desc">Drop in a bank CSV and instantly see every recurring charge. Detects subscriptions automatically — free forever, no account needed.</p>
+        <div class="system-tags"><span class="system-tag">Vanilla JS</span><span class="system-tag">CSV Parsing</span><span class="system-tag">Free</span></div>
+        <div class="system-links">
+          <a href="https://stackedalchemist.github.io/subscription-codex" target="_blank" class="system-link link-live">▶ Live</a>
+          <span class="system-link link-private">⊘ Private</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ── CLIENT WORK ───────────────────────────────────────── -->
+<!-- ── FEATURED PROJECTS ──────────────────────────────── -->
 <section id="client-work">
   <div class="section-inner">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-eyebrow">⚗ Client Work</div>
-        <h2 class="section-title">Built for Others</h2>
-        <p class="section-sub">Full applications designed and shipped for real clients with real needs.</p>
-      </div>
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 40px;">
+      <div class="section-eyebrow" style="justify-content:center;">⚗ Featured Projects</div>
+      <h2 class="section-title">Selected Work</h2>
+      <p class="section-sub" style="text-align:center;margin:0 auto;">Fully built browser applications demonstrating production-level structure and design.</p>
     </div>
+    <div class="featured-grid">
 
-    <div class="carousel-outer">
-      <div class="carousel-track" id="client-track">
-
-        <div class="biz-card c-teal">
-          <div class="biz-preview"><img src="images/groundwork.png" alt="Groundwork" /><div class="biz-glow"></div><span class="biz-badge badge-client">Client</span></div>
-          <div class="biz-body">
-            <div class="biz-name">GROUNDWORK</div>
-            <div class="biz-tagline">Every street. Every deal. Every dollar.</div>
-            <div class="biz-desc">Crowdsourced real estate scout marketplace built for an investor client. Drivers pin off-market properties, photos auto-pull Zillow & Redfin data, earn commission when deals close. Admin dashboard with full deal pipeline and commission management across all 50 states.</div>
-            <div class="biz-links">
-              <a href="https://stackedalchemist.github.io/groundwork/" target="_blank" class="biz-link link-demo">▶ Live Demo</a>
-              <a href="https://github.com/StackedAlchemist/groundwork" target="_blank" class="biz-link link-code">{ } GitHub</a>
-            </div>
-          </div>
+      <div class="featured-card reveal">
+        <div class="featured-badge">Full-Stack App</div>
+        <div class="featured-name">Arcane Circuit</div>
+        <p class="featured-desc">A complex browser-based circuit simulator. Build and test digital logic gates, wire components, and simulate signal flow in real time — all in vanilla JS.</p>
+        <ul class="featured-features">
+          <li>Logic gate simulation (AND, OR, NOT, XOR)</li>
+          <li>Interactive drag-and-drop circuit board</li>
+          <li>Real-time signal propagation</li>
+          <li>Save &amp; load circuit layouts</li>
+        </ul>
+        <div class="featured-links">
+          <a href="https://stackedalchemist.github.io/arcane-circuit" target="_blank" class="featured-link link-live">▶ Live Demo</a>
+          <a href="https://github.com/StackedAlchemist/arcane-circuit" target="_blank" class="featured-link link-code">{ } Code</a>
         </div>
-
-        <!-- YOUR PROJECT HERE CARD -->
-        <div class="biz-card" style="border-style:dashed;border-color:rgba(200,151,58,0.15);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:360px;gap:16px;padding:32px;text-align:center;">
-          <div style="font-size:36px;opacity:0.3;">⚗</div>
-          <div style="font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--text-dim);letter-spacing:0.1em;">YOUR PROJECT HERE</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:300;font-style:italic;color:var(--text-dim);line-height:1.6;">Have something that needs to be built? This slot is open.</div>
-          <a href="contact.html" class="btn-gold" style="font-size:9px;padding:10px 20px;">Let's Talk →</a>
-        </div>
-
       </div>
-    </div>
-    <div class="carousel-controls reveal" id="client-controls">
-      <button class="cbtn" data-track="client-track" data-dir="-1">←</button>
-      <button class="cbtn" data-track="client-track" data-dir="1">→</button>
-      <div class="cdots" id="client-dots"></div>
+
+      <div class="featured-card reveal">
+        <div class="featured-badge">Finance App</div>
+        <div class="featured-name">The Vault</div>
+        <p class="featured-desc">Full personal finance dashboard — multi-account tracking, CSV/PDF import, budgets, savings goals, recurring bills, and rich analytics charts.</p>
+        <ul class="featured-features">
+          <li>Multi-account transaction tracking</li>
+          <li>CSV and PDF import support</li>
+          <li>Budget categories and savings goals</li>
+          <li>Analytics charts with Chart.js</li>
+        </ul>
+        <div class="featured-links">
+          <a href="https://stackedalchemist.github.io/the-vault" target="_blank" class="featured-link link-live">▶ Live Demo</a>
+          <a href="https://github.com/StackedAlchemist/the-vault" target="_blank" class="featured-link link-code">{ } Code</a>
+        </div>
+      </div>
+
+      <div class="featured-card reveal">
+        <div class="featured-badge">Media Tracker</div>
+        <div class="featured-name">The Codex</div>
+        <p class="featured-desc">Split-screen book &amp; game tracker. Live search via Open Library and IGDB APIs. Track status, ratings, notes, and upcoming releases across all platforms.</p>
+        <ul class="featured-features">
+          <li>Live search via Open Library &amp; IGDB APIs</li>
+          <li>Split-screen book and game tracking</li>
+          <li>PS5, Xbox, Nintendo, PC game support</li>
+          <li>Cloudflare Worker for API proxy</li>
+        </ul>
+        <div class="featured-links">
+          <a href="https://stackedalchemist.github.io/the-codex" target="_blank" class="featured-link link-live">▶ Live Demo</a>
+          <a href="https://github.com/StackedAlchemist/the-codex" target="_blank" class="featured-link link-code">{ } Code</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ── THE GRIMOIRE (FUN PROJECTS) ──────────────────────── -->
+<!-- ── DEVELOPER PLAYGROUND ────────────────────────────── -->
 <section id="grimoire">
   <div class="section-inner">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-eyebrow">⚗ The Grimoire</div>
-        <h2 class="section-title">Built for the Love of It</h2>
-        <p class="section-sub">Every project is a different stage of craft — precise spells solving a single problem, or fully engineered systems built to last. Together they form my growing arsenal of software.</p>
-      </div>
-      <a href="blog/blog.html" class="btn-ghost" style="flex-shrink:0;">📖 The Writings →</a>
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 40px;">
+      <div class="section-eyebrow" style="justify-content:center;">⚗ Developer Playground</div>
+      <h2 class="section-title">Built for the Craft</h2>
+      <p class="section-sub" style="text-align:center;margin:0 auto;">Smaller projects built to explore browser APIs, game loops, and interactive interfaces.</p>
     </div>
+    <div class="playground-grid">
 
-    <div class="carousel-outer">
-      <div class="carousel-track" id="proj-track">
-
-        <div class="proj-card">
-          <div class="proj-img"><img src="images/spell-casting.png" alt="The Grimoire Help System" /></div>
-          <div class="proj-body">
-            <span class="proj-badge live">Live</span>
-            <div class="proj-name">The Grimoire Help System</div>
-            <div class="proj-desc">Universal in-app navigation engine. Drop one JS file, users type where they want to go and get whipped there with a gold beacon highlight and Whisp navigation.</div>
-            <div class="proj-tags"><span class="proj-tag">Vanilla JS</span><span class="proj-tag">UX</span><span class="proj-tag">Component</span></div>
-            <a href="https://stackedalchemist.github.io/grimoire/" target="_blank" class="proj-link">View Project →</a>
-          </div>
+      <div class="playground-card reveal">
+        <div class="playground-label">Game</div>
+        <div class="playground-name">Arcane Tetris</div>
+        <p class="playground-desc">Glowing arcane Tetris pieces, score multipliers, and Canvas-driven physics.</p>
+        <div class="playground-links">
+          <a href="https://stackedalchemist.github.io/tetris" target="_blank" class="pg-link">▶ Play</a>
+          <a href="https://github.com/StackedAlchemist/tetris" target="_blank" class="pg-link pg-code">{ } Code</a>
         </div>
-
-        <div class="proj-card">
-          <div class="proj-img"><img src="images/the-codex.png" alt="The Codex" /></div>
-          <div class="proj-body">
-            <span class="proj-badge live">Live</span>
-            <div class="proj-name">The Codex</div>
-            <div class="proj-desc">Split-screen book & game tracker. Live search via Open Library and IGDB (PS5, Xbox, Nintendo, PC). Track status, ratings, notes, and upcoming releases.</div>
-            <div class="proj-tags"><span class="proj-tag">JS</span><span class="proj-tag">IGDB API</span><span class="proj-tag">Cloudflare</span></div>
-            <a href="https://stackedalchemist.github.io/the-codex" target="_blank" class="proj-link">Open The Codex →</a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-img"><img src="images/the-vault.png" alt="The Vault" /></div>
-          <div class="proj-body">
-            <span class="proj-badge live">Live</span>
-            <div class="proj-name">The Vault</div>
-            <div class="proj-desc">Full personal finance dashboard — multi-account tracking, CSV/PDF import, budgets, savings goals, recurring bills, and rich analytics charts.</div>
-            <div class="proj-tags"><span class="proj-tag">HTML/CSS/JS</span><span class="proj-tag">Charts</span><span class="proj-tag">LocalStorage</span></div>
-            <a href="https://stackedalchemist.github.io/the-vault" target="_blank" class="proj-link">Open The Vault →</a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-img"><img src="images/subscription-codex.png" alt="Subscription Codex" /></div>
-          <div class="proj-body">
-            <span class="proj-badge live">Live</span>
-            <div class="proj-name">Subscription Codex</div>
-            <div class="proj-desc">Drop in a bank CSV and instantly see every recurring charge draining your account. Detects subscriptions automatically — free forever, no account needed.</div>
-            <div class="proj-tags"><span class="proj-tag">Vanilla JS</span><span class="proj-tag">CSV Parsing</span><span class="proj-tag">Free Tool</span></div>
-            <a href="https://stackedalchemist.github.io/subscription-codex" target="_blank" class="proj-link">Reveal Your Charges →</a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-img"><img src="images/cosmic-rift.jpg" alt="Cosmic Rift Defender" /></div>
-          <div class="proj-body">
-            <span class="proj-badge game">Game</span>
-            <div class="proj-name">Cosmic Rift Defender</div>
-            <div class="proj-desc">Neon-charged Space Invaders with particle explosions, enemy AI, wave progression, and score multipliers. Built on Canvas with ES6 modules.</div>
-            <div class="proj-tags"><span class="proj-tag">Canvas</span><span class="proj-tag">ES6</span><span class="proj-tag">Game Loop</span></div>
-            <a href="https://stackedalchemist.github.io/stacked-alchemist/space-invaders/index.html" target="_blank" class="proj-link">Play Now →</a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-img"><img src="images/arcane-tetris.png" alt="Arcane Tetris" /></div>
-          <div class="proj-body">
-            <span class="proj-badge game">Game</span>
-            <div class="proj-name">Arcane Tetris</div>
-            <div class="proj-desc">A Tetris-like puzzle with glowing arcane pieces, score multipliers, and that one-more-game energy that keeps you up until 3am.</div>
-            <div class="proj-tags"><span class="proj-tag">Canvas</span><span class="proj-tag">JS</span><span class="proj-tag">Physics</span></div>
-            <a href="https://stackedalchemist.github.io/tetris" target="_blank" class="proj-link">Play Now →</a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-img"><img src="images/calculator.png" alt="Arithmetica" /></div>
-          <div class="proj-body">
-            <span class="proj-badge live">Live</span>
-            <div class="proj-name">Arithmetica</div>
-            <div class="proj-desc">Full scientific calculator with PEMDAS parsing, trig, logarithms, factorials, constants, and expression history. More than it needs to be.</div>
-            <div class="proj-tags"><span class="proj-tag">HTML/CSS/JS</span><span class="proj-tag">Parser</span></div>
-            <a href="https://stackedalchemist.github.io/calculator" target="_blank" class="proj-link">Open →</a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-img"><img src="images/spell-casting.png" alt="Arcane Spell Generator" /></div>
-          <div class="proj-body">
-            <span class="proj-badge live">Live</span>
-            <div class="proj-name">Arcane Spell Generator</div>
-            <div class="proj-desc">A mystical spell-casting engine that conjures unique spells with randomized elements, effects, and incantations. The project that started it all.</div>
-            <div class="proj-tags"><span class="proj-tag">HTML</span><span class="proj-tag">CSS</span><span class="proj-tag">JS</span></div>
-            <a href="https://stackedalchemist.github.io/spell-generator" target="_blank" class="proj-link">Cast a Spell →</a>
-          </div>
-        </div>
-
       </div>
-    </div>
-    <div class="carousel-controls reveal" id="proj-controls">
-      <button class="cbtn" data-track="proj-track" data-dir="-1">←</button>
-      <button class="cbtn" data-track="proj-track" data-dir="1">→</button>
-      <div class="cdots" id="proj-dots"></div>
+
+      <div class="playground-card reveal">
+        <div class="playground-label">Game</div>
+        <div class="playground-name">Space Invaders</div>
+        <p class="playground-desc">Neon-charged Space Invaders with particle explosions, enemy AI, and wave progression.</p>
+        <div class="playground-links">
+          <a href="https://stackedalchemist.github.io/stacked-alchemist/space-invaders/index.html" target="_blank" class="pg-link">▶ Play</a>
+          <a href="https://github.com/StackedAlchemist/space-invaders" target="_blank" class="pg-link pg-code">{ } Code</a>
+        </div>
+      </div>
+
+      <div class="playground-card reveal">
+        <div class="playground-label">Tool</div>
+        <div class="playground-name">Calculator</div>
+        <p class="playground-desc">Full scientific calculator with PEMDAS parsing, trig, logarithms, and expression history.</p>
+        <div class="playground-links">
+          <a href="https://stackedalchemist.github.io/calculator" target="_blank" class="pg-link">▶ Open</a>
+        </div>
+      </div>
+
+      <div class="playground-card reveal">
+        <div class="playground-label">Generator</div>
+        <div class="playground-name">Spell Generator</div>
+        <p class="playground-desc">Randomized spell-casting engine with unique elements, effects, and incantations.</p>
+        <div class="playground-links">
+          <a href="https://stackedalchemist.github.io/spell-generator" target="_blank" class="pg-link">▶ Cast</a>
+          <a href="https://github.com/StackedAlchemist/spell-generator" target="_blank" class="pg-link pg-code">{ } Code</a>
+        </div>
+      </div>
+
+      <div class="playground-card reveal">
+        <div class="playground-label">Clock</div>
+        <div class="playground-name">Digital Clock</div>
+        <p class="playground-desc">Styled digital clock with animated segments, time zones, and a dark aesthetic.</p>
+        <div class="playground-links">
+          <a href="https://stackedalchemist.github.io/digital-clock" target="_blank" class="pg-link">▶ Open</a>
+        </div>
+      </div>
+
+      <div class="playground-card reveal">
+        <div class="playground-label">Finance</div>
+        <div class="playground-name">Expense Tracker</div>
+        <p class="playground-desc">Lightweight expense logger with categories, totals, and localStorage persistence.</p>
+        <div class="playground-links">
+          <a href="https://stackedalchemist.github.io/expense-tracker" target="_blank" class="pg-link">▶ Open</a>
+          <a href="https://github.com/StackedAlchemist/expense-tracker" target="_blank" class="pg-link pg-code">{ } Code</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1435,34 +1659,57 @@ Response → UI / Storage</div>
 <!-- ── THE ARSENAL ────────────────────────────────────────── -->
 <section id="arsenal">
   <div class="section-inner">
-    <div class="reveal">
-      <div class="section-eyebrow">⚗ The Arsenal</div>
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 48px;">
+      <div class="section-eyebrow" style="justify-content:center;">⚗ The Arsenal</div>
       <h2 class="section-title">Tools of the Craft</h2>
-      <p class="section-sub">Technologies I use to forge powerful systems.</p>
+      <p class="section-sub" style="text-align:center;margin:0 auto;">Technologies I use to design and build structured software systems.</p>
     </div>
-    <div class="arsenal-cloud reveal">
-      <span class="arsenal-pill gold">HTML5</span>
-      <span class="arsenal-pill gold">CSS3</span>
-      <span class="arsenal-pill gold">JavaScript</span>
-      <span class="arsenal-pill gold">Canvas API</span>
-      <span class="arsenal-pill gold">Responsive Design</span>
-      <span class="arsenal-pill">Firebase</span>
-      <span class="arsenal-pill">Firestore</span>
-      <span class="arsenal-pill">Cloud Functions</span>
-      <span class="arsenal-pill">Stripe</span>
-      <span class="arsenal-pill">Plaid</span>
-      <span class="arsenal-pill violet">Claude AI</span>
-      <span class="arsenal-pill violet">Prompt Engineering</span>
-      <span class="arsenal-pill violet">AI Integration</span>
-      <span class="arsenal-pill">Git · GitHub</span>
-      <span class="arsenal-pill">Python</span>
-      <span class="arsenal-pill">Java</span>
-      <span class="arsenal-pill">JSON / REST APIs</span>
-      <span class="arsenal-pill">Capacitor</span>
-      <span class="arsenal-pill">Product Architecture</span>
-      <span class="arsenal-pill">UI Systems</span>
-      <span class="arsenal-pill">SaaS Design</span>
-      <span class="arsenal-pill">Security</span>
+    <div class="arsenal-categories reveal">
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:28px 24px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0.5;"></div>
+        <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Languages</div>
+        <div class="arsenal-cloud" style="gap:7px 8px;">
+          <span class="arsenal-pill gold">HTML5</span>
+          <span class="arsenal-pill gold">CSS3</span>
+          <span class="arsenal-pill gold">JavaScript</span>
+          <span class="arsenal-pill gold">Python</span>
+          <span class="arsenal-pill gold">Java</span>
+          <span class="arsenal-pill gold">JSON</span>
+          <span class="arsenal-pill gold">Markdown</span>
+        </div>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:28px 24px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);opacity:0.5;"></div>
+        <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:20px;">Tools &amp; Services</div>
+        <div class="arsenal-cloud" style="gap:7px 8px;">
+          <span class="arsenal-pill">Firebase</span>
+          <span class="arsenal-pill">Firestore</span>
+          <span class="arsenal-pill">Cloud Functions</span>
+          <span class="arsenal-pill">Stripe</span>
+          <span class="arsenal-pill">Plaid</span>
+          <span class="arsenal-pill">Cloudflare Workers</span>
+          <span class="arsenal-pill">Git / GitHub</span>
+          <span class="arsenal-pill">GitHub Pages</span>
+          <span class="arsenal-pill violet">Claude AI</span>
+        </div>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:28px 24px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--violet),transparent);opacity:0.5;"></div>
+        <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--violet);margin-bottom:20px;">Browser APIs</div>
+        <div class="arsenal-cloud" style="gap:7px 8px;">
+          <span class="arsenal-pill violet">Canvas API</span>
+          <span class="arsenal-pill violet">Web Storage API</span>
+          <span class="arsenal-pill violet">Fetch API</span>
+          <span class="arsenal-pill violet">Intersection Observer</span>
+          <span class="arsenal-pill violet">Web Animations</span>
+          <span class="arsenal-pill violet">Drag &amp; Drop API</span>
+          <span class="arsenal-pill violet">File API</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1501,20 +1748,21 @@ Response → UI / Storage</div>
   </div>
 </section>
 
-<!-- ── HIRE ME CTA ─────────────────────────────────────────── -->
-<section id="hire">
+<!-- ── RESUME ──────────────────────────────────────────────── -->
+<section id="resume">
   <div class="section-inner">
-    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto;">
-      <div class="section-eyebrow" style="justify-content:center;">⚗ Available for Hire</div>
-      <h2 class="section-title" style="font-size:clamp(28px,4vw,52px);margin-bottom:16px;">Summon the Alchemist</h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2vw,22px);font-weight:300;font-style:italic;color:var(--text-mid);line-height:1.7;margin-bottom:32px;">
-        I've shipped <strong style="color:var(--white);font-weight:600;">full SaaS platforms</strong>, marketplace networks, AI integrations, and financial tools — all solo, from zero. If you need it built right, I can build it.
-      </p>
-      <div style="display:flex;justify-content:center;gap:40px;margin-bottom:36px;flex-wrap:wrap;">
-        <div style="text-align:center;"><div style="font-family:'Cinzel',serif;font-size:32px;color:var(--gold-lt);letter-spacing:-0.01em;">$100+</div><div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);margin-top:5px;">Per Hour</div></div>
-        <div style="text-align:center;"><div style="font-family:'Cinzel',serif;font-size:32px;color:var(--gold-lt);letter-spacing:-0.01em;">$5k+</div><div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);margin-top:5px;">Per Project</div></div>
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 40px;">
+      <div class="section-eyebrow" style="justify-content:center;">⚗ Resume</div>
+      <h2 class="section-title">Download My Resume</h2>
+      <p class="section-sub" style="text-align:center;margin:0 auto;">A full breakdown of my skills, projects, and experience as a software developer.</p>
+    </div>
+    <div class="resume-box reveal">
+      <div class="resume-icon">📄</div>
+      <div class="resume-info">
+        <div class="resume-title">Software Developer Resume</div>
+        <div class="resume-sub">Billy Leroy Williams · Stacked Alchemist LLC · Mesa, Arizona</div>
       </div>
-      <a href="contact.html" class="btn-gold" style="display:inline-flex;margin:0 auto;">⚗ Initiate Transmission →</a>
+      <a href="/resume-coverletter/softwaredev-resume.pdf" target="_blank" download class="btn-gold" style="flex-shrink:0;">↓ Download PDF</a>
     </div>
   </div>
 </section>
@@ -1555,7 +1803,7 @@ Response → UI / Storage</div>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
-  <div class="footer-lab">⚗ Experiments conducted in the Stacked Alchemist Laboratory</div>
+  <div class="footer-lab">Building structured software systems, developer tools, and interactive applications.</div>
 </footer>
 
 <script>
