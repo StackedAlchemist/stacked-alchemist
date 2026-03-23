@@ -7,27 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:          #0b0f14;
-      --bg2:         #0d1420;
-      --surface:     #111827;
-      --surface2:    #161d2e;
-      --border:      rgba(255,255,255,0.07);
-      --border2:     rgba(255,255,255,0.12);
-      --gold:        #d4af37;
-      --gold-lt:     #e8c96a;
-      --gold-dim:    rgba(212,175,55,0.10);
-      --gold-glow:   rgba(212,175,55,0.28);
-      --text:        #dde4ee;
-      --text-mid:    #8a96aa;
-      --text-dim:    #7a8899;
-      --white:       #ffffff;
-      --green:       #4caf7d;
-      --teal:        #00ffd1;
-      --teal-dim:    rgba(0,255,209,0.12);
-      --violet:      #8b5cf6;
-      --violet-dim:  rgba(139,92,246,0.12);
+      --bg: #0b0f14; --bg2: #0d1420; --surface: #111827; --surface2: #161d2e;
+      --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+      --gold: #d4af37; --gold-lt: #e8c96a; --gold-dim: rgba(212,175,55,0.10); --gold-glow: rgba(212,175,55,0.28);
+      --text: #dde4ee; --text-mid: #8a96aa; --text-dim: #7a8899; --white: #ffffff;
+      --green: #4caf7d; --teal: #00ffd1; --teal-dim: rgba(0,255,209,0.12);
+      --violet: #8b5cf6;
     }
-
     *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; }
@@ -39,19 +25,8 @@
     .grid-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(rgba(212,175,55,0.016) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.016) 1px, transparent 1px); background-size: 72px 72px; }
 
     /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 62px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(11,15,20,0.92);
-      backdrop-filter: blur(24px);
-    }
-    nav::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), rgba(0,255,209,0.2), transparent);
-      pointer-events: none;
-    }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 62px; border-bottom: 1px solid var(--border); background: rgba(11,15,20,0.92); backdrop-filter: blur(24px); }
+    nav::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), rgba(0,255,209,0.2), transparent); pointer-events: none; }
     .nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
     .nav-sigil { font-size: 18px; filter: drop-shadow(0 0 8px var(--gold-glow)); }
     .nav-wordmark { font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; color: var(--gold-lt); letter-spacing: .22em; text-transform: uppercase; }
@@ -59,12 +34,10 @@
     .nav-links { display: flex; align-items: center; gap: 28px; }
     .nav-links a { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; transition: color .2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--gold-lt); }
-    .nav-cta { background: var(--gold-dim) !important; color: var(--gold-lt) !important; border: 1px solid rgba(212,175,55,.25) !important; padding: 7px 16px; border-radius: 3px; }
-    .nav-cta:hover { background: rgba(212,175,55,.16) !important; box-shadow: 0 0 16px var(--gold-glow) !important; }
-
-    /* HAMBURGER */
+    .nav-cta { background: var(--gold-dim) !important; color: var(--gold-lt) !important; border: 1px solid rgba(212,175,55,0.25) !important; padding: 7px 16px; border-radius: 3px; }
+    .nav-cta:hover { background: rgba(212,175,55,0.16) !important; box-shadow: 0 0 16px var(--gold-glow) !important; }
     .hamburger { display: none; flex-direction: column; justify-content: space-between; width: 24px; height: 16px; background: none; border: none; cursor: pointer; padding: 0; z-index: 600; flex-shrink: 0; }
-    .hamburger span { display: block; width: 100%; height: 1px; background: var(--gold-lt); transition: all 0.3s; }
+    .hamburger span { display: block; width: 100%; height: 1px; background: var(--gold-lt); transition: all .3s; }
     .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
@@ -76,21 +49,21 @@
     @media (max-width: 768px) { .hamburger { display: flex; } .nav-links { display: none !important; } }
 
     /* PAGE HERO */
-    .page-hero { position: relative; padding: 140px 48px 80px; z-index: 2; overflow: hidden; }
-    .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: breathe 9s ease-in-out infinite; }
-    @keyframes breathe { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 1; } 50% { transform: translate(-50%,-50%) scale(1.1); opacity: 0.65; } }
-    .page-hero-inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+    .page-hero { position: relative; padding: 150px 48px 80px; z-index: 2; overflow: hidden; }
+    .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; width: 600px; height: 600px; background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: breathe 9s ease-in-out infinite; }
+    @keyframes breathe { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity:1; } 50% { transform: translate(-50%,-50%) scale(1.1); opacity:0.65; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .page-hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
     .page-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 9px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; opacity: 0; animation: fadeUp .8s .2s ease forwards; }
     .page-eyebrow::before, .page-eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--gold); opacity: .5; }
     .page-title { font-family: 'Cinzel', serif; font-size: clamp(36px, 6vw, 72px); font-weight: 900; line-height: .92; letter-spacing: -.02em; color: var(--white); margin-bottom: 10px; opacity: 0; animation: fadeUp .8s .35s ease forwards; }
     .page-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(15px, 2.2vw, 22px); font-weight: 300; font-style: italic; color: var(--gold-lt); margin-top: 14px; opacity: 0; animation: fadeUp .8s .5s ease forwards; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
     /* CONTENT */
-    .content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 0 48px 100px; }
+    .content { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; padding: 20px 48px 100px; }
 
     /* PROFILE BLOCK */
-    .profile-block { display: grid; grid-template-columns: 260px 1fr; gap: 64px; align-items: start; margin-bottom: 80px; padding-top: 20px; }
+    .profile-block { display: grid; grid-template-columns: 240px 1fr; gap: 60px; align-items: start; margin-bottom: 80px; }
     .profile-img-wrap { position: relative; }
     .profile-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 2px; border: 1px solid var(--border2); display: block; }
     .profile-img-frame { position: absolute; inset: -8px; border: 1px solid rgba(212,175,55,0.15); border-radius: 4px; pointer-events: none; }
@@ -102,15 +75,13 @@
     .badge-label { font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); }
     .badge-value { font-size: 11px; color: var(--text-mid); margin-top: 1px; }
 
+    /* TYPOGRAPHY */
     .bio-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
     .bio-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); opacity: .6; }
     .bio-title { font-family: 'Cinzel', serif; font-size: clamp(22px, 2.8vw, 34px); font-weight: 700; color: var(--white); letter-spacing: -.01em; margin-bottom: 24px; }
-    .bio-text { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 18px; }
-    .bio-text strong { color: var(--white); font-weight: 600; }
-    .bio-text em { color: var(--gold-lt); font-style: italic; }
-    .bio-list { list-style: none; margin: 18px 0 24px; display: flex; flex-direction: column; gap: 6px; }
-    .bio-list li { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--text-mid); display: flex; align-items: center; gap: 10px; }
-    .bio-list li::before { content: '—'; color: var(--gold); opacity: 0.6; }
+    .body-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 20px; }
+    .body-text strong { color: var(--white); font-weight: 600; }
+    .body-text em { color: var(--gold-lt); font-style: italic; }
 
     /* DIVIDER */
     .divider { border: none; border-top: 1px solid var(--border); margin: 64px 0; }
@@ -121,8 +92,9 @@
     .section-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); opacity: .6; }
     .section-title { font-family: 'Cinzel', serif; font-size: clamp(20px, 2.6vw, 32px); font-weight: 700; color: var(--white); letter-spacing: -.01em; margin-bottom: 20px; }
 
-    .builder-text { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 18px; }
-    .builder-text strong { color: var(--white); font-weight: 600; }
+    /* PULLQUOTE */
+    .pullquote { border-left: 3px solid var(--teal); margin: 32px 0; padding: 8px 0 8px 28px; }
+    .pullquote p { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.6vw, 28px); font-weight: 300; font-style: italic; color: var(--white); line-height: 1.5; }
 
     /* INTEREST CHIPS */
     .interest-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
@@ -130,27 +102,24 @@
     .interest-chip:hover { border-color: rgba(212,175,55,0.2); color: var(--gold-lt); }
     .interest-chip span { font-size: 16px; }
 
-    /* MISSION BLOCK */
-    .mission-block { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; padding: 36px; position: relative; overflow: hidden; }
-    .mission-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), var(--teal), transparent); }
-    .mission-text { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 18px; }
-    .mission-text strong { color: var(--white); font-weight: 600; }
-    .mission-text em { color: var(--gold-lt); font-style: italic; }
-    .mission-items { display: flex; flex-direction: column; gap: 6px; margin: 18px 0; }
-    .mission-item { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 300; color: var(--text-mid); display: flex; align-items: center; gap: 10px; }
-    .mission-item::before { content: '⚗'; color: var(--gold); font-size: 11px; }
-    .mission-close { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; font-style: italic; color: var(--gold-lt); margin-top: 18px; border-top: 1px solid var(--border); padding-top: 18px; }
-
     /* CTA STRIP */
     .cta-strip { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; padding: 40px; text-align: center; margin-top: 60px; position: relative; overflow: hidden; }
     .cta-strip::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-    .cta-text { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; font-style: italic; color: var(--text-mid); margin-bottom: 24px; }
+    .cta-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; font-style: italic; color: var(--text-mid); margin-bottom: 24px; }
     .cta-text strong { color: var(--white); font-weight: 600; }
     .btn-gold { background: linear-gradient(135deg, var(--gold), #8a6e18); color: #0b0f14; border: none; border-radius: 3px; padding: 13px 28px; font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: all .3s; }
     .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--gold-glow); }
 
+    /* CLOSING SIGN */
+    .closing-block { background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 2px; padding: 36px; margin-top: 48px; }
+    .closing-block p { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 16px; }
+    .closing-block p:last-of-type { margin-bottom: 0; }
+    .closing-block strong { color: var(--white); font-weight: 600; }
+    .closing-sig { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; font-style: italic; color: var(--gold-lt); margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+
     /* FOOTER */
     footer { position: relative; z-index: 2; border-top: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), var(--teal), transparent); opacity: .35; }
     .footer-brand { font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700; color: var(--text-dim); letter-spacing: .22em; }
     .footer-copy { font-size: 10px; color: var(--text-dim); }
     .footer-links { display: flex; gap: 20px; }
@@ -162,15 +131,11 @@
 
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
-      .page-hero { padding: 110px 24px 60px; }
+      .page-hero { padding: 120px 24px 60px; }
       .content { padding: 0 24px 80px; }
       .profile-block { grid-template-columns: 1fr; gap: 36px; }
-      .profile-img { aspect-ratio: 1/1; max-width: 260px; }
+      .profile-img { aspect-ratio: 1/1; max-width: 240px; }
       footer { padding: 24px; }
-    }
-    @media (max-width: 480px) {
-      .page-hero { padding: 100px 20px 50px; }
-      .content { padding: 0 20px 60px; }
     }
   </style>
 </head>
@@ -186,36 +151,36 @@
     <div class="nav-wordmark">Stacked Alchemist<span>LLC · Est. 2026</span></div>
   </a>
   <div class="nav-links" id="nav-links">
-    <a href="index.html">Home</a>
-    <a href="index.html#laboratory">Laboratory</a>
-    <a href="index.html#grimoire">Grimoire</a>
-    <a href="about.html" class="active">About</a>
-    <a href="contact.html" class="nav-cta">Contact</a>
+    <a href="index.html">Mission</a>
+    <a href="lab.html">The Laboratory</a>
+    <a href="about.html" class="active" style="color:var(--gold-lt)">About</a>
+    <a href="blog/blog.html">The Grimoire</a>
+    <a href="contact.html" class="nav-cta">Get Involved</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mobile-nav" id="mobile-nav">
-  <a href="index.html">Home</a>
-  <a href="index.html#laboratory">Laboratory</a>
-  <a href="index.html#grimoire">Grimoire</a>
+  <a href="index.html">Mission</a>
+  <a href="lab.html">The Laboratory</a>
   <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
+  <a href="blog/blog.html">The Grimoire</a>
+  <a href="contact.html">Get Involved</a>
 </div>
 
 <div class="page-hero">
   <div class="hero-orb"></div>
   <div class="page-hero-inner">
-    <div class="page-eyebrow">⚗ The Alchemist</div>
+    <div class="page-eyebrow">⚗ The Builder</div>
     <h1 class="page-title">Billy Leroy<br/>Williams</h1>
-    <p class="page-subtitle">Founder · Software Engineer · Builder · Author</p>
+    <p class="page-subtitle">Founder · Developer · Builder of things that need to exist</p>
   </div>
 </div>
 
 <div class="content">
 
-  <!-- SECTION 1 — THE ALCHEMIST BEHIND THE CODE -->
+  <!-- PROFILE BLOCK -->
   <div class="profile-block reveal">
     <div class="profile-img-wrap">
       <img src="images/professional.jpeg" alt="Billy Williams" class="profile-img" />
@@ -226,12 +191,12 @@
           <div><div class="badge-label">Based In</div><div class="badge-value">Mesa, Arizona</div></div>
         </div>
         <div class="profile-badge-row">
-          <div class="badge-icon">🎂</div>
-          <div><div class="badge-label">Born</div><div class="badge-value">Oct 6, 1983 · Orange County, CA</div></div>
+          <div class="badge-icon">⚗</div>
+          <div><div class="badge-label">Company</div><div class="badge-value">Stacked Alchemist LLC · Est. 2026</div></div>
         </div>
         <div class="profile-badge-row">
           <div class="badge-icon">🔒</div>
-          <div><div class="badge-label">Background</div><div class="badge-value">Security Professional</div></div>
+          <div><div class="badge-label">Background</div><div class="badge-value">Security Professional · Self-Taught Dev</div></div>
         </div>
         <div class="profile-badge-row">
           <div class="badge-icon">✍️</div>
@@ -244,32 +209,73 @@
       </div>
     </div>
 
-    <div class="bio-section">
-      <div class="bio-eyebrow">The Alchemist Behind the Code</div>
-      <h2 class="bio-title">Who I Am</h2>
-      <p class="bio-text">My name is <strong>Billy Williams</strong> — though online I build under the name <em>Stacked Alchemist</em>. I'm a developer, founder, and lifelong builder based in Mesa, Arizona. I specialize in designing elegant software systems and tools that solve real-world problems.</p>
-      <p class="bio-text">To me, software development feels a lot like alchemy. You start with raw materials — ideas, problems, broken workflows — and through experimentation and craft you transform them into something powerful. Every project is a process of refinement: structure the system, shape the interface, and remove complexity until the result feels <em>inevitable.</em></p>
-      <p class="bio-text">My focus is simple:</p>
-      <ul class="bio-list">
-        <li>Clean architecture</li>
-        <li>Carefully crafted interfaces</li>
-        <li>Reliable systems that scale</li>
-      </ul>
-      <p class="bio-text">No unnecessary complexity. Just well-forged software that works beautifully. My security background means I stay sharp, read the environment, and keep calm when things go sideways — which translates perfectly to debugging at 2am.</p>
+    <div>
+      <div class="bio-eyebrow">Who I Am</div>
+      <h2 class="bio-title">The Builder Behind the Mission</h2>
+      <p class="body-text">My name is <strong>Billy Williams</strong>. I'm a self-taught developer and the founder of Stacked Alchemist LLC. I'm based in Mesa, Arizona. I build real software that solves real problems.</p>
+      <p class="body-text">I didn't come from money. I didn't go to a coding bootcamp. I learned by building — and breaking — and building again. That's still how I work.</p>
+      <p class="body-text" style="color:var(--gold-lt);font-style:italic;font-family:'Cormorant Garamond',serif;">But none of that is actually why I'm here.</p>
     </div>
   </div>
 
   <hr class="divider" />
 
-  <!-- SECTION 2 — THE BUILDER MENTALITY -->
+  <!-- THE WHY -->
+  <div class="section-block reveal">
+    <div class="section-eyebrow">The Why</div>
+    <h2 class="section-title">Why Any of This Exists</h2>
+
+    <p class="body-text">I lost my son at 37 weeks. No heartbeat. I had to be the rock for my wife when she needed me most. I held it together because that's what you do when someone else needs you more than you need to fall apart.</p>
+
+    <p class="body-text">About a month later — I finally broke down myself.</p>
+
+    <div class="pullquote">
+      <p>I was raised with the "deal with it and move on" mentality. You don't talk about it. You just push through.</p>
+    </div>
+
+    <p class="body-text">I know I'm not the only one built that way. Most of us carry things locked in a filing cabinet in the back of our heads — things we never open, never talk about, never process. Not because we don't feel them. Because we don't have anywhere safe to put them.</p>
+
+    <p class="body-text">I've met a veteran who took a <strong>50-caliber round center mass</strong> and survived. Physically. What that does to a person on the inside — what they carry after something like that — doesn't have a place to go. The system expects them to sit down with a complete stranger and immediately be vulnerable. Most people built the way we're built will never do that. And they shouldn't have to.</p>
+
+    <p class="body-text">I once gave away my last $40 to a stranger on the street. I couldn't not. Not because I had it to spare — I didn't. But because there are people falling through cracks that the rest of us step over every day and pretend we don't see.</p>
+
+    <p class="body-text"><strong>That's why I'm building Vault.</strong> That's why I'm building toward compounds in all 50 states. That's why I'm building apps to generate the revenue to fund all of it.</p>
+
+    <p class="body-text">I'm also doing this to get my family out of financial stress — I'm not going to pretend otherwise. Both things are true at the same time. The mission is real and so is the pressure. But one thing I know for certain: <em>the mission doesn't become less real because life is hard.</em></p>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- THE WORK -->
+  <div class="section-block reveal">
+    <div class="section-eyebrow">✦ What I Build</div>
+    <h2 class="section-title">The Work</h2>
+    <p class="body-text">While the mission is the north star, I am still very much available to build things for you. The work that funds the mission is real client work, real products, real systems. That doesn't stop.</p>
+    <p class="body-text">I specialize in <strong>full-stack web applications</strong> — React, Node.js, Firebase, Stripe integration, authentication systems, dashboards, tools that actually work. I'm not a designer who codes. I'm a builder who ships.</p>
+    <p class="body-text">My security background means I read environments well, stay calm under pressure, and don't cut corners on the things that matter. A system that looks good but leaks data isn't a system. It's a liability.</p>
+    <p class="body-text">If you have something that needs to be built — <a href="contact.html" style="color:var(--gold-lt);text-decoration:none;">let's talk.</a></p>
+    <div class="interest-chips">
+      <div class="interest-chip"><span>⚛️</span>React / React Native</div>
+      <div class="interest-chip"><span>🟩</span>Node.js / Express</div>
+      <div class="interest-chip"><span>🔥</span>Firebase</div>
+      <div class="interest-chip"><span>💳</span>Stripe</div>
+      <div class="interest-chip"><span>🗄️</span>PostgreSQL</div>
+      <div class="interest-chip"><span>🔒</span>Security Architecture</div>
+      <div class="interest-chip"><span>📱</span>Mobile-First</div>
+      <div class="interest-chip"><span>⚗</span>Vanilla JS / HTML / CSS</div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- BEYOND THE CODE -->
   <div class="section-block reveal">
     <div class="section-eyebrow">✦ Beyond the Code</div>
-    <h2 class="section-title">The Builder Mentality</h2>
-    <p class="builder-text">Outside of development I'm drawn to systems in many forms.</p>
-    <p class="builder-text">I grew up playing strategy and RPG games — <strong>StarCraft</strong>, <strong>Diablo</strong>, <strong>Final Fantasy</strong>, and <strong>World of Warcraft</strong>. Those games shaped how I think about systems, progression, and design. There's something about understanding how all the pieces fit together that never gets old.</p>
-    <p class="builder-text">I've also been building custom PCs since <strong>2005</strong> — choosing components, tuning performance, and creating machines that are both powerful and elegant. The same satisfaction I get from a clean system build carries directly into writing clean code.</p>
-    <p class="builder-text">And since <strong>2011</strong> I've been writing fantasy fiction, including my long-running project <em>The Winglord Saga</em> — a world where myth, strategy, and logic intersect.</p>
-    <p class="builder-text" style="color:var(--gold-lt);font-style:italic;">Across all of these interests, one theme repeats itself: Build. Break. Refine. Repeat.</p>
+    <h2 class="section-title">The Rest of Who I Am</h2>
+    <p class="body-text">I grew up on strategy and RPG games — <strong>StarCraft, Diablo, Final Fantasy, World of Warcraft.</strong> Those games taught me how systems work, how progression is built, how decisions compound over time. That thinking never left.</p>
+    <p class="body-text">I've been building custom PCs since <strong>2005.</strong> There's something in selecting the components, tuning the build, and watching it come to life that's the same satisfaction I get from shipping clean code.</p>
+    <p class="body-text">Since <strong>2011</strong> I've been writing the <em>Winglord Saga</em> — a long-form fantasy series built around myth, consequence, and the weight of decisions. It's been with me through everything. It's still being written.</p>
+    <p class="body-text" style="color:var(--gold-lt);font-style:italic;font-family:'Cormorant Garamond',serif;">Build. Break. Refine. Repeat. — It shows up everywhere.</p>
     <div class="interest-chips">
       <div class="interest-chip"><span>⭐</span>StarCraft</div>
       <div class="interest-chip"><span>🔥</span>Diablo</div>
@@ -278,32 +284,21 @@
       <div class="interest-chip"><span>🖥️</span>PC Building (since 2005)</div>
       <div class="interest-chip"><span>📖</span>The Winglord Saga</div>
       <div class="interest-chip"><span>📚</span>Brandon Sanderson</div>
-      <div class="interest-chip"><span>🎮</span>Always searching for the next great game</div>
     </div>
   </div>
 
-  <hr class="divider" />
-
-  <!-- SECTION 3 — WHAT I'M BUILDING -->
-  <div class="section-block reveal">
-    <div class="section-eyebrow">⚗ The Mission</div>
-    <h2 class="section-title">What I'm Building</h2>
-    <div class="mission-block">
-      <p class="mission-text">Today I'm the founder of <strong>Stacked Alchemist LLC</strong>.</p>
-      <p class="mission-text">My goal is to build a collection of powerful software tools, applications, and systems that help people create, organize, and operate more effectively.</p>
-      <div class="mission-items">
-        <div class="mission-item">Some projects are internal experiments</div>
-        <div class="mission-item">Some become real applications used by real people</div>
-        <div class="mission-item">All are forged with the same mindset</div>
-      </div>
-      <p class="mission-close">Practical engineering with a bit of legendary flair.</p>
-    </div>
+  <!-- CLOSING -->
+  <div class="closing-block reveal">
+    <p>I'm not building this for recognition.</p>
+    <p>I'm building it because it needs to exist.</p>
+    <p>And because nobody else is building it for the people who actually need it.</p>
+    <div class="closing-sig">— Billy<br/><span style="font-size:13px;color:var(--text-dim);font-style:normal;letter-spacing:.1em;">Stacked Alchemist LLC · Mesa, Arizona</span></div>
   </div>
 
   <!-- CTA -->
   <div class="cta-strip reveal">
-    <p class="cta-text">Have a project or idea? <strong>Let's forge something remarkable together.</strong></p>
-    <a href="contact.html" class="btn-gold">⚗ Initiate Transmission</a>
+    <p class="cta-text">Have something that needs to be built? Believe in the mission? <strong>Let's talk.</strong></p>
+    <a href="contact.html" class="btn-gold">⚗ Get in Touch</a>
   </div>
 
 </div>
@@ -314,7 +309,7 @@
   <div class="footer-links">
     <a href="https://github.com/StackedAlchemist" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/blwilliams83/" target="_blank">LinkedIn</a>
-    <a href="contact.html">Contact</a>
+    <a href="contact.html">Get Involved</a>
   </div>
 </footer>
 
@@ -334,7 +329,6 @@
   });
   const obs = new IntersectionObserver(entries => entries.forEach((e,i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i*80); }), { threshold: .08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
   const btn = document.getElementById('hamburger'), nav = document.getElementById('mobile-nav');
   btn?.addEventListener('click', () => { btn.classList.toggle('open'); nav.classList.toggle('open'); });
   nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { btn.classList.remove('open'); nav.classList.remove('open'); }));

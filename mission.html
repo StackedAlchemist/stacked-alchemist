@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Mission — Stacked Alchemist LLC</title>
+  <meta name="description" content="A space where people are not judged. Not by anything. Not by anyone. For any reason whatsoever. Vault — free mental health app for veterans and anyone carrying pain alone." />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0f14; --bg2: #0d1420; --surface: #111827; --surface2: #161d2e;
+      --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+      --gold: #d4af37; --gold-lt: #e8c96a; --gold-dim: rgba(212,175,55,0.10); --gold-glow: rgba(212,175,55,0.28);
+      --text: #dde4ee; --text-mid: #8a96aa; --text-dim: #7a8899; --white: #ffffff;
+      --green: #4caf7d; --teal: #00ffd1; --teal-dim: rgba(0,255,209,0.12);
+      --violet: #8b5cf6; --violet-dim: rgba(139,92,246,0.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; }
+
+    .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s; mix-blend-mode: screen; }
+    .cursor-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(212,175,55,0.45); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s, height .3s, border-color .3s; }
+
+    .grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.35; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); }
+    .grid-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(rgba(212,175,55,0.016) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.016) 1px, transparent 1px); background-size: 72px 72px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 62px; border-bottom: 1px solid var(--border); background: rgba(11,15,20,0.92); backdrop-filter: blur(24px); }
+    nav::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), rgba(0,255,209,0.2), transparent); pointer-events: none; }
+    .nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .nav-sigil { font-size: 18px; filter: drop-shadow(0 0 8px var(--gold-glow)); }
+    .nav-wordmark { font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; color: var(--gold-lt); letter-spacing: .22em; text-transform: uppercase; }
+    .nav-wordmark span { display: block; font-size: 8px; color: var(--text-mid); letter-spacing: .18em; margin-top: 2px; font-weight: 400; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-lt); }
+    .nav-cta { background: var(--gold-dim) !important; color: var(--gold-lt) !important; border: 1px solid rgba(212,175,55,0.25) !important; padding: 7px 16px; border-radius: 3px; }
+    .nav-cta:hover { background: rgba(212,175,55,0.16) !important; box-shadow: 0 0 16px var(--gold-glow) !important; }
+    .hamburger { display: none; flex-direction: column; justify-content: space-between; width: 24px; height: 16px; background: none; border: none; cursor: pointer; padding: 0; z-index: 600; flex-shrink: 0; }
+    .hamburger span { display: block; width: 100%; height: 1px; background: var(--gold-lt); transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+    .mobile-nav { display: none; position: fixed; top: 62px; left: 0; right: 0; background: rgba(11,15,20,0.98); border-bottom: 1px solid var(--border); backdrop-filter: blur(24px); z-index: 499; flex-direction: column; padding: 8px 24px 20px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; padding: 14px 0; border-bottom: 1px solid var(--border); transition: color .2s; }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--gold-lt); }
+    @media (max-width: 768px) { .hamburger { display: flex; } .nav-links { display: none !important; } }
+
+    /* PAGE HERO */
+    .page-hero { position: relative; padding: 150px 48px 90px; z-index: 2; overflow: hidden; text-align: center; }
+    .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,255,209,0.05) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: breathe 10s ease-in-out infinite; }
+    @keyframes breathe { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity:1; } 50% { transform: translate(-50%,-50%) scale(1.1); opacity:0.65; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .page-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 9px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--teal); margin-bottom: 24px; opacity: 0; animation: fadeUp .8s .2s ease forwards; }
+    .page-eyebrow::before, .page-eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--teal); opacity: .5; }
+    .page-title { font-family: 'Cinzel', serif; font-size: clamp(32px, 5.5vw, 68px); font-weight: 900; line-height: 1.05; letter-spacing: -.02em; color: var(--white); margin-bottom: 20px; opacity: 0; animation: fadeUp .8s .35s ease forwards; }
+    .page-title span { color: var(--teal); }
+    .page-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(17px, 2.4vw, 26px); font-weight: 300; font-style: italic; color: var(--text-mid); opacity: 0; animation: fadeUp .8s .5s ease forwards; line-height: 1.5; }
+
+    /* CONTENT */
+    .content { position: relative; z-index: 2; }
+    .section { max-width: 860px; margin: 0 auto; padding: 80px 48px; }
+    .section + .section { border-top: 1px solid var(--border); }
+    .section-wide { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+
+    .eyebrow { font-size: 9px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); opacity: .6; }
+    .eyebrow.teal { color: var(--teal); }
+    .eyebrow.teal::before { background: var(--teal); }
+
+    h2.block-title { font-family: 'Cinzel', serif; font-size: clamp(24px, 3vw, 38px); font-weight: 700; color: var(--white); letter-spacing: -.01em; margin-bottom: 28px; line-height: 1.15; }
+    p.body-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 20px; }
+    p.body-text strong { color: var(--white); font-weight: 600; }
+    p.body-text em { color: var(--gold-lt); font-style: italic; }
+
+    /* STAT CALLOUT */
+    .stat-callout { background: rgba(0,255,209,0.04); border: 1px solid rgba(0,255,209,0.15); border-radius: 2px; padding: 36px; margin: 36px 0; position: relative; overflow: hidden; text-align: center; }
+    .stat-callout::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--teal), transparent); }
+    .stat-number { font-family: 'Cinzel', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 8px; text-shadow: 0 0 40px rgba(0,255,209,0.3); }
+    .stat-label { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2.2vw, 22px); font-weight: 300; color: var(--text-mid); }
+    .stat-label strong { color: var(--white); font-weight: 600; }
+
+    /* VAULT SECTION */
+    .vault-panel { background: var(--surface); border: 1px solid rgba(0,255,209,0.2); border-radius: 2px; padding: 48px; position: relative; overflow: hidden; margin: 40px 0; }
+    .vault-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--teal), transparent); }
+
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 32px 0; }
+    .feature-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 2px; padding: 22px; }
+    .feature-icon { font-size: 20px; margin-bottom: 10px; }
+    .feature-name { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--white); letter-spacing: .05em; margin-bottom: 8px; }
+    .feature-desc { font-size: 13px; color: var(--text-mid); line-height: 1.65; }
+
+    /* EARLY ACCESS FORM */
+    .early-access-box { background: var(--surface2); border: 1px solid rgba(0,255,209,0.2); border-radius: 2px; padding: 40px; margin: 48px 0; position: relative; overflow: hidden; }
+    .early-access-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--teal), transparent); }
+    .form-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: var(--white); letter-spacing: .1em; margin-bottom: 6px; }
+    .form-sub { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 300; font-style: italic; color: var(--teal); margin-bottom: 28px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .cf { display: flex; flex-direction: column; gap: 6px; }
+    .cf label { font-size: 8px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--text-dim); }
+    .cf input, .cf select, .cf textarea { background: rgba(255,255,255,0.04); border: 1px solid var(--border2); border-radius: 2px; padding: 12px 14px; color: var(--text); font-family: 'Jost', sans-serif; font-size: 13px; outline: none; transition: border-color .2s; width: 100%; }
+    .cf input:focus, .cf select:focus, .cf textarea:focus { border-color: rgba(0,255,209,0.4); }
+    .cf input::placeholder, .cf textarea::placeholder { color: var(--text-dim); }
+    .cf select { appearance: none; cursor: pointer; }
+    .cf select option { background: var(--surface2); }
+    .btn-teal { background: transparent; border: 1px solid var(--teal); color: var(--teal); border-radius: 3px; padding: 13px 28px; font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; transition: all .3s; margin-top: 8px; }
+    .btn-teal:hover { background: rgba(0,255,209,0.08); box-shadow: 0 0 24px rgba(0,255,209,0.2); }
+    .form-note { font-size: 11px; color: var(--text-dim); margin-top: 12px; }
+
+    /* COMPOUND */
+    .compound-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0; }
+    .compound-item { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; }
+    .compound-item-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .compound-item-text { font-size: 14px; color: var(--text-mid); line-height: 1.5; }
+    .compound-item-text strong { color: var(--white); display: block; margin-bottom: 2px; font-size: 13px; font-weight: 600; }
+
+    /* PATH STEPS */
+    .path-steps { display: flex; flex-direction: column; gap: 0; margin: 28px 0; counter-reset: steps; }
+    .path-step { display: flex; align-items: flex-start; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--border); }
+    .path-step:last-child { border-bottom: none; }
+    .step-num { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 900; color: var(--gold); opacity: .4; flex-shrink: 0; width: 40px; line-height: 1; }
+    .step-text { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300; color: var(--text-mid); line-height: 1.6; padding-top: 4px; }
+    .step-text strong { color: var(--white); font-weight: 600; }
+
+    /* GET INVOLVED */
+    .involve-box { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; padding: 48px; text-align: center; position: relative; overflow: hidden; margin: 40px 0; }
+    .involve-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .involve-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.4vw, 24px); font-weight: 300; color: var(--text-mid); line-height: 1.8; margin-bottom: 28px; }
+    .involve-text strong { color: var(--white); font-weight: 600; }
+    .btn-gold { background: linear-gradient(135deg, var(--gold), #8a6e18); color: #0b0f14; border: none; border-radius: 3px; padding: 14px 30px; font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: all .3s; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--gold-glow); }
+
+    /* FOOTER */
+    footer { position: relative; z-index: 2; border-top: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), var(--teal), transparent); opacity: .35; }
+    .footer-brand { font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700; color: var(--text-dim); letter-spacing: .22em; }
+    .footer-copy { font-size: 10px; color: var(--text-dim); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 9px; color: var(--text-dim); text-decoration: none; letter-spacing: .12em; text-transform: uppercase; transition: color .2s; }
+    .footer-links a:hover { color: var(--gold-lt); }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    hr.divider { border: none; border-top: 1px solid var(--border); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .page-hero { padding: 120px 24px 70px; }
+      .section, .section-wide { padding: 60px 24px; }
+      .features-grid, .compound-list, .form-grid { grid-template-columns: 1fr; }
+      .vault-panel, .early-access-box, .involve-box { padding: 32px 24px; }
+      footer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="grid-bg"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-sigil">⚗</span>
+    <div class="nav-wordmark">Stacked Alchemist<span>LLC · Est. 2026</span></div>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html">Mission</a>
+    <a href="lab.html">The Laboratory</a>
+    <a href="about.html">About</a>
+    <a href="blog/blog.html">The Grimoire</a>
+    <a href="contact.html" class="nav-cta">Get Involved</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html">Mission</a>
+  <a href="lab.html">The Laboratory</a>
+  <a href="about.html">About</a>
+  <a href="blog/blog.html">The Grimoire</a>
+  <a href="contact.html">Get Involved</a>
+</div>
+
+<div class="page-hero">
+  <div class="hero-orb"></div>
+  <div style="position:relative;z-index:2;max-width:860px;margin:0 auto;">
+    <div class="page-eyebrow">⚗ The Mission</div>
+    <h1 class="page-title">A space where people<br/>are <span>not judged.</span></h1>
+    <p class="page-subtitle">Not by anything. Not by anyone. For any reason whatsoever.</p>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- SECTION 1: THE PROBLEM -->
+  <div class="section reveal">
+    <div class="eyebrow">The Problem</div>
+    <h2 class="block-title">The entry point is broken.</h2>
+    <div class="stat-callout">
+      <div class="stat-number">22</div>
+      <div class="stat-label"><strong>veterans die by suicide every day.</strong></div>
+    </div>
+    <p class="body-text">Not because they're weak. Because the entry point to getting help is completely broken.</p>
+    <p class="body-text">You're supposed to sit down with a complete stranger and <strong>immediately be vulnerable?</strong> Most people — especially people built to push through — will never do that. And it's not just veterans. It's everyone who was raised to deal with it and move on. Everyone who carries a filing cabinet full of locked-away things that seep through the cracks when life gets hard enough.</p>
+    <p class="body-text">There is nowhere safe for those people to go.</p>
+    <p class="body-text" style="color:var(--teal);font-weight:400;">Until now.</p>
+  </div>
+
+  <!-- SECTION 2: VAULT -->
+  <div id="vault" class="section reveal">
+    <div class="eyebrow teal">Vault · Mission App</div>
+    <h2 class="block-title">Private. Judgment-free.<br/>Yours alone.</h2>
+    <div class="vault-panel">
+      <p class="body-text" style="margin-bottom:16px;">Vault is a private journaling and emotional processing app. The core promise: <strong>complete privacy, zero judgment, no clinical language.</strong></p>
+      <p class="body-text">The AI companion talks like a trusted friend — direct, real, no corporate wellness speak. You journal privately first. You build trust. Then — <em>only if you want to</em> — it can help connect you with someone. On your terms. At your pace.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-name">Zero Data Storage</div>
+        <div class="feature-desc">All entries are encrypted on your device using AES-256. The encryption key never leaves your device. Not even we can read it.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🤝</div>
+        <div class="feature-name">AI That Talks Like a Friend</div>
+        <div class="feature-desc">No clinical language. No diagnoses. No "have you tried gratitude journaling." Just real, direct conversation from something that actually listens.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🌉</div>
+        <div class="feature-name">Soft Therapy Bridge</div>
+        <div class="feature-desc">After consistent use, if heavy patterns emerge, the AI gently asks once if you'd want to talk to someone. If you say no — it never brings it up again.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📋</div>
+        <div class="feature-name">The Brief</div>
+        <div class="feature-desc">If you ever want to see a professional, Vault generates a session summary so your first appointment starts somewhere real — not at square one.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🎖️</div>
+        <div class="feature-name">Veteran Mode</div>
+        <div class="feature-desc">Verified via ID.me. Free forever, no questions asked. The AI switches to a direct, no-nonsense voice — full respect for the "handle your own shit" mentality.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🤜</div>
+        <div class="feature-name">Battle Buddy</div>
+        <div class="feature-desc">Verified veterans can opt into peer matching. The app connects two vets based on service era and what they're processing. Anonymous. In-app. Real.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EARLY ACCESS FORM -->
+  <div id="early-access" class="section reveal">
+    <div class="early-access-box">
+      <div class="form-title">🎖️ Veteran Early Access</div>
+      <p class="form-sub">You served. This is the least we can do. Sign up for early access — free forever, no strings attached.</p>
+      <!-- TODO: Replace YOUR_FORMSPREE_ID_HERE with your actual Formspree form ID -->
+      <form action="https://formspree.io/f/xpqjvpjo" method="POST">
+        <div class="form-grid">
+          <div class="cf">
+            <label for="ea-name">Your Name</label>
+            <input type="text" id="ea-name" name="name" placeholder="First Last" required />
+          </div>
+          <div class="cf">
+            <label for="ea-email">Email Address</label>
+            <input type="email" id="ea-email" name="email" placeholder="you@email.com" required />
+          </div>
+        </div>
+        <div class="cf" style="margin-bottom:16px;">
+          <label for="ea-vet">Are you a veteran or active military?</label>
+          <select id="ea-vet" name="veteran_status" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="veteran">Yes — Veteran</option>
+            <option value="active">Yes — Active Military</option>
+            <option value="supporter">No — I support the mission</option>
+          </select>
+        </div>
+        <div class="cf" style="margin-bottom:16px;">
+          <label for="ea-msg">Anything you want to share (optional)</label>
+          <textarea id="ea-msg" name="message" rows="3" placeholder="Your branch, what you're hoping Vault can do for you, anything at all..."></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="Vault Early Access Signup" />
+        <button type="submit" class="btn-teal">Sign Up for Early Access →</button>
+        <p class="form-note">Your information is never sold or shared. This signup is only used to notify you when Vault launches.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- SECTION 3: THE COMPOUND -->
+  <div id="compound" class="section reveal" style="border-top:1px solid var(--border);">
+    <div class="eyebrow">The Compound</div>
+    <h2 class="block-title">But Vault is just the beginning.</h2>
+    <p class="body-text">The long-term vision is <strong>physical communities in all 50 states.</strong> Real homes for displaced veterans and homeless individuals. Not shelters. Not programs. Homes — with dignity built into the architecture.</p>
+    <div class="compound-list">
+      <div class="compound-item">
+        <div class="compound-item-icon">🏠</div>
+        <div class="compound-item-text"><strong>Residential Buildings</strong>Private rooms and shared spaces for residents.</div>
+      </div>
+      <div class="compound-item">
+        <div class="compound-item-icon">🛡️</div>
+        <div class="compound-item-text"><strong>Veteran-Staffed Security</strong>Employment and community in one. Veterans protecting veterans.</div>
+      </div>
+      <div class="compound-item">
+        <div class="compound-item-icon">📚</div>
+        <div class="compound-item-text"><strong>On-Site Schools</strong>GED programs, vocational training, life skills — inside the compound.</div>
+      </div>
+      <div class="compound-item">
+        <div class="compound-item-icon">🛒</div>
+        <div class="compound-item-text"><strong>Community Store</strong>Grocery and convenience — operated by and for residents.</div>
+      </div>
+      <div class="compound-item">
+        <div class="compound-item-icon">🧠</div>
+        <div class="compound-item-text"><strong>Mental Health Center</strong>Therapists, psychologists, counselors on site. No commute. No barrier.</div>
+      </div>
+      <div class="compound-item">
+        <div class="compound-item-icon">🏥</div>
+        <div class="compound-item-text"><strong>Medical Clinic</strong>Basic healthcare without leaving. Healthcare is a right, not a privilege.</div>
+      </div>
+      <div class="compound-item">
+        <div class="compound-item-icon">💼</div>
+        <div class="compound-item-text"><strong>Job Training &amp; Placement</strong>Real skills, real jobs, real futures. Not just a roof — a path forward.</div>
+      </div>
+      <div class="compound-item">
+        <div class="compound-item-icon">🤝</div>
+        <div class="compound-item-text"><strong>Community Spaces</strong>Recreation, gathering, connection. Because community is what heals.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: THE PATH -->
+  <div class="section reveal" style="border-top:1px solid var(--border);">
+    <div class="eyebrow">The Path</div>
+    <h2 class="block-title">This is how we get there.</h2>
+    <div class="path-steps">
+      <div class="path-step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Build revenue apps that people actually need.</strong> Real products solving real problems. Every subscription funds the mission.</div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>File the 501(c)(3) nonprofit.</strong> Under $500 to do it ourselves. No excuses. The paperwork is already mapped.</div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Launch Vault — free for everyone.</strong> The mental health app ships under the nonprofit umbrella the moment the filing is approved.</div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>Apply for VA grants, federal health tech grants, foundation funding.</strong> The VA Grant and Per Diem Program. SAMHSA. Bob Woodruff Foundation. The money exists.</div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">5</div>
+        <div class="step-text"><strong>Break ground on the first compound.</strong> One facility. One state. Proof of concept. Document everything.</div>
+      </div>
+      <div class="path-step">
+        <div class="step-num">6</div>
+        <div class="step-text"><strong>Do it again in every state.</strong> The blueprint scales. The mission doesn't stop until there are 50.</div>
+      </div>
+    </div>
+    <p class="body-text" style="margin-top:32px;font-size:22px;color:var(--white);">This was never a pipe dream.</p>
+    <p class="body-text" style="color:var(--gold-lt);font-size:22px;">Pipe dreams don't have blueprints.</p>
+  </div>
+
+  <!-- GET INVOLVED -->
+  <div class="section reveal" style="border-top:1px solid var(--border);">
+    <div class="involve-box">
+      <div class="eyebrow" style="justify-content:center;margin-bottom:20px;">Get Involved</div>
+      <p class="involve-text">I'm not looking for corporations.<br/>I'm not looking for people who want to tell me how this should work.<br/><strong>I'm looking for people who give a damn.</strong></p>
+      <p class="involve-text" style="font-size:18px;">Veterans wanting early access. People who believe in this. Anyone who knows someone who needs a space like this.</p>
+      <a href="contact.html" class="btn-gold">⚗ Reach Out</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">⚗ STACKED ALCHEMIST LLC</div>
+  <div class="footer-copy">© 2026 Stacked Alchemist LLC · All rights reserved</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="lab.html">Laboratory</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Get Involved</a>
+  </div>
+</footer>
+
+<script>
+  const cur = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
+  let mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+  (function tick() {
+    cur.style.left=mx+'px'; cur.style.top=my+'px';
+    rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(tick);
+  })();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.style.width='18px'; cur.style.height='18px'; ring.style.width='50px'; ring.style.height='50px'; ring.style.borderColor='rgba(212,175,55,0.75)'; });
+    el.addEventListener('mouseleave', () => { cur.style.width='8px'; cur.style.height='8px'; ring.style.width='34px'; ring.style.height='34px'; ring.style.borderColor='rgba(212,175,55,0.45)'; });
+  });
+  const obs = new IntersectionObserver(entries => entries.forEach((e,i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i*80);
+  }), { threshold: .08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  const btn = document.getElementById('hamburger'), nav = document.getElementById('mobile-nav');
+  btn?.addEventListener('click', () => { btn.classList.toggle('open'); nav.classList.toggle('open'); });
+  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { btn.classList.remove('open'); nav.classList.remove('open'); }));
+</script>
+</body>
+</html>
