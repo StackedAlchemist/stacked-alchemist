@@ -222,44 +222,45 @@
         </div>
       </div>
       <div>
-        <div id="ea-form-content" class="form-box teal-accent">
-          <div class="form-title">🔒 Sign Up for Early Access</div>
-          <p class="form-sub teal">You served. This is the least we can do.</p>
-          <!-- TODO: Replace YOUR_FORMSPREE_ID_HERE with your actual Formspree form ID for the early access form -->
-          <form action="https://formspree.io/f/xpqjvpjo" method="POST" id="ea-form">
-            <div class="cf-row">
-              <div class="cf">
-                <label for="ea-name">Your Name</label>
-                <input type="text" id="ea-name" name="name" placeholder="First Last" required />
+        <div class="form-box teal-accent">
+          <div id="ea-form-content">
+            <div class="form-title">🔒 Sign Up for Early Access</div>
+            <p class="form-sub teal">You served. This is the least we can do.</p>
+            <form action="https://formspree.io/f/xpqjvpjo" method="POST" id="ea-form">
+              <div class="cf-row">
+                <div class="cf">
+                  <label for="ea-name">Your Name</label>
+                  <input type="text" id="ea-name" name="name" placeholder="First Last" required />
+                </div>
+                <div class="cf">
+                  <label for="ea-email">Email Address</label>
+                  <input type="email" id="ea-email" name="email" placeholder="you@email.com" required />
+                </div>
               </div>
               <div class="cf">
-                <label for="ea-email">Email Address</label>
-                <input type="email" id="ea-email" name="email" placeholder="you@email.com" required />
+                <label for="ea-status">Are you a veteran or active military?</label>
+                <select id="ea-status" name="veteran_status" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="veteran">Yes — Veteran</option>
+                  <option value="active">Yes — Active Military</option>
+                  <option value="supporter">No — I support the mission</option>
+                  <option value="needed">No — but I need a space like this</option>
+                </select>
               </div>
-            </div>
-            <div class="cf">
-              <label for="ea-status">Are you a veteran or active military?</label>
-              <select id="ea-status" name="veteran_status" required>
-                <option value="" disabled selected>Select one</option>
-                <option value="veteran">Yes — Veteran</option>
-                <option value="active">Yes — Active Military</option>
-                <option value="supporter">No — I support the mission</option>
-                <option value="needed">No — but I need a space like this</option>
-              </select>
-            </div>
-            <div class="cf">
-              <label for="ea-msg">Anything you want to share (optional)</label>
-              <textarea id="ea-msg" name="message" rows="3" placeholder="Your branch, what you're hoping Vault can do for you, anything at all..."></textarea>
-            </div>
-            <input type="hidden" name="_subject" value="Vault Early Access Signup" />
-            <button type="submit" class="btn-teal" id="ea-submit">Sign Up for Early Access →</button>
-            <p class="form-note">Your information is never sold or shared. Only used to notify you at launch.</p>
-          </form>
-        </div>
-        <div class="success-msg" id="ea-success">
-          <div class="success-icon">🔒</div>
-          <div class="success-title">You're on the list.</div>
-          <div class="success-sub">We'll reach out when Vault launches.<br/>Thank you for being here.</div>
+              <div class="cf">
+                <label for="ea-msg">Anything you want to share (optional)</label>
+                <textarea id="ea-msg" name="message" rows="3" placeholder="Your branch, what you're hoping Vault can do for you, anything at all..."></textarea>
+              </div>
+              <input type="hidden" name="_subject" value="Vault Early Access Signup" />
+              <button type="submit" class="btn-teal" id="ea-submit">Sign Up for Early Access →</button>
+              <p class="form-note">Your information is never sold or shared. Only used to notify you at launch.</p>
+            </form>
+          </div>
+          <div class="success-msg" id="ea-success">
+            <div class="success-icon">🔒</div>
+            <div class="success-title">You're on the list.</div>
+            <div class="success-sub">We'll reach out when Vault launches.<br/>Thank you for being here.</div>
+          </div>
         </div>
       </div>
     </div>
