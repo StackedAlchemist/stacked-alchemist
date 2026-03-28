@@ -3,6 +3,9 @@
    IGDB API (via Cloudflare Worker proxy) · All platforms · localStorage
 ============================================================ */
 
+/* ── Config ── */
+const RAWG_KEY = "YOUR_RAWG_API_KEY";
+
 /* ── State ── */
 let log           = JSON.parse(localStorage.getItem("codex_games") || "[]");
 let currentGame   = null;
@@ -102,24 +105,20 @@ function bindEvents(){
   });
 }
 
-/* ── IGDB Search ── */
+/* ── RAWG Search ── */
 async function doSearch(){
   const q=searchInput.value.trim(); if(!q) return;
   searchResults.classList.remove("hidden");
   searchResults.innerHTML=`<div class="search-loading">Scanning all platforms…</div>`;
   try {
-    const body=`search "${q}"; fields name,cover.url,first_release_date,genres.name,rating,platforms.name,summary; limit 12;`;
-    const res=await fetch("https://igdb-proxy.stackedalchemist.workers.dev/games",{
-      method:"POST",
-      headers:{ "Content-Type":"text/plain" },
-      body
-    });
-    const games=await res.json();
-    if(!Array.isArray(games)) throw new Error("Unexpected response");
-    renderResults(games);
+    const url=`https://api.rawg.io/api/games?key=${RAWG_KEY}&search=${encodeURIComponent(q)}&page_size=12`;
+    const res=await fetch(url);
+    const data=await res.json();
+    if(!Array.isArray(data.results)) throw new Error("Unexpected response");
+    renderResults(data.results);
   } catch(e) {
     searchResults.innerHTML=`<div class="search-loading">
-      Search failed — check your credentials are saved correctly and try again.<br><br>
+      Search failed. Try again or check your RAWG API key.<br><br>
       <em style="font-size:.72em;opacity:.55">Error: ${e.message}</em>
     </div>`;
   }
@@ -129,12 +128,11 @@ function renderResults(games){
   if(!games.length){ searchResults.innerHTML=`<div class="search-loading">No results found.</div>`; return; }
   searchResults.innerHTML=games.map(g=>{
     const title    = g.name||"Unknown";
-    const year     = g.first_release_date ? new Date(g.first_release_date*1000).getFullYear() : "";
-    const rating   = g.rating ? `★ ${(g.rating/20).toFixed(1)}` : "";
+    const year     = g.released ? g.released.slice(0,4) : "";
+    const rating   = g.rating ? `★ ${g.rating.toFixed(1)}` : "";
     const genres   = (g.genres||[]).slice(0,2).map(x=>x.name).join(" · ");
-    const platforms= (g.platforms||[]).slice(0,3).map(p=>p.name).join(", ");
-    const rawCover = g.cover?.url||"";
-    const cover    = rawCover ? rawCover.replace("t_thumb","t_cover_big").replace("//","https://") : "";
+    const platforms= (g.platforms||[]).slice(0,3).map(p=>p.platform.name).join(", ");
+    const cover    = g.background_image||"";
     const onLog    = log.some(x=>x.id===g.id);
     const coverHtml= cover
       ? `<img src="${escHtml(cover)}" alt="${escHtml(title)}" loading="lazy" onerror="this.parentElement.innerHTML='<span class=rc-no-cover>🎮</span>'" />`
