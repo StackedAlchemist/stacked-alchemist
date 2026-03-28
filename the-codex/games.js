@@ -1,14 +1,10 @@
 /* ============================================================
    QUEST LOG — Game Tracker JS
-   IGDB API (via Twitch OAuth) · All platforms · localStorage
+   IGDB API (via Cloudflare Worker proxy) · All platforms · localStorage
 ============================================================ */
 
 /* ── State ── */
 let log           = JSON.parse(localStorage.getItem("codex_games") || "[]");
-let igdbClientId  = localStorage.getItem("igdb_client_id")     || "";
-let igdbSecret    = localStorage.getItem("igdb_client_secret") || "";
-let igdbToken     = localStorage.getItem("igdb_token")         || "";
-let igdbTokenExp  = parseInt(localStorage.getItem("igdb_token_exp") || "0");
 let currentGame   = null;
 let currentRating = 0;
 let currentStatus = "on-deck";
@@ -38,25 +34,6 @@ const UPCOMING = [
   { title: "Path of Exile 2",       dev: "Grinding Gear Games",   date: "2025",      icon: "💀", desc: "A brutal action RPG sequel with a new campaign, revamped skill system, and the depth that made the original legendary." },
 ];
 
-/* ── IGDB Token ── */
-async function getIGDBToken() {
-  if (igdbToken && Date.now() < igdbTokenExp - 60000) return igdbToken;
-  if (!igdbClientId || !igdbSecret) return null;
-  try {
-    const res  = await fetch(
-      `https://id.twitch.tv/oauth2/token?client_id=${igdbClientId}&client_secret=${igdbSecret}&grant_type=client_credentials`,
-      { method: "POST" }
-    );
-    const data = await res.json();
-    if (!data.access_token) return null;
-    igdbToken    = data.access_token;
-    igdbTokenExp = Date.now() + (data.expires_in * 1000);
-    localStorage.setItem("igdb_token",     igdbToken);
-    localStorage.setItem("igdb_token_exp", String(igdbTokenExp));
-    return igdbToken;
-  } catch { return null; }
-}
-
 /* ── DOM refs ── */
 const searchInput  = document.getElementById("gameSearch");
 const searchBtn    = document.getElementById("searchBtn");
@@ -69,10 +46,6 @@ const modalSave    = document.getElementById("modalSave");
 const modalDelete  = document.getElementById("modalDelete");
 const curatedGrid  = document.getElementById("curatedGrid");
 const upcomingGrid = document.getElementById("upcomingGrid");
-const apiClientId  = document.getElementById("apiClientId");
-const apiClientSec = document.getElementById("apiClientSecret");
-const apiKeySave   = document.getElementById("apiKeySave");
-const apiStatus    = document.getElementById("apiStatus");
 
 /* ── Cursor ── */
 const dot = document.getElementById("cursorDot");
@@ -88,9 +61,6 @@ document.addEventListener("mousemove", e=>{ mx=e.clientX; my=e.clientY; });
 
 /* ── Init ── */
 document.addEventListener("DOMContentLoaded", ()=>{
-  if(igdbClientId) apiClientId.value = igdbClientId;
-  if(igdbSecret)   apiClientSec.value= igdbSecret;
-  if(igdbToken && Date.now() < igdbTokenExp - 60000) setApiStatus(true);
   renderStats(); renderLog(); renderCurated(); renderUpcoming(); bindEvents();
 });
 
@@ -101,20 +71,6 @@ function bindEvents(){
 
   document.querySelectorAll(".qs-btn").forEach(btn=>{
     btn.addEventListener("click",()=>{ searchInput.value=btn.dataset.q; doSearch(); });
-  });
-
-  apiKeySave.addEventListener("click", async()=>{
-    igdbClientId = apiClientId.value.trim();
-    igdbSecret   = apiClientSec.value.trim();
-    if(!igdbClientId || !igdbSecret){ setApiStatus(false,"Enter both fields"); return; }
-    localStorage.setItem("igdb_client_id", igdbClientId);
-    localStorage.setItem("igdb_client_secret", igdbSecret);
-    igdbToken=""; igdbTokenExp=0;
-    localStorage.removeItem("igdb_token"); localStorage.removeItem("igdb_token_exp");
-    apiKeySave.textContent="Connecting…";
-    const token = await getIGDBToken();
-    apiKeySave.textContent="Save & Connect";
-    setApiStatus(!!token, token ? "" : "Invalid credentials — check your Client ID and Secret");
   });
 
   document.querySelectorAll(".sf-btn").forEach(btn=>{
@@ -144,12 +100,6 @@ function bindEvents(){
     star.addEventListener("mouseenter", ()=>updateStars(parseInt(star.dataset.val)));
     star.addEventListener("mouseleave", ()=>updateStars(currentRating));
   });
-}
-
-function setApiStatus(ok, msg=""){
-  if(!apiStatus) return;
-  apiStatus.className="api-status "+(ok?"ok":"err");
-  apiStatus.textContent=ok?"✓ Connected to IGDB":(msg||"✕ Connection failed");
 }
 
 /* ── IGDB Search ── */
