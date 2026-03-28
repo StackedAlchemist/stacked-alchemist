@@ -51,23 +51,6 @@
     "accentColor": "#7ab8f5"
   },
   {
-    "id": "winglord-saga-revised",
-    "title": "The Winglord Saga",
-    "subtitle": "Revised Edition -- Prologue and Chapter One",
-    "category": "fiction",
-    "tags": ["fantasy", "winglord", "dragons", "wing-lords"],
-    "date": "2025-01-01",
-    "updated": "2025-01-01",
-    "author": "Billy Williams",
-    "readTime": 22,
-    "wordCount": 5200,
-    "featured": false,
-    "excerpt": "Seven Wing Lords. One ancient dragon. A betrayal written in lightning. The definitive revised opening arc of the Winglord Saga -- from the storm-battered inn to Toby's fateful morning.",
-    "file": "posts/winglord-saga-revised.html",
-    "coverIcon": "⚔",
-    "accentColor": "#c8852a"
-  },
-  {
     "id": "salvation",
     "title": "Salvation",
     "subtitle": "A Poem",
