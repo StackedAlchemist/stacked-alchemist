@@ -156,17 +156,12 @@ function setApiStatus(ok, msg=""){
 async function doSearch(){
   const q=searchInput.value.trim(); if(!q) return;
   searchResults.classList.remove("hidden");
-  const token=await getIGDBToken();
-  if(!token){
-    searchResults.innerHTML=`<div class="search-loading">🔑 Enter your Twitch Client ID + Secret above.<br><br>Register free at <a href="https://dev.twitch.tv/console" target="_blank" style="color:var(--teal)">dev.twitch.tv/console</a> — covers PS5, Xbox, Nintendo & PC.</div>`;
-    return;
-  }
   searchResults.innerHTML=`<div class="search-loading">Scanning all platforms…</div>`;
   try {
     const body=`search "${q}"; fields name,cover.url,first_release_date,genres.name,rating,platforms.name,summary; limit 12;`;
     const res=await fetch("https://igdb-proxy.stackedalchemist.workers.dev/games",{
       method:"POST",
-      headers:{ "Client-ID":igdbClientId, "Authorization":`Bearer ${token}`, "Content-Type":"text/plain" },
+      headers:{ "Content-Type":"text/plain" },
       body
     });
     const games=await res.json();
