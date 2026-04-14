@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Involved — Stacked Alchemist LLC</title>
+  <meta name="description" content="Get involved with Stacked Alchemist LLC — support the mission, collaborate, or reach out to Billy Williams directly." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://stackedalchemist.dev/contact.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Stacked Alchemist LLC" />
+  <meta property="og:title"       content="Get Involved — Stacked Alchemist LLC" />
+  <meta property="og:description" content="Get involved with Stacked Alchemist LLC — support the mission, collaborate, or reach out to Billy Williams directly." />
+  <meta property="og:url"         content="https://stackedalchemist.dev/contact.html" />
+  <meta property="og:image"        content="https://stackedalchemist.dev/images/contact.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Get Involved — Stacked Alchemist LLC" />
+  <meta name="twitter:description" content="Get involved with Stacked Alchemist LLC — support the mission, collaborate, or reach out to Billy Williams directly." />
+  <meta name="twitter:image"       content="https://stackedalchemist.dev/images/contact.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicon.ico" />
+
+  <!-- JSON-LD: ContactPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": "https://stackedalchemist.dev/contact.html",
+    "name": "Get Involved — Stacked Alchemist LLC",
+    "url": "https://stackedalchemist.dev/contact.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "url": "https://stackedalchemist.dev/",
+      "name": "Stacked Alchemist LLC"
+    }
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0b0f14;--bg2:#0d1420;--surface:#111827;--surface2:#161d2e;
+      --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+      --gold:#d4af37;--gold-lt:#e8c96a;--gold-dim:rgba(212,175,55,0.10);--gold-glow:rgba(212,175,55,0.28);
+      --text:#dde4ee;--text-mid:#8a96aa;--text-dim:#7a8899;--white:#ffffff;
+      --green:#4caf7d;--teal:#00ffd1;--teal-dim:rgba(0,255,209,0.12);--violet:#8b5cf6;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none}
+
+    .cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen}
+    .cursor-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(212,175,55,0.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+    .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.35;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E")}
+    .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(212,175,55,0.016) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.016) 1px,transparent 1px);background-size:72px 72px}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:62px;border-bottom:1px solid var(--border);background:rgba(11,15,20,0.92);backdrop-filter:blur(24px)}
+    nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.3),rgba(0,255,209,0.2),transparent);pointer-events:none}
+    .nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+    .nav-sigil{font-size:18px;filter:drop-shadow(0 0 8px var(--gold-glow))}
+    .nav-wordmark{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:var(--gold-lt);letter-spacing:.22em;text-transform:uppercase}
+    .nav-wordmark span{display:block;font-size:8px;color:var(--text-mid);letter-spacing:.18em;margin-top:2px;font-weight:400}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold-lt)}
+    .nav-cta{background:var(--gold-dim)!important;color:var(--gold-lt)!important;border:1px solid rgba(212,175,55,.25)!important;padding:7px 16px;border-radius:3px}
+    .nav-cta:hover{background:rgba(212,175,55,.16)!important;box-shadow:0 0 16px var(--gold-glow)!important}
+    .hamburger{display:none;flex-direction:column;justify-content:space-between;width:24px;height:16px;background:none;border:none;cursor:pointer;padding:0;z-index:600;flex-shrink:0}
+    .hamburger span{display:block;width:100%;height:1px;background:var(--gold-lt);transition:all .3s}
+    .hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+    .mobile-nav{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(11,15,20,0.98);border-bottom:1px solid var(--border);backdrop-filter:blur(24px);z-index:499;flex-direction:column;padding:8px 24px 20px}
+    .mobile-nav.open{display:flex}
+    .mobile-nav a{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s}
+    .mobile-nav a:last-child{border-bottom:none}
+    .mobile-nav a:hover{color:var(--gold-lt)}
+    @media(max-width:768px){.hamburger{display:flex}.nav-links{display:none!important}}
+
+    /* PAGE HERO */
+    .page-hero{position:relative;padding:140px 48px 80px;z-index:2;overflow:hidden;text-align:center}
+    .hero-orb{position:absolute;border-radius:50%;pointer-events:none;width:500px;height:500px;background:radial-gradient(circle,rgba(212,175,55,0.06) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);animation:breathe 9s ease-in-out infinite}
+    @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.1)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    .page-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:fadeUp .8s .2s ease forwards}
+    .page-eyebrow::before,.page-eyebrow::after{content:'';width:28px;height:1px;background:var(--gold);opacity:.5}
+    .page-title{font-family:'Cinzel',serif;font-size:clamp(36px,6vw,72px);font-weight:900;line-height:.95;letter-spacing:-.02em;color:var(--white);margin-bottom:12px;opacity:0;animation:fadeUp .8s .35s ease forwards}
+    .page-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2.2vw,22px);font-weight:300;font-style:italic;color:var(--text-mid);opacity:0;animation:fadeUp .8s .5s ease forwards}
+
+    /* CONTENT WRAP */
+    .contact-wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 48px 100px}
+
+    /* SECTION TABS */
+    .section-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:52px}
+    .tab-btn{background:none;border:none;border-bottom:2px solid transparent;padding:14px 24px;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);cursor:pointer;transition:all .2s;margin-bottom:-1px}
+    .tab-btn.active{color:var(--gold-lt);border-bottom-color:var(--gold)}
+    .tab-btn:hover:not(.active){color:var(--text-mid)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    /* TWO-COL GRID */
+    .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:start}
+
+    /* INFO SIDE */
+    .info-eyebrow{font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:inline-flex;align-items:center;gap:10px}
+    .info-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);opacity:.6}
+    .info-eyebrow.teal{color:var(--teal)}
+    .info-eyebrow.teal::before{background:var(--teal)}
+    .info-blurb{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--text-mid);line-height:1.75;margin-bottom:24px}
+    .info-blurb strong{color:var(--white);font-weight:600}
+
+    .contact-detail{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--border)}
+    .contact-detail:last-of-type{border-bottom:none;margin-bottom:32px}
+    .detail-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center}
+    .detail-label{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim)}
+    .detail-value{font-size:13px;color:var(--text-mid);margin-top:2px}
+    .detail-value a{color:var(--gold-lt);text-decoration:none}
+    .detail-value a:hover{text-decoration:underline}
+
+    .status-strip{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:16px 18px;margin-bottom:28px}
+    .status-row{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:11px;color:var(--text-mid)}
+    .status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .status-dot.green{background:var(--green);box-shadow:0 0 8px rgba(76,175,125,.5)}
+    .status-dot.gold{background:var(--gold);box-shadow:0 0 8px var(--gold-glow)}
+    .status-dot.teal{background:var(--teal);box-shadow:0 0 8px rgba(0,255,209,.4)}
+
+    .social-title{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
+    .social-links{display:flex;flex-direction:column;gap:8px}
+    .social-link{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:2px;text-decoration:none;transition:all .2s}
+    .social-link:hover{border-color:rgba(212,175,55,.2);transform:translateX(4px)}
+    .social-badge{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:2px;background:var(--gold-dim);border:1px solid rgba(212,175,55,.2);color:var(--gold-lt);flex-shrink:0;width:28px;text-align:center}
+    .social-name{font-size:12px;color:var(--text-mid);font-weight:500}
+    .social-handle{font-size:10px;color:var(--text-dim)}
+    .social-arrow{margin-left:auto;font-size:11px;color:var(--text-dim);transition:all .2s}
+    .social-link:hover .social-arrow{color:var(--gold);transform:translateX(3px)}
+
+    /* FORM BOX */
+    .form-box{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:36px;position:relative;overflow:hidden}
+    .form-box.teal-accent{border-color:rgba(0,255,209,0.2)}
+    .form-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+    .form-box.teal-accent::before{background:linear-gradient(90deg,transparent,var(--teal),transparent)}
+    .form-title{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:var(--white);letter-spacing:.14em;margin-bottom:6px}
+    .form-sub{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:300;font-style:italic;color:var(--text-mid);margin-bottom:28px}
+    .form-sub.teal{color:var(--teal)}
+    .cf{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+    .cf label{font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim)}
+    .cf input,.cf textarea,.cf select{background:var(--bg2);border:1px solid var(--border2);border-radius:2px;padding:11px 13px;color:var(--text);font-family:'Jost',sans-serif;font-size:13px;outline:none;transition:border-color .2s;width:100%}
+    .cf textarea{resize:vertical;min-height:100px;line-height:1.6}
+    .cf input:focus,.cf textarea:focus,.cf select:focus{border-color:rgba(212,175,55,.35)}
+    .cf input:focus.teal-focus,.cf select:focus.teal-focus{border-color:rgba(0,255,209,.35)}
+    .cf select{appearance:none;cursor:pointer}
+    .cf select option{background:var(--surface2)}
+    .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn-gold{background:linear-gradient(135deg,var(--gold),#9a7020);color:var(--bg);border:none;border-radius:3px;padding:13px 28px;font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .3s;width:100%;justify-content:center}
+    .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px var(--gold-glow)}
+    .btn-teal{background:transparent;border:1px solid var(--teal);color:var(--teal);border-radius:3px;padding:13px 28px;font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:all .3s;width:100%;justify-content:center}
+    .btn-teal:hover{background:rgba(0,255,209,.08);box-shadow:0 0 24px rgba(0,255,209,.2)}
+    .form-note{font-size:10px;color:var(--text-dim);text-align:center;margin-top:10px;font-style:italic}
+    .success-msg{display:none;text-align:center;padding:32px}
+    .success-msg.show{display:block}
+    .success-icon{font-size:40px;margin-bottom:12px}
+    .success-title{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:8px}
+    .success-sub{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;font-style:italic;color:var(--text-mid)}
+
+    /* FOOTER */
+    footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),var(--teal),transparent);opacity:.35}
+    .footer-brand{font-family:'Cinzel',serif;font-size:10px;font-weight:700;color:var(--text-dim);letter-spacing:.22em}
+    .footer-copy{font-size:10px;color:var(--text-dim)}
+    .footer-links{display:flex;gap:20px}
+    .footer-links a{font-size:9px;color:var(--text-dim);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+    .footer-links a:hover{color:var(--gold-lt)}
+
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:900px){
+      nav{padding:0 24px}
+      .page-hero{padding:110px 24px 60px}
+      .contact-wrap{padding:0 24px 80px}
+      .contact-grid{grid-template-columns:1fr;gap:40px}
+      .cf-row{grid-template-columns:1fr}
+      footer{padding:24px}
+      .tab-btn{padding:12px 16px;font-size:10px}
+    }
+  </style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="grid-bg"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-sigil">⚗</span>
+    <div class="nav-wordmark">Stacked Alchemist<span>LLC · Est. 2026</span></div>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html">Mission</a>
+    <a href="lab.html">The Laboratory</a>
+    <a href="about.html">About</a>
+    <a href="blog/blog.html">The Grimoire</a>
+    <a href="contact.html" class="active nav-cta" style="color:var(--gold-lt)">Get Involved</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html">Mission</a>
+  <a href="lab.html">The Laboratory</a>
+  <a href="about.html">About</a>
+  <a href="blog/blog.html">The Grimoire</a>
+  <a href="contact.html">Get Involved</a>
+</div>
+
+<div class="page-hero">
+  <div class="hero-orb"></div>
+  <div class="page-eyebrow">⚗ Get Involved</div>
+  <h1 class="page-title">Who are you<br/>reaching out as?</h1>
+  <p class="page-subtitle">Three doors. Find yours below.</p>
+</div>
+
+<div class="contact-wrap">
+
+  <!-- TAB NAVIGATION -->
+  <div class="section-tabs reveal" id="tab-nav">
+    <button class="tab-btn active" data-tab="veteran">🎖️ Veteran / Need Vault</button>
+    <button class="tab-btn" data-tab="client">⚗ Potential Client</button>
+    <button class="tab-btn" data-tab="supporter">🤝 Collaborator / Supporter</button>
+  </div>
+
+  <!-- TAB 1: VETERAN / VAULT -->
+  <div class="tab-panel active reveal" id="tab-veteran">
+    <div class="contact-grid">
+      <div>
+        <div class="info-eyebrow teal">🎖️ Vault Early Access</div>
+        <p class="info-blurb">You served. Or you're carrying something you've never been able to put anywhere safe. <strong>Vault is being built for you.</strong></p>
+        <p class="info-blurb">Free forever for veterans. Free for everyone on the basic tier. No credit card. No clinical intake. Just a private space that's yours.</p>
+        <div class="status-strip">
+          <div class="status-row"><div class="status-dot teal"></div>Vault is currently in development</div>
+          <div class="status-row"><div class="status-dot green"></div>Early access signups are open now</div>
+          <div class="status-row"><div class="status-dot green"></div>Veterans will be notified first at launch</div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon">📧</div>
+          <div><div class="detail-label">Email</div><div class="detail-value"><a href="mailto:hello@stackedalchemist.dev">hello@stackedalchemist.dev</a></div></div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon">📍</div>
+          <div><div class="detail-label">Location</div><div class="detail-value">Mesa, Arizona, US</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="form-box teal-accent">
+          <div id="ea-form-content">
+            <div class="form-title">🔒 Sign Up for Early Access</div>
+            <p class="form-sub teal">You served. This is the least we can do.</p>
+            <form action="https://formspree.io/f/xpqjvpjo" method="POST" id="ea-form">
+              <div class="cf-row">
+                <div class="cf">
+                  <label for="ea-name">Your Name</label>
+                  <input type="text" id="ea-name" name="name" placeholder="First Last" required />
+                </div>
+                <div class="cf">
+                  <label for="ea-email">Email Address</label>
+                  <input type="email" id="ea-email" name="email" placeholder="you@email.com" required />
+                </div>
+              </div>
+              <div class="cf">
+                <label for="ea-status">Are you a veteran or active military?</label>
+                <select id="ea-status" name="veteran_status" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="veteran">Yes — Veteran</option>
+                  <option value="active">Yes — Active Military</option>
+                  <option value="supporter">No — I support the mission</option>
+                  <option value="needed">No — but I need a space like this</option>
+                </select>
+              </div>
+              <div class="cf">
+                <label for="ea-msg">Anything you want to share (optional)</label>
+                <textarea id="ea-msg" name="message" rows="3" placeholder="Your branch, what you're hoping Vault can do for you, anything at all..."></textarea>
+              </div>
+              <input type="hidden" name="_subject" value="Vault Early Access Signup" />
+              <input type="hidden" name="_next" value="https://stackedalchemist.dev/contact.html" />
+              <button type="submit" class="btn-teal" id="ea-submit">Sign Up for Early Access →</button>
+              <p class="form-note">Your information is never sold or shared. Only used to notify you at launch.</p>
+            </form>
+          </div>
+          <div class="success-msg" id="ea-success">
+            <div class="success-icon">🔒</div>
+            <div class="success-title">You're on the list.</div>
+            <div class="success-sub">We'll reach out when Vault launches.<br/>Thank you for being here.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: CLIENT WORK -->
+  <div class="tab-panel" id="tab-client">
+    <div class="contact-grid">
+      <div>
+        <div class="info-eyebrow">⚗ Client Work</div>
+        <p class="info-blurb">I take on <strong>select client projects</strong> alongside the mission work. Real applications, real systems, real shipping.</p>
+        <p class="info-blurb">If you have something that needs to be built — let's talk. Check the laboratory to see what I've already shipped.</p>
+        <div class="status-strip">
+          <div class="status-row"><div class="status-dot green"></div>Available for new projects</div>
+          <div class="status-row"><div class="status-dot gold"></div>Actively building Stacked Alchemist LLC</div>
+          <div class="status-row"><div class="status-dot green"></div>Open to collaborations</div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon">📧</div>
+          <div><div class="detail-label">Email</div><div class="detail-value"><a href="mailto:hello@stackedalchemist.dev">hello@stackedalchemist.dev</a></div></div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon">📞</div>
+          <div><div class="detail-label">Phone</div><div class="detail-value"><a href="tel:+14806306447">(480) 630-6447</a></div></div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon">📍</div>
+          <div><div class="detail-label">Location</div><div class="detail-value">Mesa, Arizona, US</div></div>
+        </div>
+        <div class="social-title">Find Me Online</div>
+        <div class="social-links">
+          <a href="https://github.com/StackedAlchemist" target="_blank" class="social-link">
+            <div class="social-badge">GH</div>
+            <div><div class="social-name">GitHub</div><div class="social-handle">@StackedAlchemist</div></div>
+            <div class="social-arrow">→</div>
+          </a>
+          <a href="https://www.linkedin.com/in/blwilliams83/" target="_blank" class="social-link">
+            <div class="social-badge">LI</div>
+            <div><div class="social-name">LinkedIn</div><div class="social-handle">blwilliams83</div></div>
+            <div class="social-arrow">→</div>
+          </a>
+          <a href="lab.html" class="social-link">
+            <div class="social-badge">⚗</div>
+            <div><div class="social-name">The Laboratory</div><div class="social-handle">See what I've shipped</div></div>
+            <div class="social-arrow">→</div>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="form-box">
+          <div id="client-form-content">
+            <div class="form-title">⚗ Project Transmission</div>
+            <div class="form-sub">Every great build starts with a single message.</div>
+            <form action="https://formspree.io/f/xpqjvpjo" method="POST" id="client-form">
+              <div class="cf-row">
+                <div class="cf"><label>Your Name</label><input type="text" name="name" placeholder="First and Last" required /></div>
+                <div class="cf"><label>Email</label><input type="email" name="email" placeholder="you@example.com" required /></div>
+              </div>
+              <div class="cf">
+                <label>What do you need?</label>
+                <select name="subject">
+                  <option>SaaS Application</option>
+                  <option>Marketplace Platform</option>
+                  <option>AI-Powered Tool</option>
+                  <option>Mobile Web App</option>
+                  <option>Dashboard / Admin System</option>
+                  <option>Collaboration</option>
+                  <option>Something else entirely</option>
+                </select>
+              </div>
+              <div class="cf"><label>Tell me about the project</label><textarea name="message" placeholder="What you're building, your timeline, your vision. The more detail the better." required></textarea></div>
+              <input type="hidden" name="_subject" value="New Client Inquiry" />
+              <input type="hidden" name="_next" value="https://stackedalchemist.dev/contact.html" />
+              <button type="submit" class="btn-gold" id="client-submit">⚗ Start a Project</button>
+              <p class="form-note">Goes directly to my inbox · No commitment required</p>
+            </form>
+          </div>
+          <div class="success-msg" id="client-success">
+            <div class="success-icon">✦</div>
+            <div class="success-title">Transmission Sent</div>
+            <div class="success-sub">Your message is on its way.<br/>I'll be in touch shortly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: COLLABORATORS / SUPPORTERS -->
+  <div class="tab-panel" id="tab-supporter">
+    <div class="contact-grid">
+      <div>
+        <div class="info-eyebrow">🤝 Collaborators &amp; Supporters</div>
+        <p class="info-blurb">I'm not looking for corporations. I'm not looking for people who want to tell me how this should work.</p>
+        <p class="info-blurb"><strong>I'm looking for people who give a damn.</strong></p>
+        <p class="info-blurb">Board members. Grant writers. People with connections to the veteran community. Mental health professionals who believe in this approach. People who've been there and want to help build the thing that would've helped them.</p>
+        <div class="status-strip">
+          <div class="status-row"><div class="status-dot green"></div>501(c)(3) filing in progress</div>
+          <div class="status-row"><div class="status-dot teal"></div>Vault early access open now</div>
+          <div class="status-row"><div class="status-dot gold"></div>Seeking board members &amp; advisors</div>
+        </div>
+        <div class="contact-detail">
+          <div class="detail-icon">📧</div>
+          <div><div class="detail-label">Email</div><div class="detail-value"><a href="mailto:hello@stackedalchemist.dev">hello@stackedalchemist.dev</a></div></div>
+        </div>
+        <div class="social-title">Share the Mission</div>
+        <div class="social-links">
+          <a href="https://twitter.com/BLWilliams83" target="_blank" class="social-link">
+            <div class="social-badge">X</div>
+            <div><div class="social-name">Twitter / X</div><div class="social-handle">@BLWilliams83</div></div>
+            <div class="social-arrow">→</div>
+          </a>
+          <a href="mission.html" class="social-link">
+            <div class="social-badge">⚗</div>
+            <div><div class="social-name">The Mission Page</div><div class="social-handle">Share it with someone who needs it</div></div>
+            <div class="social-arrow">→</div>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="form-box">
+          <div id="supporter-form-content">
+            <div class="form-title">🤝 Get Involved</div>
+            <div class="form-sub">Tell me who you are and how you want to help.</div>
+            <!-- TODO: Replace YOUR_FORMSPREE_ID_HERE with your actual Formspree form ID for supporter inquiries -->
+            <form action="https://formspree.io/f/xpqjvpjo" method="POST" id="supporter-form">
+              <div class="cf-row">
+                <div class="cf"><label>Your Name</label><input type="text" name="name" placeholder="First and Last" required /></div>
+                <div class="cf"><label>Email</label><input type="email" name="email" placeholder="you@example.com" required /></div>
+              </div>
+              <div class="cf">
+                <label>How do you want to help?</label>
+                <select name="involvement_type">
+                  <option>Board Member / Advisor</option>
+                  <option>Grant Writer</option>
+                  <option>Mental Health Professional</option>
+                  <option>Veteran Community Connection</option>
+                  <option>General Supporter</option>
+                  <option>I want to share the mission</option>
+                  <option>Something else</option>
+                </select>
+              </div>
+              <div class="cf"><label>Tell me more</label><textarea name="message" placeholder="Who you are, what you bring, why this mission matters to you." required></textarea></div>
+              <input type="hidden" name="_subject" value="Collaboration / Support Inquiry" />
+              <input type="hidden" name="_next" value="https://stackedalchemist.dev/contact.html" />
+              <button type="submit" class="btn-gold" id="supporter-submit">⚗ Reach Out</button>
+              <p class="form-note">No corporations. No egos. Just people who give a damn.</p>
+            </form>
+          </div>
+          <div class="success-msg" id="supporter-success">
+            <div class="success-icon">✦</div>
+            <div class="success-title">Message Received</div>
+            <div class="success-sub">I'll be in touch.<br/>Thank you for giving a damn.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">⚗ STACKED ALCHEMIST LLC</div>
+  <div class="footer-copy">© 2026 Stacked Alchemist LLC · All rights reserved</div>
+  <div class="footer-links">
+    <a href="https://github.com/StackedAlchemist" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/blwilliams83/" target="_blank">LinkedIn</a>
+    <a href="about.html">About</a>
+    <a href="mission.html">Mission</a>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  (function tick(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick)})();
+  document.querySelectorAll('a,button,.social-link').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='50px';ring.style.height='50px';ring.style.borderColor='rgba(212,175,55,0.75)'});
+    el.addEventListener('mouseleave',()=>{cur.style.width='8px';cur.style.height='8px';ring.style.width='34px';ring.style.height='34px';ring.style.borderColor='rgba(212,175,55,0.45)'});
+  });
+
+  // Tabs
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + target).classList.add('active');
+    });
+  });
+
+  // Check for hash to auto-open correct tab
+  if (window.location.hash === '#early-access') {
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    document.querySelector('[data-tab="veteran"]').classList.add('active');
+    document.getElementById('tab-veteran').classList.add('active');
+  }
+
+  // Form submissions
+  function setupForm(formId, successId, btnId) {
+    const form = document.getElementById(formId);
+    const success = document.getElementById(successId);
+    if (!form) return;
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = document.getElementById(btnId);
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+        if (res.ok) { form.closest('.form-box').querySelector('[id$="-form-content"]').style.display = 'none'; success.classList.add('show'); }
+        else { btn.textContent = 'Error — try again'; btn.disabled = false; }
+      } catch { btn.textContent = 'Error — try again'; btn.disabled = false; }
+    });
+  }
+  setupForm('ea-form', 'ea-success', 'ea-submit');
+  setupForm('client-form', 'client-success', 'client-submit');
+  setupForm('supporter-form', 'supporter-success', 'supporter-submit');
+
+  // Reveal
+  const obs = new IntersectionObserver(entries => entries.forEach((e,i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i*80); }), { threshold: .08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Hamburger
+  const hbtn = document.getElementById('hamburger'), mnav = document.getElementById('mobile-nav');
+  hbtn?.addEventListener('click', () => { hbtn.classList.toggle('open'); mnav.classList.toggle('open'); });
+  mnav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hbtn.classList.remove('open'); mnav.classList.remove('open'); }));
+</script>
+</body>
+</html>
