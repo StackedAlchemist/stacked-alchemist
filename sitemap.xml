@@ -39,45 +39,45 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- The Grimoire -->
+  <!-- The Grimoire (standalone Vercel deployment) -->
   <url>
-    <loc>https://stackedalchemist.dev/blog/blog.html</loc>
+    <loc>https://the-grimoire-vert.vercel.app/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stackedalchemist.dev/blog/posts/why-i-actually-built-this.html</loc>
+    <loc>https://the-grimoire-vert.vercel.app/posts/why-i-actually-built-this.html</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>never</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://stackedalchemist.dev/blog/posts/why-im-building-vault.html</loc>
+    <loc>https://the-grimoire-vert.vercel.app/posts/why-im-building-vault.html</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>never</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://stackedalchemist.dev/blog/posts/why-i-started-coding.html</loc>
+    <loc>https://the-grimoire-vert.vercel.app/posts/why-i-started-coding.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://stackedalchemist.dev/blog/posts/the-bound-soul-prologue.html</loc>
+    <loc>https://the-grimoire-vert.vercel.app/posts/the-bound-soul-prologue.html</loc>
     <lastmod>2026-03-03</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://stackedalchemist.dev/blog/posts/salvation.html</loc>
+    <loc>https://the-grimoire-vert.vercel.app/posts/salvation.html</loc>
     <lastmod>2018-06-29</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://stackedalchemist.dev/blog/posts/religion.html</loc>
+    <loc>https://the-grimoire-vert.vercel.app/posts/religion.html</loc>
     <lastmod>2018-07-05</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
