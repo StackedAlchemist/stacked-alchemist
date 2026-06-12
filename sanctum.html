@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Alchemist's Sanctum — Admin</title>
+  <title>The Alchemist's Sanctum - Admin</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
 
   <!-- PASTE YOUR FIREBASE CONFIG HERE -->
@@ -145,7 +145,7 @@
     function renderCards() {
       const grid = document.getElementById('cardGrid');
       if (!filtered.length) {
-        grid.innerHTML = `<div class="empty-state">🔮 No submissions match your filters.<br><small>The ravens haven't arrived yet — or they got lost.</small></div>`;
+        grid.innerHTML = `<div class="empty-state">🔮 No submissions match your filters.<br><small>The ravens haven't arrived yet, or they got lost.</small></div>`;
         return;
       }
 
@@ -155,7 +155,7 @@
         const timeStr = date.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' });
         const status  = s.status || 'new';
         const isRead  = s.read || false;
-        const features = Array.isArray(s.feat) ? s.feat.join(', ') : (s.feat || '—');
+        const features = Array.isArray(s.feat) ? s.feat.join(', ') : (s.feat || '-');
 
         return `
         <div class="card ${isRead ? 'read' : 'unread'} status-${status}" id="card-${s.id}">
@@ -182,27 +182,27 @@
           <div class="card-grid">
             <div class="card-field">
               <div class="field-label">Project Type</div>
-              <div class="field-val">${s.projType || '—'}</div>
+              <div class="field-val">${s.projType || '-'}</div>
             </div>
             <div class="card-field">
               <div class="field-label">Goal</div>
-              <div class="field-val">${s.goal || '—'}</div>
+              <div class="field-val">${s.goal || '-'}</div>
             </div>
             <div class="card-field">
               <div class="field-label">Budget</div>
-              <div class="field-val highlight">${s.budget || '—'}</div>
+              <div class="field-val highlight">${s.budget || '-'}</div>
             </div>
             <div class="card-field">
               <div class="field-label">Timeline</div>
-              <div class="field-val">${s.timeline || '—'}</div>
+              <div class="field-val">${s.timeline || '-'}</div>
             </div>
             <div class="card-field">
               <div class="field-label">Pages</div>
-              <div class="field-val">${s.pages || '—'}</div>
+              <div class="field-val">${s.pages || '-'}</div>
             </div>
             <div class="card-field">
               <div class="field-label">Style</div>
-              <div class="field-val">${s.style || '—'}</div>
+              <div class="field-val">${s.style || '-'}</div>
             </div>
           </div>
 
@@ -212,7 +212,7 @@
             <div class="field-body">${s.bizDesc}</div>
           </div>` : ''}
 
-          ${features !== '—' ? `
+          ${features !== '-' ? `
           <div class="card-section">
             <div class="field-label">Features Requested</div>
             <div class="field-tags">${(Array.isArray(s.feat) ? s.feat : [s.feat]).map(f => `<span class="tag">${f}</span>`).join('')}</div>
@@ -225,7 +225,7 @@
           </div>` : ''}
 
           <div class="card-actions">
-            ${s.email ? `<a href="mailto:${s.email}?subject=Re: Your Project Inquiry — Stacked Alchemist" class="card-btn btn-reply">✉ Reply</a>` : ''}
+            ${s.email ? `<a href="mailto:${s.email}?subject=Re: Your Project Inquiry - Stacked Alchemist" class="card-btn btn-reply">✉ Reply</a>` : ''}
             <button class="card-btn btn-archive" onclick="setStatus('${s.id}', 'archived')">⬡ Archive</button>
           </div>
         </div>`;
