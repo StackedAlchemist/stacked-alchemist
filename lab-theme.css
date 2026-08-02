@@ -1,0 +1,338 @@
+/* ============================================================
+   LAB THEME — Glass overrides for The Laboratory
+   Loaded after lab's page styles / or alongside shared.css
+============================================================ */
+
+/* Map lab local vars if present */
+:root {
+  --bg: var(--void, #05060d);
+  --bg2: var(--void-2, #080a14);
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface2: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.08);
+  --border2: rgba(255, 255, 255, 0.14);
+  --gold: #e0c06a;
+  --gold-lt: #f0d88a;
+  --gold-dim: rgba(224, 192, 106, 0.12);
+  --gold-glow: rgba(224, 192, 106, 0.35);
+  --text: #e8ecf4;
+  --text-mid: #9aa6bc;
+  --text-dim: #6b778f;
+  --white: #ffffff;
+  --green: #3dd68c;
+  --teal: #00f0d0;
+  --teal-dim: rgba(0, 240, 208, 0.12);
+  --violet: #9b6dff;
+  --violet-dim: rgba(155, 109, 255, 0.12);
+  --iron: #8a9ab5;
+}
+
+body {
+  font-family: var(--font-body, 'Outfit', system-ui, sans-serif) !important;
+  background: var(--void, #05060d) !important;
+  cursor: none;
+}
+
+/* Let fixed workshop art show through while scrolling */
+body.has-page-art {
+  background: transparent !important;
+}
+
+body.has-page-art .biz-card,
+body.has-page-art .proj-card,
+body.has-page-art .skill-card,
+body.has-page-art .forge-card,
+body.has-page-art .process-step,
+body.has-page-art .arch-card,
+body.has-page-art .log-card,
+body.has-page-art .glance-item,
+body.has-page-art .featured-card,
+body.has-page-art .system-card,
+body.has-page-art .resume-box,
+body.has-page-art .contact-box,
+body.has-page-art .terminal,
+body.has-page-art .lab-console {
+  background: rgba(8, 10, 20, 0.72) !important;
+}
+
+/* Hero section shouldn't paint a solid wall over the art */
+body.has-page-art .hero {
+  background: transparent !important;
+}
+
+body.has-page-art section {
+  background: transparent !important;
+}
+
+/* ── Lab bottom: arsenal / resume / CTA aligned with site glass ── */
+.lab-bottom-section {
+  position: relative;
+  z-index: 2;
+  padding: 80px 48px;
+}
+
+.arsenal-panel {
+  padding: 28px 24px !important;
+  border-radius: 16px !important;
+  min-height: 100%;
+}
+
+.arsenal-panel-title {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.arsenal-panel-title.gold { color: var(--gold); }
+.arsenal-panel-title.teal { color: var(--teal); }
+.arsenal-panel-title.violet { color: #c4b5fd; }
+
+.arsenal-categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.15rem;
+}
+
+.arsenal-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Resume + CTA */
+.resume-box.glass-strong,
+.lab-cta.glass-strong {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.lab-cta {
+  padding: 2.75rem 2rem;
+  text-align: center;
+}
+
+.lab-cta-wrap {
+  padding-bottom: 2rem;
+}
+
+/* Override old flat footer styles when using shared site footer */
+footer.site-footer {
+  display: block !important;
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+footer.site-footer .footer-glass {
+  margin: 0 auto 2rem;
+}
+
+@media (max-width: 900px) {
+  .lab-bottom-section { padding: 60px 24px; }
+  .arsenal-categories { grid-template-columns: 1fr; }
+}
+
+/* Hide old full-width nav under glass nav when both present */
+nav:not(.site-nav) {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: calc(100% - 28px);
+  max-width: 1180px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 1rem 0.65rem 1.15rem !important;
+  height: auto !important;
+  background: rgba(10, 12, 24, 0.55) !important;
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+nav:not(.site-nav)::after { display: none !important; }
+
+.nav-links a {
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+}
+
+.nav-cta {
+  border-radius: 999px !important;
+}
+
+/* Glass surfaces for lab cards */
+.biz-card,
+.proj-card,
+.skill-card,
+.forge-card,
+.process-step,
+.arch-card,
+.log-card,
+.glance-item,
+.featured-card,
+.system-card,
+.resume-box,
+.lab-console,
+.contact-box {
+  background: rgba(255, 255, 255, 0.035) !important;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.biz-card:hover,
+.proj-card:hover,
+.skill-card:hover,
+.forge-card:hover,
+.process-step:hover,
+.arch-card:hover,
+.featured-card:hover,
+.system-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+}
+
+/* Buttons → pills */
+.btn-gold,
+.btn-ghost,
+.btn-teal,
+.biz-link,
+.featured-link,
+.system-link,
+.pg-link {
+  border-radius: 999px !important;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #f0d88a 0%, #e0c06a 40%, #b8943a 100%) !important;
+  color: #0a0b12 !important;
+  box-shadow: 0 8px 28px rgba(224, 192, 106, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(12px);
+}
+
+/* Terminal glass */
+.terminal,
+.lab-console {
+  background: rgba(8, 10, 20, 0.75) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 240, 208, 0.22) !important;
+  border-radius: 20px !important;
+}
+
+/* Hero spacing under floating nav */
+.hero {
+  padding-top: 8rem !important;
+}
+
+/* Section titles */
+.section-title,
+.hero-name,
+.hero-title,
+.biz-name,
+.proj-name,
+.forge-title,
+.feat-title,
+.featured-name,
+.system-name,
+.process-title {
+  font-family: 'Cinzel', Georgia, serif !important;
+}
+
+.section-sub,
+.hero-desc,
+.biz-tagline,
+.process-desc,
+.arch-desc,
+.log-body,
+.resume-text {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+}
+
+/* Glance numbers */
+.glance-number,
+.glance-value {
+  font-family: 'Cinzel', Georgia, serif !important;
+  color: var(--gold-lt) !important;
+}
+
+/* Arsenal pills */
+.arsenal-pill {
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(8px);
+}
+
+/* Footer */
+footer {
+  border-top: none !important;
+  padding: 2rem 1.5rem !important;
+}
+
+/* Loader */
+#loader {
+  background: #05060d !important;
+}
+
+/* Mobile nav under floating bar */
+.mobile-nav {
+  top: 88px !important;
+  left: 14px !important;
+  right: 14px !important;
+  background: rgba(10, 12, 24, 0.92) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(28px);
+}
+
+/* Form fields */
+.cf input,
+.cf textarea,
+.cf select {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+/* Fix term class names used in lab */
+.term-output { color: var(--text-mid); padding-left: 1rem; font-size: 0.75rem; }
+.term-output.highlight { color: var(--teal); }
+.term-prompt { color: var(--gold); }
+
+/* Ensure starfield sits behind content */
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.grain { z-index: 9000 !important; opacity: 0.04 !important; }
+
+section, .hero, footer {
+  position: relative;
+  z-index: 2;
+}

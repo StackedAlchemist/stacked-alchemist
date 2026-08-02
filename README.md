@@ -1,8 +1,8 @@
-# ⚗ Stacked Alchemist — Portfolio
+# ⚗ Stacked Alchemist - Portfolio
 
 > *"Where ancient craft meets modern engineering."*
 
-The personal portfolio of **Billy Williams** — full-stack developer, security professional, PC builder, and author of *The Winglord Saga*. This repo contains the portfolio site and all project source code.
+The personal portfolio of **Billy Williams** - full-stack developer, security professional, PC builder, and author of *The Winglord Saga*. This repo contains the portfolio site and all project source code.
 
 **[🌐 View Live Site](https://stackedalchemist.github.io/Portfolio/)**
 
@@ -11,7 +11,7 @@ The personal portfolio of **Billy Williams** — full-stack developer, security 
 ## ✦ Projects
 
 ### 🏆 High Arcana
-*Cinematic sorcery and mythic interfaces — projects forged at full power.*
+*Cinematic sorcery and mythic interfaces - projects forged at full power.*
 
 | Project | Description | Demo |
 |---|---|---|
@@ -28,7 +28,7 @@ The personal portfolio of **Billy Williams** — full-stack developer, security 
 | [🧩 Arcane Tetris](./tetris/) | Tetris with ghost piece, hold mechanic, and score multipliers | [Play](https://stackedalchemist.github.io/stacked-alchemist/tetris/index.html) |
 
 ### ✦ Foundational Magic
-*The spark that begins every journey — small spells with focused intent.*
+*The spark that begins every journey - small spells with focused intent.*
 
 | Project | Description | Demo |
 |---|---|---|
@@ -41,12 +41,12 @@ The personal portfolio of **Billy Williams** — full-stack developer, security 
 ## 🛠 Tech Stack
 
 All projects are built with:
-- **HTML5** — Semantic structure
-- **CSS3** — Custom properties, animations, responsive layouts
-- **Vanilla JavaScript** — No frameworks, no dependencies
-- **Canvas API** — Games and charts
-- **localStorage** — Client-side data persistence
-- **External APIs** — Open Library, IGDB (via Cloudflare Worker proxy)
+- **HTML5** - Semantic structure
+- **CSS3** - Custom properties, animations, responsive layouts
+- **Vanilla JavaScript** - No frameworks, no dependencies
+- **Canvas API** - Games and charts
+- **localStorage** - Client-side data persistence
+- **External APIs** - Open Library, IGDB (via Cloudflare Worker proxy)
 
 ---
 
@@ -78,7 +78,7 @@ npx serve .
 
 ## 👤 About
 
-**Billy Williams** — Mesa, Arizona  
+**Billy Williams** - Mesa, Arizona 
 Full-Stack Developer · Security Professional · PC Builder since 2005 · Author of *The Winglord Saga*
 
 - 🌐 [Portfolio](https://stackedalchemist.github.io/stacked-alchemist/)
@@ -88,5 +88,5 @@ Full-Stack Developer · Security Professional · PC Builder since 2005 · Author
 
 ---
 
-*© 2026 Billy Williams — Stacked Alchemist. All rights reserved.*
+*© 2026 Billy Williams - Stacked Alchemist. All rights reserved.*
 
