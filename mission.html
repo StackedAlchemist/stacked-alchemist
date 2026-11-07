@@ -152,11 +152,11 @@
  <div class="form-row">
  <div class="form-field">
  <label for="ea-name">Your Name</label>
- <input type="text" id="ea-name" name="name" placeholder="First Last" required />
+ <input type="text" id="ea-name" name="name" maxlength="100" placeholder="First Last" required />
  </div>
  <div class="form-field">
  <label for="ea-email">Email Address</label>
- <input type="email" id="ea-email" name="email" placeholder="you@email.com" required />
+ <input type="email" id="ea-email" name="email" maxlength="254" placeholder="you@email.com" required />
  </div>
  </div>
  <div class="form-field">
@@ -170,8 +170,9 @@
  </div>
  <div class="form-field">
  <label for="ea-msg">Anything you want to share (optional)</label>
- <textarea id="ea-msg" name="message" rows="3" placeholder="Your branch, what you're hoping Vault can do for you, anything at all..."></textarea>
+ <textarea maxlength="4000" id="ea-msg" name="message" rows="3" placeholder="Your branch, what you're hoping Vault can do for you, anything at all..."></textarea>
  </div>
+<div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
  <input type="hidden" name="_subject" value="Vault Early Access Signup" />
  <input type="hidden" name="_next" value="https://stackedalchemist.dev/mission.html" />
  <button type="submit" class="btn btn-teal">Sign Up for Early Access →</button>

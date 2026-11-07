@@ -120,11 +120,11 @@
  <div class="form-row">
  <div class="form-field">
  <label for="ea-name">Your Name</label>
- <input type="text" id="ea-name" name="name" placeholder="First Last" required />
+ <input type="text" id="ea-name" name="name" maxlength="100" placeholder="First Last" required />
  </div>
  <div class="form-field">
  <label for="ea-email">Email Address</label>
- <input type="email" id="ea-email" name="email" placeholder="you@email.com" required />
+ <input type="email" id="ea-email" name="email" maxlength="254" placeholder="you@email.com" required />
  </div>
  </div>
  <div class="form-field">
@@ -139,8 +139,9 @@
  </div>
  <div class="form-field">
  <label for="ea-msg">Anything you want to share (optional)</label>
- <textarea id="ea-msg" name="message" rows="3" placeholder="Your branch, what you're hoping Vault can do for you, anything at all..."></textarea>
+ <textarea maxlength="4000" id="ea-msg" name="message" rows="3" placeholder="Your branch, what you're hoping Vault can do for you, anything at all..."></textarea>
  </div>
+<div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
  <input type="hidden" name="_subject" value="Vault Early Access Signup" />
  <input type="hidden" name="_next" value="https://stackedalchemist.dev/contact.html" />
  <button type="submit" class="btn btn-teal btn-full" id="ea-submit">Sign Up for Early Access →</button>
@@ -203,8 +204,8 @@
  <div class="form-sub">Every great build starts with a single message.</div>
  <form action="https://formspree.io/f/xpqjvpjo" method="POST" id="client-form">
  <div class="form-row">
- <div class="form-field"><label>Your Name</label><input type="text" name="name" placeholder="First and Last" required /></div>
- <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="you@example.com" required /></div>
+ <div class="form-field"><label>Your Name</label><input type="text" name="name" maxlength="100" placeholder="First and Last" required /></div>
+ <div class="form-field"><label>Email</label><input type="email" name="email" maxlength="254" placeholder="you@example.com" required /></div>
  </div>
  <div class="form-field">
  <label>What do you need?</label>
@@ -218,7 +219,8 @@
  <option>Something else entirely</option>
  </select>
  </div>
- <div class="form-field"><label>Tell me about the project</label><textarea name="message" placeholder="What you're building, your timeline, your vision. The more detail the better." required></textarea></div>
+ <div class="form-field"><label>Tell me about the project</label><textarea maxlength="4000" name="message" placeholder="What you're building, your timeline, your vision. The more detail the better." required></textarea></div>
+<div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
  <input type="hidden" name="_subject" value="New Client Inquiry" />
  <input type="hidden" name="_next" value="https://stackedalchemist.dev/contact.html" />
  <button type="submit" class="btn btn-gold btn-full" id="client-submit">⚗ Start a Project</button>
@@ -273,8 +275,8 @@
  <div class="form-sub">Tell me who you are and how you want to help.</div>
  <form action="https://formspree.io/f/xpqjvpjo" method="POST" id="supporter-form">
  <div class="form-row">
- <div class="form-field"><label>Your Name</label><input type="text" name="name" placeholder="First and Last" required /></div>
- <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="you@example.com" required /></div>
+ <div class="form-field"><label>Your Name</label><input type="text" name="name" maxlength="100" placeholder="First and Last" required /></div>
+ <div class="form-field"><label>Email</label><input type="email" name="email" maxlength="254" placeholder="you@example.com" required /></div>
  </div>
  <div class="form-field">
  <label>How do you want to help?</label>
@@ -288,7 +290,8 @@
  <option>Something else</option>
  </select>
  </div>
- <div class="form-field"><label>Tell me more</label><textarea name="message" placeholder="Who you are, what you bring, why this mission matters to you." required></textarea></div>
+ <div class="form-field"><label>Tell me more</label><textarea maxlength="4000" name="message" placeholder="Who you are, what you bring, why this mission matters to you." required></textarea></div>
+<div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
  <input type="hidden" name="_subject" value="Collaboration / Support Inquiry" />
  <input type="hidden" name="_next" value="https://stackedalchemist.dev/contact.html" />
  <button type="submit" class="btn btn-gold btn-full" id="supporter-submit">⚗ Reach Out</button>
