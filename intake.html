@@ -751,28 +751,28 @@
  <div class="field-grid">
  <div class="field">
  <label>Full Name <span class="req">*</span></label>
- <input type="text" id="f_name" placeholder="Jane Smith" />
+ <input type="text" id="f_name" maxlength="300" placeholder="Jane Smith" />
  </div>
  <div class="field">
  <label>Business / Brand <span class="hint">if applicable</span></label>
- <input type="text" id="f_business" placeholder="Acme Co." />
+ <input type="text" id="f_business" maxlength="300" placeholder="Acme Co." />
  </div>
  </div>
  <div class="div"></div>
  <div class="field-grid">
  <div class="field">
  <label>Email Address <span class="req">*</span></label>
- <input type="email" id="f_email" placeholder="jane@example.com" />
+ <input type="email" id="f_email" maxlength="254" placeholder="jane@example.com" />
  </div>
  <div class="field">
  <label>Phone Number <span class="hint">optional</span></label>
- <input type="tel" id="f_phone" placeholder="+1 (555) 000-0000" />
+ <input type="tel" id="f_phone" maxlength="300" placeholder="+1 (555) 000-0000" />
  </div>
  </div>
  <div class="div"></div>
  <div class="field">
  <label>What does your business do? <span class="req">*</span></label>
- <textarea id="f_bizDesc" placeholder="Describe what you do, who you serve, and what makes you different..."></textarea>
+ <textarea id="f_bizDesc" maxlength="4000" placeholder="Describe what you do, who you serve, and what makes you different..."></textarea>
  </div>
  <div class="div"></div>
  <div class="field">
@@ -785,7 +785,7 @@
  </div>
  <div class="field" style="margin-top:16px">
  <label>Existing URL <span class="hint">if applicable</span></label>
- <input type="url" id="f_existingUrl" placeholder="https://yoursite.com" />
+ <input type="url" id="f_existingUrl" maxlength="300" placeholder="https://yoursite.com" />
  </div>
  </div>
  </div>
@@ -836,7 +836,7 @@
  <div class="div"></div>
  <div class="field">
  <label>Who is your target audience? <span class="req">*</span></label>
- <textarea id="f_audience" placeholder="Age range, interests, profession, location. Describe your ideal visitor..."></textarea>
+ <textarea id="f_audience" maxlength="4000" placeholder="Age range, interests, profession, location. Describe your ideal visitor..."></textarea>
  </div>
  <div class="div"></div>
  <div class="field">
@@ -851,14 +851,14 @@
  <div class="div"></div>
  <div class="field">
  <label>Inspiration sites <span class="hint">up to 3 you love the look of</span></label>
- <input type="url" id="f_inspo1" placeholder="https://example1.com" style="margin-bottom:8px" />
- <input type="url" id="f_inspo2" placeholder="https://example2.com" style="margin-bottom:8px" />
- <input type="url" id="f_inspo3" placeholder="https://example3.com" />
+ <input type="url" id="f_inspo1" maxlength="300" placeholder="https://example1.com" style="margin-bottom:8px" />
+ <input type="url" id="f_inspo2" maxlength="300" placeholder="https://example2.com" style="margin-bottom:8px" />
+ <input type="url" id="f_inspo3" maxlength="300" placeholder="https://example3.com" />
  </div>
  <div class="div"></div>
  <div class="field">
  <label>What feeling should visitors have when they land on your site?</label>
- <textarea id="f_feeling" placeholder="e.g. 'Trustworthy and bold', 'Calm and luxurious', 'Exciting and cinematic'..."></textarea>
+ <textarea id="f_feeling" maxlength="4000" placeholder="e.g. 'Trustworthy and bold', 'Calm and luxurious', 'Exciting and cinematic'..."></textarea>
  </div>
  </div>
  </div>
@@ -894,7 +894,7 @@
  <div class="div"></div>
  <div class="field">
  <label>Brand colors <span class="hint">describe or hex codes</span></label>
- <input type="text" id="f_colors" placeholder="e.g. Deep navy, gold accents, or #1a1a2e, #ffd700" />
+ <input type="text" id="f_colors" maxlength="300" placeholder="e.g. Deep navy, gold accents, or #1a1a2e, #ffd700" />
  </div>
  <div class="div"></div>
  <div class="field">
@@ -929,7 +929,7 @@
  <div class="div"></div>
  <div class="field">
  <label>Additional design notes</label>
- <textarea id="f_designNotes" placeholder="Fonts you love, styles to avoid, anything else about your visual identity..."></textarea>
+ <textarea id="f_designNotes" maxlength="4000" placeholder="Fonts you love, styles to avoid, anything else about your visual identity..."></textarea>
  </div>
  </div>
  </div>
@@ -994,7 +994,7 @@
  <div class="div"></div>
  <div class="field">
  <label>Other technical requirements</label>
- <textarea id="f_techNotes" placeholder="Third-party tools, specific APIs, login systems, multilingual support..."></textarea>
+ <textarea id="f_techNotes" maxlength="4000" placeholder="Third-party tools, specific APIs, login systems, multilingual support..."></textarea>
  </div>
  </div>
  </div>
@@ -1031,7 +1031,7 @@
  <div class="div"></div>
  <div class="field">
  <label>Hard deadline <span class="hint">if applicable</span></label>
- <input type="text" id="f_deadline" placeholder="e.g. Must launch before July 4th event" />
+ <input type="text" id="f_deadline" maxlength="300" placeholder="e.g. Must launch before July 4th event" />
  </div>
  <div class="div"></div>
  <div class="field">
@@ -1047,7 +1047,7 @@
  <div class="div"></div>
  <div class="field">
  <label>Decision maker / point of contact</label>
- <input type="text" id="f_contact" placeholder="Name and role of whoever approves the work" />
+ <input type="text" id="f_contact" maxlength="300" placeholder="Name and role of whoever approves the work" />
  </div>
  <div class="div"></div>
  <div class="field">
@@ -1061,7 +1061,8 @@
  <div class="div"></div>
  <div class="field">
  <label>Anything else the Alchemist should know?</label>
- <textarea id="f_extra" placeholder="Special requirements, concerns, ideas, or questions..."></textarea>
+ <textarea id="f_extra" maxlength="4000" placeholder="Special requirements, concerns, ideas, or questions..."></textarea>
+ <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;"><label>Leave this field empty<input type="text" id="f_hp" tabindex="-1" autocomplete="off" /></label></div>
  </div>
  </div>
  </div>
@@ -1089,6 +1090,7 @@
  </div>
 
  <!-- NAV BUTTONS -->
+ <p id="submitError" role="alert" tabindex="-1" hidden style="margin:16px 0 0;padding:12px 14px;border:1px solid #ff6b8a;color:#ffd0da;"></p>
  <div class="nav-row" id="navRow">
  <button class="btn btn-back" id="btnBack" onclick="prevStep()" style="visibility:hidden">← Back</button>
  <button class="btn btn-next" id="btnNext" onclick="nextStep()">Next ⟶</button>
@@ -1303,51 +1305,80 @@
  // ═══════════════════════════════
  // SUBMIT
  // ═══════════════════════════════
- async function submitForm() {
- const fields = {
- name: document.getElementById('f_name')?.value || '',
- business: document.getElementById('f_business')?.value || '',
- email: document.getElementById('f_email')?.value || '',
- phone: document.getElementById('f_phone')?.value || '',
- bizDesc: document.getElementById('f_bizDesc')?.value || '',
- existingUrl: document.getElementById('f_existingUrl')?.value || '',
- audience: document.getElementById('f_audience')?.value || '',
- feeling: document.getElementById('f_feeling')?.value || '',
- inspo1: document.getElementById('f_inspo1')?.value || '',
- inspo2: document.getElementById('f_inspo2')?.value || '',
- inspo3: document.getElementById('f_inspo3')?.value || '',
- colors: document.getElementById('f_colors')?.value || '',
- designNotes: document.getElementById('f_designNotes')?.value || '',
- techNotes: document.getElementById('f_techNotes')?.value || '',
- deadline: document.getElementById('f_deadline')?.value || '',
- contact: document.getElementById('f_contact')?.value || '',
- extra: document.getElementById('f_extra')?.value || '',
- ...selections,
- };
+ // SECURITY: untrusted input is length-limited, never rendered as HTML, and success is shown only
+ // when at least one channel (Formspree email or Firestore) actually confirms the submission.
+ const CTRL = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
+ const clip = (v, n) => String(v ?? '').replace(CTRL, '').trim().slice(0, n);
+ const LONG = new Set(['bizDesc', 'audience', 'feeling', 'designNotes', 'techNotes', 'extra']);
+ const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '`': '&#96;' };
+ const esc = (v) => String(v ?? '').replace(/[&<>"'`]/g, (c) => ESC[c]);
+ let submitting = false;
 
- // Build email body for Formspree
+ async function submitForm() {
+ if (submitting) return;
+ const errBox = document.getElementById('submitError');
+ errBox.hidden = true;
+ if (document.getElementById('f_hp')?.value) return; // bot filled the honeypot: send nothing
+ submitting = true;
+
+ const raw = {
+ name: document.getElementById('f_name')?.value,
+ business: document.getElementById('f_business')?.value,
+ email: document.getElementById('f_email')?.value,
+ phone: document.getElementById('f_phone')?.value,
+ bizDesc: document.getElementById('f_bizDesc')?.value,
+ existingUrl: document.getElementById('f_existingUrl')?.value,
+ audience: document.getElementById('f_audience')?.value,
+ feeling: document.getElementById('f_feeling')?.value,
+ inspo1: document.getElementById('f_inspo1')?.value,
+ inspo2: document.getElementById('f_inspo2')?.value,
+ inspo3: document.getElementById('f_inspo3')?.value,
+ colors: document.getElementById('f_colors')?.value,
+ designNotes: document.getElementById('f_designNotes')?.value,
+ techNotes: document.getElementById('f_techNotes')?.value,
+ deadline: document.getElementById('f_deadline')?.value,
+ contact: document.getElementById('f_contact')?.value,
+ extra: document.getElementById('f_extra')?.value,
+ };
+ const fields = {};
+ for (const [k, v] of Object.entries(raw)) fields[k] = clip(v, LONG.has(k) ? 4000 : 300);
+ for (const [k, v] of Object.entries(selections)) {
+ fields[k] = Array.isArray(v) ? v.slice(0, 30).map((x) => clip(x, 120)) : clip(v, 120);
+ }
+
  const emailBody = Object.entries(fields)
- .filter(([k, v]) => v && (Array.isArray(v) ? v.length : v.trim()))
+ .filter(([k, v]) => v && (Array.isArray(v) ? v.length : v))
  .map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(', ') : v}`)
  .join('\n');
 
- // Send to Formspree (email backup)
+ // Formspree (email): success only when Formspree confirms it
+ let emailed = false;
  try {
- await fetch('https://formspree.io/f/xpqjvpjo', {
+ const ctrl = new AbortController();
+ const timer = setTimeout(() => ctrl.abort(), 15000);
+ const res = await fetch('https://formspree.io/f/xpqjvpjo', {
  method: 'POST',
  headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+ credentials: 'omit',
+ signal: ctrl.signal,
  body: JSON.stringify({
- _subject: `New Project Inquiry - ${fields.name || 'Unknown'} | ${fields.projType || 'Project'}`,
+ _subject: `New Project Inquiry - ${clip(fields.name, 80) || 'Unknown'} | ${clip(fields.projType, 60) || 'Project'}`,
+ _gotcha: '',
  name: fields.name,
  email: fields.email,
  message: emailBody,
- })
+ }),
  });
- } catch(e) {
- console.log('Formspree error', e);
+ clearTimeout(timer);
+ const data = await res.json().catch(() => null);
+ emailed = res.ok && data?.ok === true;
+ if (!emailed) console.warn('Formspree did not confirm the submission. Status:', res.status);
+ } catch (e) {
+ console.warn('Formspree request failed:', e?.name || 'error'); // never log submission contents
  }
 
- // Save to Firebase (dashboard)
+ // Firestore (dashboard)
+ let saved = false;
  try {
  if (window.__db && window.__addDoc && window.__collection && window.__serverTimestamp) {
  await window.__addDoc(window.__collection(window.__db, 'submissions'), {
@@ -1356,12 +1387,21 @@
  read: false,
  submittedAt: window.__serverTimestamp()
  });
+ saved = true;
  }
- } catch(e) {
- console.log('Firebase error', e);
+ } catch (e) {
+ console.warn('Dashboard save failed:', e?.code || 'error'); // never log submission contents
  }
 
- // Build summary
+ submitting = false;
+ if (!emailed && !saved) {
+ errBox.textContent = 'Your project brief could not be sent. Nothing was confirmed as received. Please try again in a moment, or reach out through the Contact page.';
+ errBox.hidden = false;
+ errBox.focus();
+ return;
+ }
+
+ // Build summary (every value escaped; nothing the visitor typed is parsed as HTML)
  const summaryItems = [
  { label: 'Client', val: [fields.name, fields.business].filter(Boolean).join(' - ') },
  { label: 'Contact', val: [fields.email, fields.phone].filter(Boolean).join(' · ') },
@@ -1381,9 +1421,9 @@
  <div class="summary">
  <div class="summary-title">◈ Project Summary ◈</div>
  <div class="summary-grid">
- ${summaryItems.map(i => `<div class="sum-item"><div class="sum-label">${i.label}</div><div class="sum-val">${i.val}</div></div>`).join('')}
- ${fields.bizDesc ? `<div class="sum-item sum-full"><div class="sum-label">Business Description</div><div class="sum-val">${fields.bizDesc}</div></div>` : ''}
- ${fields.extra ? `<div class="sum-item sum-full"><div class="sum-label">Additional Notes</div><div class="sum-val">${fields.extra}</div></div>` : ''}
+ ${summaryItems.map(i => `<div class="sum-item"><div class="sum-label">${esc(i.label)}</div><div class="sum-val">${esc(i.val)}</div></div>`).join('')}
+ ${fields.bizDesc ? `<div class="sum-item sum-full"><div class="sum-label">Business Description</div><div class="sum-val">${esc(fields.bizDesc)}</div></div>` : ''}
+ ${fields.extra ? `<div class="sum-item sum-full"><div class="sum-label">Additional Notes</div><div class="sum-val">${esc(fields.extra)}</div></div>` : ''}
  </div>
  </div>`;
 
