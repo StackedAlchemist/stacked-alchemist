@@ -142,97 +142,91 @@
  // ══════════════════════════════════════
  // RENDER CARDS
  // ══════════════════════════════════════
- function renderCards() {
- const grid = document.getElementById('cardGrid');
- if (!filtered.length) {
- grid.innerHTML = `<div class="empty-state">🔮 No submissions match your filters.<br><small>The ravens haven't arrived yet, or they got lost.</small></div>`;
- return;
- }
+ // SECURITY: every value below comes from a public form and is untrusted. It is escaped before it
+    // reaches innerHTML, status/id are allowlisted, and actions use data attributes (no inline handlers).
+    const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '`': '&#96;' };
+    const esc = (v) => String(v ?? '').replace(/[&<>"'`]/g, (c) => ESC[c]);
+    const STATUSES = ['new', 'inprogress', 'completed', 'archived'];
+    const EMAIL_RE = /^[^\s@<>"']{1,64}@[^\s@<>"']{1,255}\.[A-Za-z]{2,}$/;
+    const ID_RE = /^[A-Za-z0-9]{1,40}$/;
+    const field = (v) => esc(Array.isArray(v) ? v.join(', ') : (v || '-'));
 
- grid.innerHTML = filtered.map(s => {
- const date = s.submittedAt ? new Date(s.submittedAt.seconds * 1000) : new Date();
- const dateStr = date.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
- const timeStr = date.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' });
- const status = s.status || 'new';
- const isRead = s.read || false;
- const features = Array.isArray(s.feat) ? s.feat.join(', ') : (s.feat || '-');
+    function renderCards() {
+      const grid = document.getElementById('cardGrid');
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="empty-state">🔮 No submissions match your filters.<br><small>The ravens haven't arrived yet, or they got lost.</small></div>`;
+        return;
+      }
+      grid.innerHTML = filtered.filter(s => ID_RE.test(String(s.id))).map(s => {
+        const secs = Number(s.submittedAt?.seconds);
+        const date = Number.isFinite(secs) ? new Date(secs * 1000) : new Date();
+        const dateStr = date.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+        const timeStr = date.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' });
+        const status = STATUSES.includes(s.status) ? s.status : 'new';
+        const isRead = s.read === true;
+        const id = esc(s.id);
+        const email = typeof s.email === 'string' && EMAIL_RE.test(s.email) ? s.email : '';
+        const phone = typeof s.phone === 'string' ? s.phone.replace(/[^0-9+]/g, '').slice(0, 20) : '';
+        const feats = (Array.isArray(s.feat) ? s.feat : (s.feat ? [s.feat] : [])).slice(0, 30);
+        return `
+        <div class="card ${isRead ? 'read' : 'unread'} status-${status}" id="card-${id}">
+          <div class="card-top">
+            <div class="card-badges">
+              <button type="button" class="badge-status ${status}" data-action="cycle" data-id="${id}" data-status="${status}">${statusLabel(status)}</button>
+              <button type="button" class="badge-read ${isRead ? 'read' : 'unread'}" data-action="read" data-id="${id}" data-read="${isRead}">${isRead ? '◈ Read' : '⬡ Unread'}</button>
+            </div>
+            <div class="card-date">${esc(dateStr)} · ${esc(timeStr)}</div>
+          </div>
+          <div class="card-header">
+            <div class="card-name">${esc(s.name || 'Unknown Client')}</div>
+            <div class="card-business">${esc(s.business)}</div>
+          </div>
+          <div class="card-contact">
+            ${email ? `<a href="mailto:${encodeURIComponent(email)}" class="contact-link">✉ ${esc(email)}</a>` : (s.email ? `<span class="contact-link">✉ ${esc(s.email)} (unverified format)</span>` : '')}
+            ${phone ? `<a href="tel:${esc(phone)}" class="contact-link">📞 ${esc(s.phone)}</a>` : ''}
+          </div>
+          <div class="card-divider"></div>
+          <div class="card-grid">
+            <div class="card-field"><div class="field-label">Project Type</div><div class="field-val">${field(s.projType)}</div></div>
+            <div class="card-field"><div class="field-label">Goal</div><div class="field-val">${field(s.goal)}</div></div>
+            <div class="card-field"><div class="field-label">Budget</div><div class="field-val highlight">${field(s.budget)}</div></div>
+            <div class="card-field"><div class="field-label">Timeline</div><div class="field-val">${field(s.timeline)}</div></div>
+            <div class="card-field"><div class="field-label">Pages</div><div class="field-val">${field(s.pages)}</div></div>
+            <div class="card-field"><div class="field-label">Style</div><div class="field-val">${field(s.style)}</div></div>
+          </div>
+          ${s.bizDesc ? `
+          <div class="card-section">
+            <div class="field-label">Business Description</div>
+            <div class="field-body">${esc(s.bizDesc)}</div>
+          </div>` : ''}
+          ${feats.length ? `
+          <div class="card-section">
+            <div class="field-label">Features Requested</div>
+            <div class="field-tags">${feats.map(f => `<span class="tag">${esc(f)}</span>`).join('')}</div>
+          </div>` : ''}
+          ${s.extra ? `
+          <div class="card-section">
+            <div class="field-label">Additional Notes</div>
+            <div class="field-body italic">${esc(s.extra)}</div>
+          </div>` : ''}
+          <div class="card-actions">
+            ${email ? `<a href="mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('Re: Your Project Inquiry - Stacked Alchemist')}" class="card-btn btn-reply">✉ Reply</a>` : ''}
+            <button type="button" class="card-btn btn-archive" data-action="archive" data-id="${id}">⬡ Archive</button>
+          </div>
+        </div>`;
+      }).join('');
+    }
 
- return `
- <div class="card ${isRead ? 'read' : 'unread'} status-${status}" id="card-${s.id}">
- <div class="card-top">
- <div class="card-badges">
- <span class="badge-status ${status}" onclick="cycleStatus('${s.id}', '${status}')">${statusLabel(status)}</span>
- <span class="badge-read ${isRead ? 'read' : 'unread'}" onclick="toggleRead('${s.id}', ${isRead})">${isRead ? '◈ Read' : '⬡ Unread'}</span>
- </div>
- <div class="card-date">${dateStr} · ${timeStr}</div>
- </div>
+    // one delegated listener replaces the inline onclick handlers (ids/status never reach JS source text)
+    document.getElementById('cardGrid')?.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-action]');
+      if (!b || !ID_RE.test(b.dataset.id || '')) return;
+      if (b.dataset.action === 'cycle') window.cycleStatus(b.dataset.id, b.dataset.status);
+      else if (b.dataset.action === 'read') window.toggleRead(b.dataset.id, b.dataset.read === 'true');
+      else if (b.dataset.action === 'archive') window.setStatus(b.dataset.id, 'archived');
+    });
 
- <div class="card-header">
- <div class="card-name">${s.name || 'Unknown Client'}</div>
- <div class="card-business">${s.business || ''}</div>
- </div>
-
- <div class="card-contact">
- ${s.email ? `<a href="mailto:${s.email}" class="contact-link">✉ ${s.email}</a>` : ''}
- ${s.phone ? `<a href="tel:${s.phone}" class="contact-link">📞 ${s.phone}</a>` : ''}
- </div>
-
- <div class="card-divider"></div>
-
- <div class="card-grid">
- <div class="card-field">
- <div class="field-label">Project Type</div>
- <div class="field-val">${s.projType || '-'}</div>
- </div>
- <div class="card-field">
- <div class="field-label">Goal</div>
- <div class="field-val">${s.goal || '-'}</div>
- </div>
- <div class="card-field">
- <div class="field-label">Budget</div>
- <div class="field-val highlight">${s.budget || '-'}</div>
- </div>
- <div class="card-field">
- <div class="field-label">Timeline</div>
- <div class="field-val">${s.timeline || '-'}</div>
- </div>
- <div class="card-field">
- <div class="field-label">Pages</div>
- <div class="field-val">${s.pages || '-'}</div>
- </div>
- <div class="card-field">
- <div class="field-label">Style</div>
- <div class="field-val">${s.style || '-'}</div>
- </div>
- </div>
-
- ${s.bizDesc ? `
- <div class="card-section">
- <div class="field-label">Business Description</div>
- <div class="field-body">${s.bizDesc}</div>
- </div>` : ''}
-
- ${features !== '-' ? `
- <div class="card-section">
- <div class="field-label">Features Requested</div>
- <div class="field-tags">${(Array.isArray(s.feat) ? s.feat : [s.feat]).map(f => `<span class="tag">${f}</span>`).join('')}</div>
- </div>` : ''}
-
- ${s.extra ? `
- <div class="card-section">
- <div class="field-label">Additional Notes</div>
- <div class="field-body italic">${s.extra}</div>
- </div>` : ''}
-
- <div class="card-actions">
- ${s.email ? `<a href="mailto:${s.email}?subject=Re: Your Project Inquiry - Stacked Alchemist" class="card-btn btn-reply">✉ Reply</a>` : ''}
- <button class="card-btn btn-archive" onclick="setStatus('${s.id}', 'archived')">⬡ Archive</button>
- </div>
- </div>`;
- }).join('');
- }
-
- function statusLabel(s) {
+    function statusLabel(s) {
  const map = { new:'⬡ New', inprogress:'◈ In Progress', completed:'✓ Completed', archived:'✗ Archived' };
  return map[s] || '⬡ New';
  }
@@ -271,6 +265,7 @@
  };
 
  window.setStatus = async function(id, status) {
+      if (!STATUSES.includes(status) || !ID_RE.test(String(id))) return;
  try {
  await updateDoc(doc(db, 'submissions', id), { status });
  const s = allSubmissions.find(x => x.id === id);
@@ -586,6 +581,7 @@
  transition:all .2s;
  }
  .badge-read.unread { border-color:var(--magenta); color:var(--magenta); }
+ button.badge-status, button.badge-read { background:transparent; line-height:inherit; }
  .badge-read.read { border-color:rgba(255,255,255,.15); color:var(--text-d); }
 
  .card-date {
