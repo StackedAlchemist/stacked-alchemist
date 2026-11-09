@@ -1,0 +1,255 @@
+{
+  "generator": "blender/build.py",
+  "blender": "5.2.2 LTS",
+  "quality": "final",
+  "units": "metres; glTF Y-up (Blender Z-up converted on export)",
+  "lightmap": {
+    "file": "lightmap.webp",
+    "file2k": "lightmap-2k.webp",
+    "uv": 1,
+    "encoding": "srgb(bake/max)",
+    "max": 10.277787208557129,
+    "p50": 0.0,
+    "p99": 1.4226917028427124,
+    "clipped_fraction": 0.0005629658699035645,
+    "bake_seconds": 60.7,
+    "size": 4096
+  },
+  "env": "env.hdr",
+  "camera": {
+    "name": "RefCamera",
+    "hfov_deg": 70.0,
+    "pitch_deg": -1.4,
+    "position_blender": [
+      0.0,
+      0.0,
+      1.6
+    ]
+  },
+  "displays": [
+    {
+      "key": "nonprofit",
+      "side": -1,
+      "active": true,
+      "center": [
+        -6.5377,
+        13.0,
+        2.57
+      ],
+      "normal": [
+        0.9135,
+        -0.4067,
+        0.0
+      ],
+      "width": 3.2,
+      "height": 3.9
+    },
+    {
+      "key": "photography",
+      "side": -1,
+      "active": true,
+      "center": [
+        -6.5377,
+        19.5,
+        2.57
+      ],
+      "normal": [
+        0.9135,
+        -0.4067,
+        0.0
+      ],
+      "width": 3.2,
+      "height": 3.9
+    },
+    {
+      "key": "restaurant",
+      "side": -1,
+      "active": false,
+      "center": [
+        -6.5377,
+        26.0,
+        2.57
+      ],
+      "normal": [
+        0.9135,
+        -0.4067,
+        0.0
+      ],
+      "width": 3.2,
+      "height": 3.9
+    },
+    {
+      "key": "story",
+      "side": 1,
+      "active": false,
+      "center": [
+        6.5377,
+        13.0,
+        2.57
+      ],
+      "normal": [
+        -0.9135,
+        -0.4067,
+        0.0
+      ],
+      "width": 3.2,
+      "height": 3.9
+    },
+    {
+      "key": "saas",
+      "side": 1,
+      "active": false,
+      "center": [
+        6.5377,
+        19.5,
+        2.57
+      ],
+      "normal": [
+        -0.9135,
+        -0.4067,
+        0.0
+      ],
+      "width": 3.2,
+      "height": 3.9
+    },
+    {
+      "key": "gaming",
+      "side": 1,
+      "active": false,
+      "center": [
+        6.5377,
+        26.0,
+        2.57
+      ],
+      "normal": [
+        -0.9135,
+        -0.4067,
+        0.0
+      ],
+      "width": 3.2,
+      "height": 3.9
+    }
+  ],
+  "lanterns": [
+    [
+      -5.389,
+      9.75,
+      5.905
+    ],
+    [
+      -5.389,
+      16.25,
+      5.905
+    ],
+    [
+      -5.389,
+      22.75,
+      5.905
+    ],
+    [
+      -5.389,
+      29.25,
+      5.905
+    ],
+    [
+      5.389,
+      9.75,
+      5.905
+    ],
+    [
+      5.389,
+      16.25,
+      5.905
+    ],
+    [
+      5.389,
+      22.75,
+      5.905
+    ],
+    [
+      5.389,
+      29.25,
+      5.905
+    ]
+  ],
+  "orb": [
+    0.0,
+    49.0,
+    3.3
+  ],
+  "dome": {
+    "center": [
+      0.0,
+      30.0,
+      11.0
+    ],
+    "radius": 4.6
+  },
+  "portal": {
+    "y": 42.0,
+    "width": 6.2,
+    "apex": 8.8
+  },
+  "propLights": [
+    {
+      "pos": [
+        -1.25,
+        3.13,
+        1.1
+      ],
+      "color": [
+        1.0,
+        0.62,
+        0.32
+      ],
+      "intensity": 2.0,
+      "distance": 3.5
+    },
+    {
+      "pos": [
+        -1.6,
+        2.65,
+        1.06
+      ],
+      "color": [
+        0.62,
+        0.3,
+        1.0
+      ],
+      "intensity": 1.4,
+      "distance": 2.6
+    },
+    {
+      "pos": [
+        1.85,
+        3.07,
+        1.41
+      ],
+      "color": [
+        1.0,
+        0.75,
+        0.35
+      ],
+      "intensity": 1.8,
+      "distance": 3.0
+    },
+    {
+      "pos": [
+        1.4,
+        2.9,
+        1.04
+      ],
+      "color": [
+        0.55,
+        0.35,
+        1.0
+      ],
+      "intensity": 1.3,
+      "distance": 2.4
+    }
+  ],
+  "stats": {
+    "objects": 85,
+    "triangles": 191349
+  }
+}

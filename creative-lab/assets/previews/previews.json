@@ -1,0 +1,32 @@
+{
+  "nonprofit": {
+    "demo": "demos/kindred-harbor/index.html",
+    "viewport": [
+      1200,
+      1085
+    ],
+    "reducedMotion": true,
+    "size": [
+      920,
+      832
+    ],
+    "bytes": 90468,
+    "sha256": "6fa7d13aee5a01a7a7dff966d2be69745f3ddf15975f5c50f40d3b6c059a927b",
+    "captured": "2026-11-08"
+  },
+  "photography": {
+    "demo": "demos/vale-and-ember/index.html",
+    "viewport": [
+      1200,
+      1085
+    ],
+    "reducedMotion": true,
+    "size": [
+      920,
+      832
+    ],
+    "bytes": 40662,
+    "sha256": "08da4b5be81a183016fe5538f79973584facd78eeffef903237bd5fce6e3e294",
+    "captured": "2026-11-08"
+  }
+}

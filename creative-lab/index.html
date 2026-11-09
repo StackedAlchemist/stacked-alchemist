@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!-- Creative Lab: not indexed. -->
+  <meta name="robots" content="noindex, nofollow" />
+  <!-- CSP: 'wasm-unsafe-eval' lets this page compile the locally hosted Meshopt decoder (WebAssembly).
+       It does NOT allow eval() or remote scripts, and applies to the Creative Lab page only.
+       https://formspree.io (connect-src, form-action) is the site's existing contact-form backend, used by the
+       Consult the Alchemist form; no other third-party origin is allowed. -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' blob: data: https://formspree.io; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action https://formspree.io; frame-src 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <title>The Creative Lab · Stacked Alchemist</title>
+  <meta name="description" content="The Stacked Alchemist Creative Lab: an interactive 3D showroom of website designs." />
+  <link rel="icon" href="../images/favicon.ico" />
+  <!-- self-hosted fonts (OFL): no third-party request, no render-blocking cross-origin CSS -->
+  <link rel="preload" href="assets/fonts/cinzel.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="lab.css" />
+</head>
+<body class="is-loading">
+  <a class="skip-link" href="#lab-intro">Skip to the Creative Lab introduction</a>
+
+  <header class="lab-header" id="lab-header" role="banner">
+    <a class="lab-wordmark" href="../index.html" aria-label="Stacked Alchemist home">
+      <span class="lab-wordmark__sigil" aria-hidden="true"></span>
+      <span class="lab-wordmark__text">Stacked<br />Alchemist</span>
+    </a>
+    <div class="lab-header__right">
+      <span class="lab-badge">Creative Lab · Interactive Showroom</span>
+      <a class="skip3d" href="gallery.html">Skip 3D <span aria-hidden="true">·</span> View the 2D gallery</a>
+    </div>
+  </header>
+
+  <!-- WebGL stage: decorative to assistive tech; all meaning is mirrored in the HTML below. -->
+  <div id="stage" class="stage" aria-hidden="true"></div>
+  <div id="fade" class="fade" aria-hidden="true"></div>
+
+  <main id="lab-intro" class="intro" tabindex="-1">
+    <p class="intro__eyebrow"><span>The</span></p>
+    <h1 class="intro__title">Creative Lab</h1>
+    <p class="intro__sub"><span>Stacked Alchemist</span></p>
+    <div class="intro__cta">
+    <h2 class="intro__headline">Walk the Halls.<br /><span>Experience Your Next Design.</span></h2>
+    <hr class="intro__rule" />
+    <p class="intro__body">
+      Step into the Creative Lab and explore immersive website concepts and interactive designs,
+      crafted by Stacked Alchemist alongside AI development partners.
+      Your vision, our craft, a build that's uniquely yours.
+    </p>
+    <button id="enter" class="enter-btn" type="button" disabled>
+      <span class="enter-btn__ornament" aria-hidden="true"></span><span>Enter the Lab</span><span class="enter-btn__chev" aria-hidden="true">»</span>
+    </button>
+    </div>
+  </main>
+
+  <!-- In-hall controls live OUTSIDE the intro: the intro disables pointer events on its children when it
+       hides, which previously made these buttons unclickable with a mouse (keyboard still worked). -->
+  <nav class="lab-controls" id="lab-controls-nav" aria-label="Creative Lab navigation">
+    <div id="hall-bar" class="hall-bar" hidden>
+      <p class="hall-hint" id="hall-hint">
+        <span class="hall-hint__desktop">Scroll or use <kbd>W</kbd> <kbd>S</kbd> to walk · Click a display to examine it · <kbd>Esc</kbd> steps back</span>
+        <span class="hall-hint__touch">Swipe up or down to walk · Tap a display to examine it</span>
+      </p>
+      <div class="hall-bar__row">
+        <button id="prev-stop" class="hall-btn" type="button" aria-label="Previous stop"><span aria-hidden="true">‹</span> Previous</button>
+        <button id="examine-left" class="hall-btn hall-btn--examine" type="button"><small>Examine left</small><span>Display</span></button>
+        <button id="examine-right" class="hall-btn hall-btn--examine" type="button"><small>Examine right</small><span>Display</span></button>
+        <button id="consult-open" class="hall-btn hall-btn--consult" type="button" hidden><small>At the portal</small><span>Consult the Alchemist</span></button>
+        <button id="next-stop" class="hall-btn" type="button" aria-label="Next stop">Next <span aria-hidden="true">›</span></button>
+        <button id="displays-toggle" class="hall-btn" type="button" aria-expanded="false" aria-controls="displays-menu">Displays</button>
+      </div>
+      <ul id="displays-menu" class="displays-menu" aria-label="All displays" hidden></ul>
+    </div>
+    <button id="back" class="back-btn" type="button" hidden>Return to the entrance</button>
+    <button id="skip" class="skip-btn" type="button" hidden>Skip animation <span aria-hidden="true">(Esc)</span></button>
+  </nav>
+
+  <!-- Inspection panel: non-modal (the display stays visible beside it); focus moves here when it opens and
+       returns to the control that opened it when it closes. Content comes from src/data/concepts.js. -->
+  <aside id="inspect" class="inspect" role="dialog" aria-modal="false" aria-labelledby="inspect-title" hidden>
+    <p class="inspect__eyebrow" id="inspect-category"></p>
+    <h2 class="inspect__title" id="inspect-title" tabindex="-1"></h2>
+    <p class="inspect__status" id="inspect-status"></p>
+    <!-- D4: shown only for displays whose concept has a completed demonstration website (fixed path from concepts.js).
+         Placed right after the status so it is the first action on phones (bottom sheet) as well as on desktop.
+         No href until a demo fills it, so the hidden element never carries a placeholder destination. -->
+    <a id="inspect-demo" class="inspect__demo" hidden>Explore this website <span aria-hidden="true">→</span></a>
+    <p class="inspect__tagline" id="inspect-tagline"></p>
+    <p class="inspect__summary" id="inspect-summary"></p>
+    <section id="inspect-design" aria-label="Design notes">
+      <h3>Design highlights</h3>
+      <ul class="inspect__list" id="inspect-highlights"></ul>
+      <h3>Palette</h3>
+      <ul class="inspect__palette" id="inspect-palette"></ul>
+      <p class="inspect__type" id="inspect-type"></p>
+    </section>
+    <p class="inspect__note" id="inspect-note">The full interactive demo website arrives in a later milestone.</p>
+    <div class="inspect__actions">
+      <button id="inspect-close" class="inspect__primary" type="button">Return to the hallway</button>
+      <div class="inspect__cycle">
+        <button id="inspect-prev" type="button"><span aria-hidden="true">‹</span> Previous display</button>
+        <button id="inspect-next" type="button">Next display <span aria-hidden="true">›</span></button>
+      </div>
+      <a id="inspect-gallery" href="gallery.html">Open in the 2D gallery</a>
+    </div>
+  </aside>
+  <div id="announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <!-- Milestone 1B.1: Consult the Alchemist. Modal dialog (the hallway behind it is made inert while open).
+       The form posts to the site's existing Formspree endpoint, the same one contact.html uses. -->
+  <canvas id="consult-particles" class="consult-particles" aria-hidden="true" hidden></canvas>
+  <section id="consult" class="consult" role="dialog" aria-modal="true" aria-labelledby="consult-title" aria-describedby="consult-intro" hidden>
+    <div class="consult__inner">
+      <figure class="consult__portrait">
+        <div class="consult__frame">
+          <img src="assets/consult/founder.webp" width="600" height="800" alt="Portrait of Billy Williams, founder of Stacked Alchemist" decoding="async" />
+        </div>
+        <figcaption><strong>Billy Williams</strong><span>Founder, Stacked Alchemist</span></figcaption>
+      </figure>
+      <div class="consult__panel">
+        <p class="consult__eyebrow">At the portal</p>
+        <h2 id="consult-title" class="consult__title" tabindex="-1">Consult the Alchemist</h2>
+        <p id="consult-intro" class="consult__intro">You've explored what we can imagine. Now let's create what you've imagined.</p>
+        <p class="consult__lede">Tell me about your website or software project, who it is for, and what you hope it will do.</p>
+        <div id="consult-errors" class="consult__errors" role="alert" tabindex="-1" hidden></div>
+        <form id="consult-form" class="consult__form" action="https://formspree.io/f/xpqjvpjo" method="POST" novalidate>
+          <div class="c-row">
+            <div class="c-field">
+              <label for="c-name">Name <span class="c-req" aria-hidden="true">*</span></label>
+              <input id="c-name" name="name" type="text" autocomplete="name" maxlength="100" required aria-required="true" aria-describedby="c-name-error" />
+              <p class="c-error" id="c-name-error" hidden></p>
+            </div>
+            <div class="c-field">
+              <label for="c-email">Email <span class="c-req" aria-hidden="true">*</span></label>
+              <input id="c-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required aria-required="true" aria-describedby="c-email-error" />
+              <p class="c-error" id="c-email-error" hidden></p>
+            </div>
+          </div>
+          <div class="c-field">
+            <label for="c-type">Project type <span class="c-req" aria-hidden="true">*</span></label>
+            <select id="c-type" name="project_type" required aria-required="true" aria-describedby="c-type-error">
+              <option value="Website">Website</option>
+              <option value="Application">Application</option>
+              <option value="Redesign">Redesign</option>
+              <option value="Other">Other</option>
+            </select>
+            <p class="c-error" id="c-type-error" hidden></p>
+          </div>
+          <div class="c-field">
+            <label for="c-vision">Your vision <span class="c-req" aria-hidden="true">*</span></label>
+            <textarea id="c-vision" name="message" rows="5" minlength="20" maxlength="4000" required aria-required="true"
+              aria-describedby="c-vision-hint c-vision-error"></textarea>
+            <p class="c-hint" id="c-vision-hint">What you want to build, who it is for, and what success looks like. <span id="c-vision-count">0 / 4000</span></p>
+            <p class="c-error" id="c-vision-error" hidden></p>
+          </div>
+          <div class="c-row">
+            <div class="c-field">
+              <label for="c-budget">Budget range <span class="c-opt">(optional)</span></label>
+              <select id="c-budget" name="budget" aria-describedby="c-budget-error">
+                <option value="">Prefer not to say</option>
+                <option>Under $2,500</option>
+                <option>$2,500 to $7,500</option>
+                <option>$7,500 to $15,000</option>
+                <option>$15,000 to $40,000</option>
+                <option>$40,000 or more</option>
+                <option>Not sure yet</option>
+              </select>
+              <p class="c-error" id="c-budget-error" hidden></p>
+            </div>
+            <div class="c-field">
+              <label for="c-time">Desired timeframe <span class="c-opt">(optional)</span></label>
+              <select id="c-time" name="timeframe" aria-describedby="c-time-error">
+                <option value="">Prefer not to say</option>
+                <option>As soon as possible</option>
+                <option>Within 1 to 3 months</option>
+                <option>Within 3 to 6 months</option>
+                <option>Flexible</option>
+                <option>Not sure yet</option>
+              </select>
+              <p class="c-error" id="c-time-error" hidden></p>
+            </div>
+          </div>
+          <!-- honeypot: hidden from people and assistive tech; bots that fill it are discarded by Formspree -->
+          <div class="c-hp" aria-hidden="true"><label>Leave this field empty<input name="_gotcha" type="text" tabindex="-1" autocomplete="off" /></label></div>
+          <input type="hidden" name="_subject" value="Creative Lab consultation request" />
+          <p class="c-privacy">This form is submitted through <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Formspree</a>, a third-party form service, which forwards it to Stacked Alchemist by email and handles it under its own privacy policy. Please do not include passwords, payment details, or other sensitive information. <span class="c-req" aria-hidden="true">*</span> marks required fields.</p>
+          <button id="consult-submit" class="consult__send" type="submit"><span>Send Your Vision</span></button>
+        </form>
+        <div id="consult-result" class="consult__result" role="status" aria-live="polite" tabindex="-1" hidden></div>
+        <div class="consult__actions">
+          <button id="consult-close" type="button">Return to the hallway</button>
+          <a href="../contact.html#client">Go to the Contact page</a>
+          <a href="gallery.html">Open the 2D gallery</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="status" class="status" role="status" aria-live="polite">Preparing the hallway…</div>
+  <div id="recovery" class="recovery" role="alertdialog" aria-labelledby="recovery-title" hidden>
+    <h2 id="recovery-title">The 3D view stopped</h2>
+    <p></p>
+    <div class="recovery__actions">
+      <button type="button" id="reload">Reload the Creative Lab</button>
+      <a href="gallery.html">Open the 2D gallery</a>
+      <a href="../index.html">Back to Stacked Alchemist</a>
+    </div>
+  </div>
+  <div id="no3d" class="recovery" role="region" aria-labelledby="no3d-title" hidden>
+    <h2 id="no3d-title">The 3D hallway is not available here</h2>
+    <p></p>
+    <div class="recovery__actions">
+      <a href="gallery.html">Open the 2D gallery</a>
+      <a href="../index.html">Back to Stacked Alchemist</a>
+    </div>
+  </div>
+  <noscript><p class="nojs">The 3D Creative Lab needs JavaScript and WebGL. <a href="gallery.html">Open the 2D gallery</a>, which works without either.</p></noscript>
+
+  <!-- build/lab.js = src/ + vendored three, bundled and minified by tools/build-js.mjs -->
+  <script type="module" src="build/lab.js"></script>
+</body>
+</html>
