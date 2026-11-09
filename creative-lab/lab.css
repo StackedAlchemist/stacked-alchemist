@@ -261,6 +261,62 @@ body.in-hall .stage canvas { touch-action: none; }
   #displays-toggle { grid-column: 1 / -1; }
 }
 
+/* ================================================================ Compact layout (phones, portrait tablets)
+   Same condition as experience.js isCompact(). In portrait the side displays sit outside the forward view, so the
+   bar names the current stop and offers "Look left / Look right", which turns the camera to the framed website.
+   Wider screens are unaffected: the compact-only elements below are not displayed there. */
+.hall-stop, .hall-btn__compact, .hall-hint__compact, .inspect__more { display: none; }
+.hall-btn--examine small span { font: inherit; color: inherit; }   /* label wording spans keep the small caps style */
+@media (max-width: 640px), (max-aspect-ratio: 4/5) {
+  .hall-btn__wide { display: none; }
+  .hall-btn__compact { display: inline; }
+  .hall-bar { width: calc(100vw - 20px); bottom: max(10px, env(safe-area-inset-bottom)); gap: 6px; }
+  .hall-hint { font-size: 12px; }
+  .hall-hint .hall-hint__desktop, .hall-hint .hall-hint__touch { display: none; }
+  .hall-hint .hall-hint__compact { display: inline; }
+  .hall-bar__row { display: grid; width: 100%; gap: 6px; padding: 6px;
+    grid-template-columns: 64px 1fr 1fr 64px; grid-template-areas: "prev stop stop next" "exl exl exr exr"; }
+  #prev-stop { grid-area: prev; } #next-stop { grid-area: next; }
+  #displays-toggle { grid-area: stop; }
+  #examine-left { grid-area: exl; } #examine-right { grid-area: exr; }
+  #consult-open { grid-column: 1 / -1; grid-row: 2; min-width: 0; }
+  #prev-stop, #next-stop { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; padding: 4px 2px; line-height: 1; }
+  .hall-btn__arrow { font-size: 24px; line-height: .8; }
+  .hall-btn__word { font: 500 10px var(--font-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+  #displays-toggle { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px 8px; line-height: 1.1; }
+  .hall-stop { display: block; font: 600 15px var(--font-serif); color: #fff8ec; }
+  .hall-stop:empty { display: none; }
+  #displays-toggle .hall-btn__compact { font: 500 10px var(--font-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+  .hall-btn--examine { min-height: 52px; padding: 6px 10px; }
+  .hall-btn--examine span.hall-btn__name { font-size: 14px; line-height: 1.15; }
+  #examine-right { align-items: flex-end; text-align: right; }
+  .displays-menu { grid-template-columns: 1fr; max-height: 46vh; overflow-y: auto; overscroll-behavior: contain; }
+
+  /* inspection: a compact sheet (title, status, Explore + More) so the framed website stays large above it */
+  .inspect, .inspect[data-side] { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8px; align-content: start;
+    max-height: 72vh; padding: 14px 16px max(14px, env(safe-area-inset-bottom)); }
+  .inspect > * { grid-column: 1 / -1; min-width: 0; }
+  .inspect__title { font-size: 24px; margin-top: 4px; }
+  .inspect__status { justify-self: start; margin-top: 6px; font-size: 10px; }
+  .inspect > .inspect__demo, .inspect > .inspect__more { grid-column: auto; margin: 10px 0 0; min-height: 44px; }
+  .inspect > .inspect__demo[hidden] + .inspect__more { grid-column: 1 / -1; }
+  .inspect[hidden], .inspect > [hidden] { display: none; }
+  .inspect__more { display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 8px 12px; border-radius: 10px;
+    font: 500 14px var(--font-ui); color: #f4ecdf; border: 1px solid rgba(233,196,111,.4); background: rgba(40,16,72,.6); }
+  .inspect__more:hover, .inspect__more:focus-visible { border-color: var(--gold-hi); outline: none; box-shadow: 0 0 0 2px rgba(255,226,161,.45); }
+  .inspect:not(.is-expanded) .inspect__details, .inspect:not(.is-expanded) #inspect-gallery { display: none; }
+  .inspect__actions { margin-top: 10px; gap: 8px; }
+}
+/* short phones: tighter sheet spacing (touch targets stay 44 px) so more height is left for the display */
+@media (max-width: 640px) and (max-height: 700px), (max-aspect-ratio: 4/5) and (max-height: 700px) {
+  .inspect, .inspect[data-side] { padding: 10px 14px max(10px, env(safe-area-inset-bottom)); }
+  .inspect__title { font-size: 21px; margin-top: 2px; }
+  .inspect__status { margin-top: 4px; }
+  .inspect > .inspect__demo, .inspect > .inspect__more { margin-top: 8px; }
+  .inspect__actions { margin-top: 8px; gap: 6px; }
+  .inspect__cycle { gap: 6px; }
+}
+
 /* ================================================================ Milestone 1B.1: Consult the Alchemist */
 .hall-btn--consult { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1.15; min-width: 220px; text-align: left;
   border-color: var(--gold); background: linear-gradient(180deg, rgba(110,46,190,.75), rgba(44,11,85,.85));

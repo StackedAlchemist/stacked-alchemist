@@ -64,14 +64,16 @@
       <p class="hall-hint" id="hall-hint">
         <span class="hall-hint__desktop">Scroll or use <kbd>W</kbd> <kbd>S</kbd> to walk · Click a display to examine it · <kbd>Esc</kbd> steps back</span>
         <span class="hall-hint__touch">Swipe up or down to walk · Tap a display to examine it</span>
+        <span class="hall-hint__compact">Swipe to walk · Look left or right to view a website</span>
       </p>
       <div class="hall-bar__row">
-        <button id="prev-stop" class="hall-btn" type="button" aria-label="Previous stop"><span aria-hidden="true">‹</span> Previous</button>
-        <button id="examine-left" class="hall-btn hall-btn--examine" type="button"><small>Examine left</small><span>Display</span></button>
-        <button id="examine-right" class="hall-btn hall-btn--examine" type="button"><small>Examine right</small><span>Display</span></button>
+        <button id="prev-stop" class="hall-btn" type="button" aria-label="Previous stop"><span class="hall-btn__arrow" aria-hidden="true">‹</span> <span class="hall-btn__word">Previous</span></button>
+        <!-- Phones (compact layout) show "Look left/right" with a direction arrow; wider screens keep "Examine". -->
+        <button id="examine-left" class="hall-btn hall-btn--examine" type="button"><small><span class="hall-btn__wide">Examine left</span><span class="hall-btn__compact"><span aria-hidden="true">‹ </span>Look left</span></small><span class="hall-btn__name">Display</span></button>
+        <button id="examine-right" class="hall-btn hall-btn--examine" type="button"><small><span class="hall-btn__wide">Examine right</span><span class="hall-btn__compact">Look right<span aria-hidden="true"> ›</span></span></small><span class="hall-btn__name">Display</span></button>
         <button id="consult-open" class="hall-btn hall-btn--consult" type="button" hidden><small>At the portal</small><span>Consult the Alchemist</span></button>
-        <button id="next-stop" class="hall-btn" type="button" aria-label="Next stop">Next <span aria-hidden="true">›</span></button>
-        <button id="displays-toggle" class="hall-btn" type="button" aria-expanded="false" aria-controls="displays-menu">Displays</button>
+        <button id="next-stop" class="hall-btn" type="button" aria-label="Next stop"><span class="hall-btn__word">Next</span> <span class="hall-btn__arrow" aria-hidden="true">›</span></button>
+        <button id="displays-toggle" class="hall-btn" type="button" aria-expanded="false" aria-controls="displays-menu"><span class="hall-stop" id="hall-stop"></span><span class="hall-btn__wide">Displays</span><span class="hall-btn__compact">All displays <span aria-hidden="true">▾</span></span></button>
       </div>
       <ul id="displays-menu" class="displays-menu" aria-label="All displays" hidden></ul>
     </div>
@@ -89,6 +91,10 @@
          Placed right after the status so it is the first action on phones (bottom sheet) as well as on desktop.
          No href until a demo fills it, so the hidden element never carries a placeholder destination. -->
     <a id="inspect-demo" class="inspect__demo" hidden>Explore this website <span aria-hidden="true">→</span></a>
+    <!-- Phones: the sheet opens compact (title, status, Explore) so the display stays large; this reveals the rest.
+         Hidden on wider screens, where every detail is always shown. -->
+    <button id="inspect-more" class="inspect__more" type="button" aria-expanded="false" aria-controls="inspect-details">More about this design</button>
+    <div id="inspect-details" class="inspect__details">
     <p class="inspect__tagline" id="inspect-tagline"></p>
     <p class="inspect__summary" id="inspect-summary"></p>
     <section id="inspect-design" aria-label="Design notes">
@@ -99,6 +105,7 @@
       <p class="inspect__type" id="inspect-type"></p>
     </section>
     <p class="inspect__note" id="inspect-note">The full interactive demo website arrives in a later milestone.</p>
+    </div>
     <div class="inspect__actions">
       <button id="inspect-close" class="inspect__primary" type="button">Return to the hallway</button>
       <div class="inspect__cycle">
